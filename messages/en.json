@@ -1,0 +1,16 @@
+{
+  "Metadata": {
+    "title": "Ahmed Webcraft",
+    "description": "I design and build modern bilingual web applications and interactive digital experiences that make everyday business simpler, faster, and available to customers in both Arabic and English."
+  },
+  "Navigation": {
+    "home": "Home",
+    "businessGrowth": "Business Growth",
+    "services": "Services",
+    "projects": "Projects",
+    "threeD": "3D Work",
+    "about": "About",
+    "skills": "Skills",
+    "contact": "Contact"
+  }
+}

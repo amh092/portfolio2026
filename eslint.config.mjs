@@ -12,6 +12,8 @@ const eslintConfig = defineConfig([
     "out/**",
     "build/**",
     "next-env.d.ts",
+    // Internal planning docs and reference tooling, never shipped.
+    "context/**",
   ]),
 ]);
 
