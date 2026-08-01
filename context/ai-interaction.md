@@ -1,5 +1,18 @@
 # AI Interaction Guidelines
 
+## Notes and Memory
+
+- Do **not** use Claude's persistent memory for this project. Keep all working notes, decisions, and status in the `context/*.md` files so they live in the repo.
+- Where things live: decisions and approved content → `context/phase-1-plan.md` (decision log); current status → `context/current-feature.md`; styling source of truth → `context/styling-reference.md` + `ahmed-portfolio-prototype.html`.
+
+## Content Rules (approved in Phase 1 — apply to all copy in later phases)
+
+- De-emphasize bilingualism: mention Arabic/English support at most once per section, as a plain capability, never as a selling theme.
+- Never invent facts, metrics, years of experience, or client counts; every claim must be verifiable.
+- Never present Ahmed as a 3D modeler/artist — models are Meshy AI-generated; the verified skill is building interactive 3D web experiences (React Three Fiber).
+- First-person singular voice ("I" / «أبني»); brand "Ahmed Webcraft / أحمد لصناعة الويب" in navbar/footer/metadata; "Ahmed" in prose.
+- Arabic copy is written natural, never a literal mirror of the English.
+
 ## Communication
 
 - Be concise and direct
