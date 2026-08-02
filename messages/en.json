@@ -21,5 +21,36 @@
     "languageLabel": "Language",
     "themeToggle": "Toggle theme",
     "skipLink": "Skip to content"
+  },
+  "Hero": {
+    "title": "Home"
+  },
+  "BusinessGrowth": {
+    "eyebrow": "How I help",
+    "title": "Business Growth"
+  },
+  "Services": {
+    "eyebrow": "What I offer",
+    "title": "Services"
+  },
+  "Projects": {
+    "eyebrow": "Selected work",
+    "title": "Projects"
+  },
+  "ThreeD": {
+    "eyebrow": "In the browser",
+    "title": "3D Work"
+  },
+  "About": {
+    "eyebrow": "Who I am",
+    "title": "About"
+  },
+  "Skills": {
+    "eyebrow": "Technologies",
+    "title": "Skills"
+  },
+  "Contact": {
+    "eyebrow": "Let's talk",
+    "title": "Contact"
   }
 }

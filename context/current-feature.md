@@ -1,38 +1,45 @@
 # Current Feature
 
-Phase 3 — Navigation
+Phase 4 — Main Sections
 
 ## Status
 
 <!-- Not Started|In Progress|Completed -->
 
-Completed
+In Progress
 
 ## Goals
 
 <!-- Goals & requirements -->
 
-- Sticky/fixed navbar per prototype: transparent → glass blur after 20px scroll, brand + links + tools
-- Desktop navigation with active-section indicator (pulsing neon dot, `aria-current`)
-- Mobile drawer menu (≤ lg): scrim + slide-in panel from inline-end (RTL-aware), Escape/scrim/link close, body scroll lock, `aria-expanded`/`aria-controls`
-- Smooth section scrolling via CSS `scroll-behavior` + anchor links (already in foundation)
-- Active-section tracking with IntersectionObserver (prototype: rootMargin `-45% 0px -50% 0px`)
-- Language switcher (EN / ع pill) that preserves the current section when switching locales
-- Theme switcher (dark default ↔ light) on `html[data-theme]`, persisted in `localStorage`, no-flash inline script, sun/moon icons swapped via CSS (no hydration mismatch)
-- Skip link + `main#main` for keyboard users
-- Brand: "Ahmed Webcraft" / «أحمد لصناعة الويب» per phase-1-plan §4.5
-- All visible text from `messages/*.json`; lucide-react for icons (per tech stack)
+Build the eight page sections plus the footer from the roadmap, with all copy verbatim from the approved `context/phase-1-plan.md`:
 
-Out of scope: footer + back-to-top (Phase 4), reveal/neon animations beyond the nav dot (Phase 5).
+- Hero section (§5) — no availability pill, no profile image (permanent omissions)
+- Business-growth section (§6) — intro + 5 benefit cards
+- Services section (§7) — `data/services.ts` + 6 cards, 3 primary emphasized
+- Projects section (§8, §9) — `data/projects.ts` + 3 cards (Tavolla → RentFlow → Insally), live-demo links only, optimized WebP card images (§16 rows 1–3)
+- About section (§12) — approved biographies
+- Skills section (§13) — `data/skills.ts`, 5 categories, badge-style tags
+- Contact section (§14.1) — UI only; the form renders but does not submit
+- Footer + back-to-top (§14.2)
+- Shared UI primitives: section heading (eyebrow + fluid heading), buttons (primary gradient / ghost), technology badge, status pill, card surface, page background atmosphere
+- All visible text in `messages/en.json` / `messages/ar.json` (one namespace per section); structured content in typed files under `src/data/` with types in `src/types/`
+- Styling matches the prototype's static look (`ahmed-portfolio-prototype.html` + baseline screenshots in `styling-reference.md`), verified in both locales, both themes, desktop and mobile
+
+Out of scope (deferred):
+
+- Phase 5 — scroll reveals, staggered entrances, pulsing/neon animations, pointer-follow card glow, hero entrance motion; Motion is not installed
+- Phase 6 — 3D viewer; the `three-d` section body stays a clean placeholder
+- Phase 7 — contact-form submission, validation, spam protection, email provider
+- Phase 8 — SEO metadata, sitemap, OG image, contrast testing, Lighthouse, deployment
 
 ## Notes
 
 <!-- Any extra notes -->
 
-- Branch: `feature/navigation`
-- Styling matched to `ahmed-portfolio-prototype.html` (nav/drawer/lang-switch/icon-btn rules, lines ~125–210, 518–530)
-- Breakpoint: prototype uses 1000px for burger; implementation uses Tailwind `lg` (1024px) — negligible visual difference, per styling-reference "match the result"
-- Language switch keeps the visually active section: navigates to `/{locale}#<active-section>` with `scroll: false` so the scroll position is preserved
+- Branch: `feature/main-sections` — merge to `main` only after the Step 10 audit is approved
+- Executed step by step via `context/phase-4-prompts.md` (11 approval gates); one step per prompt, each awaiting Ahmed's approval
+- Step progress and decisions tracked in `context/phase-4-plan.md`
 
 ## History
 
@@ -44,3 +51,5 @@ Out of scope: footer + back-to-top (Phase 4), reveal/neon animations beyond the 
 - 2026-08-01 — Phase 3 (Navigation) started on branch `feature/navigation`
 - 2026-08-01 — Phase 3 implementation complete: lint + build pass; 22/22 browser checks pass (navbar glass, scrollspy + neon dot, theme toggle with persistence and no-flash, language switch preserving section `/en#services → /ar#services`, mobile drawer incl. RTL, Escape/scrim close, body scroll lock)
 - 2026-08-02 — Phase 3 approved, merged to `main`; branch deleted. Next up: Phase 4 — Main Sections (hero, business growth, services, projects, about, skills, contact, footer) from the approved content in `phase-1-plan.md`
+- 2026-08-02 — Phase 4 started on branch `feature/main-sections`; Step 1 implemented: shared UI primitives (section heading + eyebrow pill, primary/ghost buttons, technology badge, status pill, card surface, static background atmosphere) and 8 section scaffolds composed in `page.tsx`; per-section message namespaces added (7 draft eyebrow strings flagged for approval). Lint + build pass; 13/13 browser checks pass (EN/AR, dark/light, desktop/mobile; scrollspy + skip link intact). Awaiting Step 1 review
+- 2026-08-02 — Step 1 approved (incl. the 7 eyebrow strings and dropping the Phase 2 per-section bottom borders) and committed. Next: Step 2 — Hero

@@ -21,5 +21,36 @@
     "languageLabel": "اللغة",
     "themeToggle": "تبديل المظهر",
     "skipLink": "تخطَّ إلى المحتوى"
+  },
+  "Hero": {
+    "title": "الرئيسية"
+  },
+  "BusinessGrowth": {
+    "eyebrow": "كيف أساعدك",
+    "title": "تطوير الأعمال"
+  },
+  "Services": {
+    "eyebrow": "ما أقدمه",
+    "title": "الخدمات"
+  },
+  "Projects": {
+    "eyebrow": "أعمال مختارة",
+    "title": "المشاريع"
+  },
+  "ThreeD": {
+    "eyebrow": "داخل المتصفح",
+    "title": "أعمال ثلاثية الأبعاد"
+  },
+  "About": {
+    "eyebrow": "من أنا",
+    "title": "نبذة عني"
+  },
+  "Skills": {
+    "eyebrow": "التقنيات",
+    "title": "المهارات"
+  },
+  "Contact": {
+    "eyebrow": "لنتحدث",
+    "title": "تواصل معي"
   }
 }
