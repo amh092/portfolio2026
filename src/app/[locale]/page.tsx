@@ -1,19 +1,8 @@
 import { type Locale } from "next-intl";
 import { getTranslations, setRequestLocale } from "next-intl/server";
+import { SECTIONS } from "@/data/sections";
 
-// Approved section order and anchor IDs (context/phase-1-plan.md §2).
-// Headings are placeholders — real section content lands in Phase 4.
-const SECTIONS = [
-  { id: "home", labelKey: "home" },
-  { id: "business-growth", labelKey: "businessGrowth" },
-  { id: "services", labelKey: "services" },
-  { id: "projects", labelKey: "projects" },
-  { id: "three-d", labelKey: "threeD" },
-  { id: "about", labelKey: "about" },
-  { id: "skills", labelKey: "skills" },
-  { id: "contact", labelKey: "contact" },
-] as const;
-
+// Section headings are placeholders — real section content lands in Phase 4.
 export default async function HomePage({ params }: PageProps<"/[locale]">) {
   const { locale } = await params;
   setRequestLocale(locale as Locale);
@@ -21,13 +10,15 @@ export default async function HomePage({ params }: PageProps<"/[locale]">) {
   const t = await getTranslations("Navigation");
 
   return (
-    <main>
+    <main id="main">
       {SECTIONS.map(({ id, labelKey }) => (
         <section
           key={id}
           id={id}
           aria-labelledby={`${id}-heading`}
-          className="section-pad border-b border-border"
+          className={`section-pad border-b border-border ${
+            id === "home" ? "pt-[calc(var(--nav-h)+var(--section-pad))]" : ""
+          }`}
         >
           <div className="container-page">
             {id === "home" ? (

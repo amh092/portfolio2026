@@ -4,7 +4,13 @@ import { hasLocale, NextIntlClientProvider, type Locale } from "next-intl";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { Cairo, Inter } from "next/font/google";
 import { routing } from "@/i18n/routing";
+import Navbar from "@/components/layout/navbar";
 import "../globals.css";
+
+// Applies a saved light theme before first paint (dark is the default);
+// runs before hydration, hence suppressHydrationWarning on <html>.
+const THEME_INIT_SCRIPT =
+  "try{if(localStorage.theme==='light')document.documentElement.dataset.theme='light'}catch(e){}";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -46,15 +52,28 @@ export default async function LocaleLayout({
 
   setRequestLocale(locale);
 
+  const t = await getTranslations("Navigation");
+
   return (
     <html
       lang={locale}
       dir={locale === "ar" ? "rtl" : "ltr"}
       data-theme="dark"
       className={`${inter.variable} ${cairo.variable}`}
+      suppressHydrationWarning
     >
       <body>
-        <NextIntlClientProvider>{children}</NextIntlClientProvider>
+        <script dangerouslySetInnerHTML={{ __html: THEME_INIT_SCRIPT }} />
+        <NextIntlClientProvider>
+          <a
+            href="#main"
+            className="fixed -top-24 start-4 z-[200] rounded-[10px] bg-accent px-4 py-3 text-white transition-[top] duration-200 focus:top-4"
+          >
+            {t("skipLink")}
+          </a>
+          <Navbar />
+          {children}
+        </NextIntlClientProvider>
       </body>
     </html>
   );

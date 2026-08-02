@@ -174,3 +174,69 @@ html[lang="ar"] {
 @utility section-pad {
   padding-block: var(--section-pad);
 }
+
+@utility icon-btn {
+  display: grid;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  flex: none;
+  border-radius: 11px;
+  background: rgb(var(--surface));
+  border: 1px solid rgb(var(--border));
+  cursor: pointer;
+  color: rgb(var(--fg-muted));
+  transition: all 0.25s var(--ease);
+
+  &:hover {
+    color: rgb(var(--fg));
+    border-color: rgb(var(--border-strong));
+    background: rgb(var(--surface-2));
+  }
+}
+
+/* ============================================================
+   NAVIGATION (prototype parity: active dot + theme icon swap)
+   ============================================================ */
+
+@layer components {
+  /* Active-section neon dot (physical `left` keeps it centered in RTL too) */
+  .nav-dot {
+    position: absolute;
+    bottom: 1px;
+    left: 50%;
+    translate: -50% 0;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: rgb(var(--accent));
+    opacity: 0;
+    scale: 0.4;
+    transition:
+      opacity 0.3s var(--ease),
+      scale 0.3s var(--ease);
+    box-shadow: 0 0 8px 1px rgb(var(--accent) / 0.9);
+  }
+
+  a[aria-current="true"] .nav-dot {
+    opacity: 1;
+    scale: 1;
+    animation: dot-pulse 2.6s ease-in-out infinite;
+  }
+
+  /* Theme toggle icons: dark shows the sun, light shows the moon */
+  html[data-theme="dark"] .theme-icon-moon,
+  html[data-theme="light"] .theme-icon-sun {
+    display: none;
+  }
+}
+
+@keyframes dot-pulse {
+  0%,
+  100% {
+    box-shadow: 0 0 6px 0 rgb(var(--accent) / 0.6);
+  }
+  50% {
+    box-shadow: 0 0 12px 2px rgb(var(--accent) / 0.95);
+  }
+}

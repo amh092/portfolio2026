@@ -11,6 +11,15 @@
     "threeD": "3D Work",
     "about": "About",
     "skills": "Skills",
-    "contact": "Contact"
+    "contact": "Contact",
+    "brandName": "Ahmed Webcraft",
+    "brandAriaLabel": "Ahmed Webcraft — home",
+    "primaryNavLabel": "Primary",
+    "mobileNavLabel": "Mobile menu",
+    "openMenu": "Open menu",
+    "closeMenu": "Close menu",
+    "languageLabel": "Language",
+    "themeToggle": "Toggle theme",
+    "skipLink": "Skip to content"
   }
 }

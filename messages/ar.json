@@ -11,6 +11,15 @@
     "threeD": "أعمال ثلاثية الأبعاد",
     "about": "نبذة عني",
     "skills": "المهارات",
-    "contact": "تواصل معي"
+    "contact": "تواصل معي",
+    "brandName": "أحمد لصناعة الويب",
+    "brandAriaLabel": "أحمد لصناعة الويب — الرئيسية",
+    "primaryNavLabel": "التنقل الرئيسي",
+    "mobileNavLabel": "قائمة التنقل",
+    "openMenu": "فتح القائمة",
+    "closeMenu": "إغلاق القائمة",
+    "languageLabel": "اللغة",
+    "themeToggle": "تبديل المظهر",
+    "skipLink": "تخطَّ إلى المحتوى"
   }
 }
