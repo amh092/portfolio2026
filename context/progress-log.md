@@ -9,3 +9,4 @@ One list item per completed step: phase · sub-phase — date. Newest last.
 - Phase 4 · Step 2 — Hero section — implemented 2026-08-02, approval recorded 2026-08-03
 - Phase 4 · Step 2 (review fix) — theme no longer resets on language switch — fixed 2026-08-03
 - Phase 4 · Step 3 — Business-growth section (intro + 5 benefit cards) — approved and committed 2026-08-03
+- Phase 4 · Step 2 (review fix) — hero glow no longer causes mobile zoom-out/clipping (worst in RTL) — fixed 2026-08-03

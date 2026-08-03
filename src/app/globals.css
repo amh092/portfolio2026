@@ -460,13 +460,18 @@ html[lang="ar"] {
    ============================================================ */
 
 @layer components {
-  /* Prototype #home: full-viewport height, copy vertically centered */
+  /* Prototype #home: full-viewport height, copy vertically centered.
+     overflow-x clip (not hidden — hidden would force overflow-y to auto
+     and let the hero scroll internally): the title glow's negative inset
+     otherwise widens the scrollable area past the viewport on small
+     screens, and mobile browsers zoom the whole page out to fit it */
   .hero {
     display: flex;
     align-items: center;
     min-height: 100svh;
     padding-block-start: calc(var(--nav-h) + clamp(3rem, 8vw, 6rem));
     padding-block-end: clamp(3rem, 7vw, 6rem);
+    overflow-x: clip;
   }
 
   /* Prototype .hero-name scale on the approved value heading; the static
