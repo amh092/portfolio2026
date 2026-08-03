@@ -77,7 +77,8 @@
   },
   "About": {
     "eyebrow": "Who I am",
-    "title": "About"
+    "title": "About",
+    "bio": "I'm Ahmed, a web developer who designs and builds complete web applications — from the interface to the API and database. I've shipped products for restaurant booking and ordering (Tavolla), property management (RentFlow), and school robotics competitions (Insally), built with React, Next.js, TypeScript, NestJS, and Supabase. I also create interactive 3D experiences that run directly in the browser, using React Three Fiber with AI-generated models. I work in both Arabic and English."
   },
   "Skills": {
     "eyebrow": "Technologies",

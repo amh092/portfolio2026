@@ -4,7 +4,7 @@ Living artifact for Phase 4. Executed step by step through the prompts in `conte
 
 ## 1. Phase status
 
-**In progress.** Branch `feature/main-sections` created 2026-08-02; Steps 1–6 approved and committed. Next: Step 7A — About. Merge to `main` only after the Step 10 audit is approved.
+**In progress.** Branch `feature/main-sections` created 2026-08-02; Steps 1–6 and 7A approved and committed. Next: Step 7B — Skills. Merge to `main` only after the Step 10 audit is approved.
 
 ## 2. Step breakdown and progress
 
@@ -18,7 +18,7 @@ Run one step at a time via `phase-4-prompts.md`; a step is Done only after Ahmed
 | 4 | Services section (`data/services.ts` + 6 cards) | §7 | Done — approved 2026-08-04 |
 | 5 | Project card images — 3 screenshots → WebP ≤ 250 KB (pre-authorized) | §16 rows 1–3 | Done — approved 2026-08-04 |
 | 6 | Projects section (`data/projects.ts` + 3 cards, Tavolla → RentFlow → Insally) | §8, §9 | Done — approved 2026-08-04 |
-| 7A | About section | §12 | Not started |
+| 7A | About section | §12 | Done — approved 2026-08-04 |
 | 7B | Skills section (`data/skills.ts`, 5 categories) | §13 | Not started |
 | 8 | Contact section — UI only, form does not submit | §14.1 | Not started |
 | 9 | Footer + back-to-top | §14.2 | Not started |
@@ -58,6 +58,7 @@ Run one step at a time via `phase-4-prompts.md`; a step is Done only after Ahmed
 
 | Date | Decision | Status |
 |------|----------|--------|
+| 2026-08-04 | Step 7A layout: prototype's about-portrait placeholder (decorative "A" initial) and about-points bullet list omitted — the portrait stands in for the omitted profile photo and the bullets' content (overview's "suggested positioning") is not part of the approved §12 bio. Rendered as section head + single bio paragraph (max-w 65ch, muted); head gap tightened to the prototype about head's 1.5rem via a new optional `tight` prop on SectionHeading. Bio lives in `messages/*.json` (`About.bio`) since it is prose, not structured data | Approved 2026-08-04 |
 | 2026-08-04 | Step 6 data shape: `src/types/project.ts` = the overview's Project type plus `imageAlt: LocalizedText` (the §16 manifest alt drafts must ship with the card); `repositoryUrl?` kept in the type for fidelity but never set — cards link live demos only. All three projects `featured: true`, `status: "completed"` | Approved 2026-08-04 ("next") |
 | 2026-08-04 | Step 6 card layout: prototype `.card.project` via new unpadded `CARD_PROJECT_CLASSES` in `ui/card.ts` (padding moved from the shared base into each variant — existing cards unchanged); media = 16:10 aspect box (`next/image fill` + `sizes`, no layout shift — all three images are exactly 16:10) with the status pill overlaid inline-start; Key features rendered as a third ps-block `dl` (dt label + one dd per feature) since the prototype card has no features block; left-aligned section head per prototype (no `center`) | Approved 2026-08-04 ("next") |
 | 2026-08-04 | Step 6 new strings (EN/AR) in `Projects`: `problemLabel` "Problem"/«المشكلة», `solutionLabel` "Solution"/«الحل», `featuresLabel` "Key features"/«أبرز الميزات», `liveDemo` "Live demo"/«عرض مباشر», `liveDemoAria` "Live demo — {project} (opens in a new tab)"/«عرض مباشر — {project} (يفتح في تبويب جديد)», `statusCompleted` "Completed"/«مكتمل». All except `featuresLabel`/`liveDemoAria` align with the prototype's own labels | Approved 2026-08-04 ("next") |

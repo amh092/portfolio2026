@@ -9,6 +9,8 @@ type SectionHeadingProps = {
   /** Supporting line under the title (prototype .sec-sub) */
   sub?: string;
   center?: boolean;
+  /** 1.5rem bottom margin instead of the fluid clamp — prototype's about head */
+  tight?: boolean;
 };
 
 // Section head per the prototype's .sec-head pattern (h2 — the page's
@@ -19,10 +21,11 @@ export default function SectionHeading({
   eyebrow,
   sub,
   center = false,
+  tight = false,
 }: SectionHeadingProps) {
   return (
     <div
-      className={`mb-[clamp(2.5rem,5vw,4rem)] max-w-[64ch]${
+      className={`${tight ? "mb-6" : "mb-[clamp(2.5rem,5vw,4rem)]"} max-w-[64ch]${
         center ? " mx-auto text-center" : ""
       }`}
     >
