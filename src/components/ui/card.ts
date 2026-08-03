@@ -6,6 +6,10 @@
 export const CARD_GRID_CLASSES =
   "grid grid-cols-[repeat(auto-fit,minmax(min(100%,290px),1fr))] gap-[1.1rem]";
 
+/** Prototype .grid.g-2 — wider auto-fit columns (skills; 3D work in Phase 6). */
+export const CARD_GRID_WIDE_CLASSES =
+  "grid grid-cols-[repeat(auto-fit,minmax(min(100%,340px),1fr))] gap-[1.1rem]";
+
 // Border color and padding are part of each variant (not the base) so the
 // featured variant replaces border-border and the project variant drops the
 // padding, instead of fighting the base for specificity.

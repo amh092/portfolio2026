@@ -82,7 +82,8 @@
   },
   "Skills": {
     "eyebrow": "Technologies",
-    "title": "Skills"
+    "title": "Skills",
+    "sub": "Only technologies I can confidently discuss with clients and employers."
   },
   "Contact": {
     "eyebrow": "Let's talk",

@@ -14,3 +14,4 @@ One list item per completed step: phase · sub-phase — date. Newest last.
 - Phase 4 · Step 5 — Project card images (3 × WebP in `public/images/projects/`) — approved and committed 2026-08-04
 - Phase 4 · Step 6 — Projects section (`types/project.ts`, `data/projects.ts`, 3 cards Tavolla → RentFlow → Insally) — approved and committed 2026-08-04
 - Phase 4 · Step 7A — About section (§12 biographies verbatim) — approved and committed 2026-08-04
+- Phase 4 · Step 7B — Skills section (`types/skill.ts`, `data/skills.ts`, 5 categories with badge tags) — approved and committed 2026-08-04
