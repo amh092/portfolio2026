@@ -180,6 +180,13 @@ html[lang="ar"] {
   }
 }
 
+/* Prototype .grid.g-3 — auto-fit card columns (business growth, services) */
+@utility card-grid {
+  display: grid;
+  gap: 1.1rem;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 290px), 1fr));
+}
+
 @utility icon-btn {
   display: grid;
   place-items: center;
@@ -312,7 +319,7 @@ html[lang="ar"] {
   }
 
   /* Card surface per the prototype's .card (hover lift, pointer-follow glow,
-     and neon shadows are Phase 5; steps may add a plain border-color hover) */
+     and neon shadows are Phase 5; hover here is the plain color transition) */
   .card-surface {
     position: relative;
     padding: 1.6rem;
@@ -323,6 +330,30 @@ html[lang="ar"] {
     transition:
       border-color 0.4s var(--ease),
       background-color 0.4s var(--ease);
+  }
+
+  .card-surface:hover {
+    border-color: rgb(var(--accent) / 0.4);
+    background: rgb(var(--surface-2));
+  }
+
+  /* Accent icon chip inside cards (prototype .card-icon; its hover
+     glow/lift belongs to Phase 5) */
+  .card-icon {
+    display: grid;
+    place-items: center;
+    width: 44px;
+    height: 44px;
+    border-radius: 13px;
+    margin-block-end: 1.1rem;
+    color: rgb(var(--accent));
+    background: rgb(var(--accent) / 0.12);
+    border: 1px solid rgb(var(--accent) / 0.25);
+  }
+
+  .card-icon svg {
+    width: 21px;
+    height: 21px;
   }
 
   /* Pill buttons; the prototype's .neon-pulse animation is Phase 5 */

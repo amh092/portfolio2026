@@ -31,7 +31,30 @@
   },
   "BusinessGrowth": {
     "eyebrow": "How I help",
-    "title": "Business Growth"
+    "title": "Business Growth",
+    "intro": "Here is what a modern, well-built web experience can do for your business.",
+    "benefits": {
+      "onlinePresence": {
+        "title": "Stronger Online Presence",
+        "description": "A professional website makes your business easier to find and gives customers a reason to trust it."
+      },
+      "userExperience": {
+        "title": "Better User Experience",
+        "description": "Fast, accessible pages that work properly on every device keep visitors engaged instead of frustrated."
+      },
+      "customerEnquiries": {
+        "title": "More Customer Enquiries",
+        "description": "Clear content and well-placed calls-to-action guide visitors toward contacting you instead of leaving."
+      },
+      "brandExperiences": {
+        "title": "Interactive Brand Experiences",
+        "description": "Motion and interactive 3D make your products and services easier to remember."
+      },
+      "builtToGrow": {
+        "title": "Built to Grow With You",
+        "description": "A well-structured website is easy to update and expand as your business grows."
+      }
+    }
   },
   "Services": {
     "eyebrow": "What I offer",
