@@ -9,13 +9,6 @@ import Navbar from "@/components/layout/navbar";
 import ThemeSync from "@/components/layout/theme-sync";
 import "../globals.css";
 
-// Sets data-theme before first paint (dark is the default); runs before
-// hydration, hence suppressHydrationWarning on <html>. data-theme must NOT
-// be rendered by React: a language switch re-renders <html> client-side,
-// and a JSX value would overwrite the visitor's chosen theme.
-const THEME_INIT_SCRIPT =
-  "(function(){var t='dark';try{if(localStorage.theme==='light')t='light'}catch(e){}document.documentElement.dataset.theme=t})()";
-
 const inter = Inter({
   subsets: ["latin"],
   variable: "--font-inter",
@@ -65,8 +58,17 @@ export default async function LocaleLayout({
       className={`${inter.variable} ${cairo.variable}`}
       suppressHydrationWarning
     >
+      <head>
+        {/* Sets data-theme before hydration (see public/theme-init.js).
+            async + src makes this a React "resource": hoisted, executed by
+            the browser, and deduped when a language switch re-mounts <html>
+            — an inline script here would be re-created but never re-run,
+            and React logs an error for it. data-theme itself must NOT be
+            rendered by React: a JSX value would overwrite the visitor's
+            chosen theme on that same re-mount. */}
+        <script async src="/theme-init.js" />
+      </head>
       <body>
-        <script dangerouslySetInnerHTML={{ __html: THEME_INIT_SCRIPT }} />
         <BackgroundAtmosphere />
         <NextIntlClientProvider>
           <ThemeSync />
