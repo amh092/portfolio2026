@@ -4,7 +4,7 @@ Living artifact for Phase 4. Executed step by step through the prompts in `conte
 
 ## 1. Phase status
 
-**In progress.** Branch `feature/main-sections` created 2026-08-02; Steps 1–4 approved and committed. Next: Step 5 — Project card images. Merge to `main` only after the Step 10 audit is approved.
+**In progress.** Branch `feature/main-sections` created 2026-08-02; Steps 1–5 approved and committed. Next: Step 6 — Projects section. Merge to `main` only after the Step 10 audit is approved.
 
 ## 2. Step breakdown and progress
 
@@ -16,7 +16,7 @@ Run one step at a time via `phase-4-prompts.md`; a step is Done only after Ahmed
 | 2 | Hero section | §5 | Done — approval recorded 2026-08-03 with Step 3's (Step 3 was run on Ahmed's instruction) |
 | 3 | Business-growth section (intro + 5 cards) | §6 | Done — approved 2026-08-03 |
 | 4 | Services section (`data/services.ts` + 6 cards) | §7 | Done — approved 2026-08-04 |
-| 5 | Project card images — 3 screenshots → WebP ≤ 250 KB (pre-authorized) | §16 rows 1–3 | Not started |
+| 5 | Project card images — 3 screenshots → WebP ≤ 250 KB (pre-authorized) | §16 rows 1–3 | Done — approved 2026-08-04 |
 | 6 | Projects section (`data/projects.ts` + 3 cards, Tavolla → RentFlow → Insally) | §8, §9 | Not started |
 | 7A | About section | §12 | Not started |
 | 7B | Skills section (`data/skills.ts`, 5 categories) | §13 | Not started |
@@ -58,6 +58,7 @@ Run one step at a time via `phase-4-prompts.md`; a step is Done only after Ahmed
 
 | Date | Decision | Status |
 |------|----------|--------|
+| 2026-08-04 | Step 5 asset prep (§16 rows 1–3) via sharp (quality 92, effort 6, smart subsampling): `tavolla.webp` 1600×1000 · 55.1 KB (downscaled from 2880×1800); `rentflow.webp` and `insally.webp` kept at **native 1440×900** (55.7 KB / 97.7 KB) instead of upscaling to the ~1600px target — upscaling adds blur, not detail. Sources unmodified. Note: the Tavolla shot shows only the demo restaurant's "The Golden Fork" branding — no "Tavola/Tavolla" spelling is visible on the card image at all | Approved 2026-08-04 (incl. native 1440px for RentFlow/Insally) |
 | 2026-08-04 | Locale typing stays as implemented: explicit `AppLocale`/`LocalizedText` in `src/types/locale.ts`; next-intl's `AppConfig` module augmentation was considered during Step 4 review and declined by Ahmed ("keep as it is") — do not re-propose in Steps 6–7B | Decided |
 | 2026-08-03 | Step 4 service-card icons (lucide): Monitor (Business Websites), Layers (Web Applications), Rotate3d (Interactive 3D Experiences), Rocket (Landing Pages), RefreshCw (Website Redesign), Gauge (Performance Optimization). Five mirror the prototype's icon hints; Rotate3d replaces the prototype's cube to avoid repeating Step 3's approved Box icon | Approved 2026-08-04 |
 | 2026-08-03 | Step 4 data shape: shared `src/types/locale.ts` (`AppLocale` derived from routing, `LocalizedText`) + `src/types/service.ts` per the overview's content model, with `icon` narrowed to a `ServiceIcon` union for strictness; §7.1's AR lines split at the em-dash into title/description. Services grid reuses the shared card grid (g-3 pattern) so the six cards fall 3+3 with the primary row on top — the prototype's g-4 was sized for its 8 placeholder cards | Approved 2026-08-04 |
