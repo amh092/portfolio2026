@@ -30,7 +30,7 @@ All copy was already approved in Phase 1 — this phase implements it. Each step
 - In scope for styling: layout, tokens, spacing, radii, borders, static glows, and plain CSS hover/focus transitions. Out of scope: Phase 5 (scroll reveals, staggered entrances, pulsing animations, pointer-follow card glow, hero entrance motion), Phase 6 (3D viewer — the `three-d` section body stays a placeholder), Phase 7 (form submission, validation, spam protection, email — the contact form renders but must not submit).
 - Accessibility: one `h1` (hero) then `h2` per section and `h3` for cards; labels on every form control; alt text only from the §16 manifest drafts; visible focus states; keep the existing skip link and `main#main` working.
 - Asset actions are limited to those pre-authorized in `phase-1-plan.md` §16, and only in the step that lists them. Never modify `context/reference/**` or anything in Ahmed's other repositories.
-- Before stopping: `npm run lint` and `npm run build` must pass, and the result must be checked in the browser. Append a line to the History section of `context/current-feature.md`, and update the step's Status plus the Decision log in `context/phase-4-plan.md`.
+- Before stopping: `npm run lint` and `npm run build` must pass, and the result must be checked in the browser. Append a line to the History section of `context/current-feature.md`, update the step's Status plus the Decision log in `context/phase-4-plan.md`, and add a list item (phase · step — date) to `context/progress-log.md`.
 - At the end, summarize only: what changed, new strings or decisions needing approval, and what I should review.
 - Stop after the requested step and wait for approval.
 
