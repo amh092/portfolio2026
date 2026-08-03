@@ -14,8 +14,20 @@ type ButtonButtonProps = {
 
 export type ButtonProps = ButtonLinkProps | ButtonButtonProps;
 
+// Base carries the hover border/lift for BOTH variants (in the prototype
+// CSS .btn:hover outranked .btn-primary, so even primary turns
+// border-strong on hover); each variant owns its resting border-color.
+const BASE_CLASSES =
+  "relative isolate inline-flex cursor-pointer items-center justify-center gap-[0.55rem] rounded-full border px-6 py-[0.85rem] text-(length:--step--1) font-semibold transition-all duration-300 ease-smooth hover:-translate-y-0.5 hover:border-border-strong [&_svg]:size-[17px]";
+
+const VARIANT_CLASSES: Record<ButtonVariant, string> = {
+  primary:
+    "border-accent/60 bg-[linear-gradient(140deg,rgb(var(--accent)),rgb(var(--accent-2)))] text-white shadow-[0_10px_30px_-12px_rgb(var(--accent)/0.95)] hover:shadow-[0_16px_40px_-12px_rgb(var(--accent)),0_0_0_1px_rgb(var(--accent)/0.5)]",
+  ghost: "border-border bg-transparent hover:bg-surface-2",
+};
+
 function buttonClassName(variant: ButtonVariant, className?: string) {
-  return ["btn", variant === "primary" ? "btn-primary" : "btn-ghost", className]
+  return [BASE_CLASSES, VARIANT_CLASSES[variant], className]
     .filter(Boolean)
     .join(" ");
 }

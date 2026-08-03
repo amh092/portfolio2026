@@ -2,9 +2,12 @@
 
 import { Moon, Sun } from "lucide-react";
 import { useTranslations } from "next-intl";
+import { ICON_BUTTON_CLASSES } from "@/components/ui/icon-button";
 
-// Both icons are rendered; globals.css shows the right one based on
-// html[data-theme], so there is no hydration mismatch and no flash.
+// Both icons are rendered; the dark:/light: variants (keyed off
+// html[data-theme], set pre-paint by public/theme-init.js) show the right
+// one, so there is no hydration mismatch and no flash. Dark shows the sun,
+// light shows the moon.
 export default function ThemeToggle() {
   const t = useTranslations("Navigation");
 
@@ -24,10 +27,10 @@ export default function ThemeToggle() {
       type="button"
       onClick={toggle}
       aria-label={t("themeToggle")}
-      className="icon-btn"
+      className={ICON_BUTTON_CLASSES}
     >
-      <Sun size={18} aria-hidden className="theme-icon-sun" />
-      <Moon size={18} aria-hidden className="theme-icon-moon" />
+      <Sun size={18} aria-hidden className="light:hidden" />
+      <Moon size={18} aria-hidden className="dark:hidden" />
     </button>
   );
 }

@@ -1,3 +1,5 @@
+import Eyebrow from "@/components/ui/eyebrow";
+
 type SectionHeadingProps = {
   /** id for the heading element, referenced by the section's aria-labelledby */
   headingId: string;
@@ -24,7 +26,7 @@ export default function SectionHeading({
         center ? " mx-auto text-center" : ""
       }`}
     >
-      {eyebrow && <span className="eyebrow">{eyebrow}</span>}
+      {eyebrow && <Eyebrow>{eyebrow}</Eyebrow>}
       <h2 id={headingId} className="mb-[0.9rem] text-step-3">
         {title}
       </h2>
