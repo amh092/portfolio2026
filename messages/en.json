@@ -63,7 +63,13 @@
   },
   "Projects": {
     "eyebrow": "Selected work",
-    "title": "Projects"
+    "title": "Projects",
+    "problemLabel": "Problem",
+    "solutionLabel": "Solution",
+    "featuresLabel": "Key features",
+    "liveDemo": "Live demo",
+    "liveDemoAria": "Live demo — {project} (opens in a new tab)",
+    "statusCompleted": "Completed"
   },
   "ThreeD": {
     "eyebrow": "In the browser",

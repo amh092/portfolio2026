@@ -63,7 +63,13 @@
   },
   "Projects": {
     "eyebrow": "أعمال مختارة",
-    "title": "المشاريع"
+    "title": "المشاريع",
+    "problemLabel": "المشكلة",
+    "solutionLabel": "الحل",
+    "featuresLabel": "أبرز الميزات",
+    "liveDemo": "عرض مباشر",
+    "liveDemoAria": "عرض مباشر — {project} (يفتح في تبويب جديد)",
+    "statusCompleted": "مكتمل"
   },
   "ThreeD": {
     "eyebrow": "داخل المتصفح",
