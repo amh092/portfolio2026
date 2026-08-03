@@ -6,18 +6,16 @@ type SectionHeadingProps = {
   eyebrow?: string;
   /** Supporting line under the title (prototype .sec-sub) */
   sub?: string;
-  /** Hero uses the page's single h1; every other section uses h2 */
-  as?: "h1" | "h2";
   center?: boolean;
 };
 
-// Section head per the prototype's .sec-head pattern.
+// Section head per the prototype's .sec-head pattern (h2 — the page's
+// single h1 lives in the hero, which has its own markup).
 export default function SectionHeading({
   headingId,
   title,
   eyebrow,
   sub,
-  as: Heading = "h2",
   center = false,
 }: SectionHeadingProps) {
   return (
@@ -27,9 +25,9 @@ export default function SectionHeading({
       }`}
     >
       {eyebrow && <span className="eyebrow">{eyebrow}</span>}
-      <Heading id={headingId} className="mb-[0.9rem] text-step-3">
+      <h2 id={headingId} className="mb-[0.9rem] text-step-3">
         {title}
-      </Heading>
+      </h2>
       {sub && (
         <p
           className={`max-w-[58ch] text-step-1 font-normal text-fg-muted${

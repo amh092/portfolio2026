@@ -6,12 +6,15 @@ import { Cairo, Inter } from "next/font/google";
 import { routing } from "@/i18n/routing";
 import BackgroundAtmosphere from "@/components/layout/background-atmosphere";
 import Navbar from "@/components/layout/navbar";
+import ThemeSync from "@/components/layout/theme-sync";
 import "../globals.css";
 
-// Applies a saved light theme before first paint (dark is the default);
-// runs before hydration, hence suppressHydrationWarning on <html>.
+// Sets data-theme before first paint (dark is the default); runs before
+// hydration, hence suppressHydrationWarning on <html>. data-theme must NOT
+// be rendered by React: a language switch re-renders <html> client-side,
+// and a JSX value would overwrite the visitor's chosen theme.
 const THEME_INIT_SCRIPT =
-  "try{if(localStorage.theme==='light')document.documentElement.dataset.theme='light'}catch(e){}";
+  "(function(){var t='dark';try{if(localStorage.theme==='light')t='light'}catch(e){}document.documentElement.dataset.theme=t})()";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -59,7 +62,6 @@ export default async function LocaleLayout({
     <html
       lang={locale}
       dir={locale === "ar" ? "rtl" : "ltr"}
-      data-theme="dark"
       className={`${inter.variable} ${cairo.variable}`}
       suppressHydrationWarning
     >
@@ -67,6 +69,7 @@ export default async function LocaleLayout({
         <script dangerouslySetInnerHTML={{ __html: THEME_INIT_SCRIPT }} />
         <BackgroundAtmosphere />
         <NextIntlClientProvider>
+          <ThemeSync />
           <a
             href="#main"
             className="fixed -top-24 start-4 z-[200] rounded-[10px] bg-accent px-4 py-3 text-white transition-[top] duration-200 focus:top-4"

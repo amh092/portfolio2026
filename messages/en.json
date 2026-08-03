@@ -23,7 +23,11 @@
     "skipLink": "Skip to content"
   },
   "Hero": {
-    "title": "Home"
+    "eyebrow": "Hi, I'm Ahmed",
+    "title": "Modern web experiences that help your business grow",
+    "lead": "I design and build web applications and interactive digital experiences that make everyday business simpler and faster — in both Arabic and English. Every project below is live, so you can try the work yourself.",
+    "ctaPrimary": "View My Work",
+    "ctaSecondary": "Start a Project"
   },
   "BusinessGrowth": {
     "eyebrow": "How I help",

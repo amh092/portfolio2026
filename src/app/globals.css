@@ -425,6 +425,88 @@ html[lang="ar"] {
 }
 
 /* ============================================================
+   HERO (prototype parity; entrance animation is Phase 5)
+   ============================================================ */
+
+@layer components {
+  /* Prototype #home: full-viewport height, copy vertically centered */
+  .hero {
+    display: flex;
+    align-items: center;
+    min-height: 100svh;
+    padding-block-start: calc(var(--nav-h) + clamp(3rem, 8vw, 6rem));
+    padding-block-end: clamp(3rem, 7vw, 6rem);
+  }
+
+  /* Prototype .hero-name scale on the approved value heading; the static
+     soft glow backdrop is allowed by phase-1-plan §15.5 */
+  .hero-title {
+    position: relative;
+    max-width: 18ch;
+    font-size: var(--step-4);
+    letter-spacing: -0.045em;
+    text-wrap: balance;
+    margin-block-end: 1.3rem;
+  }
+
+  html[lang="ar"] .hero-title {
+    letter-spacing: 0;
+    /* Cairo glyphs run narrower than Inter's — a wider measure keeps the
+       Arabic heading to two lines instead of three */
+    max-width: 24ch;
+  }
+
+  .hero-title::before {
+    content: "";
+    position: absolute;
+    inset: -25% -12%;
+    z-index: -1;
+    pointer-events: none;
+    background: radial-gradient(
+      50% 60% at 50% 50%,
+      rgb(var(--accent) / calc(var(--glow-a) * 0.28)),
+      transparent 75%
+    );
+  }
+
+  /* Prototype .grad; mirrored for RTL so the accent falls at the end of
+     the reading direction in both locales */
+  .hero-title-grad {
+    background-image: linear-gradient(
+      100deg,
+      rgb(var(--fg)) 20%,
+      rgb(var(--accent)) 55%,
+      rgb(var(--accent-2)) 85%
+    );
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  html[lang="ar"] .hero-title-grad {
+    background-image: linear-gradient(
+      -100deg,
+      rgb(var(--fg)) 20%,
+      rgb(var(--accent)) 55%,
+      rgb(var(--accent-2)) 85%
+    );
+  }
+
+  .hero-lead {
+    max-width: 56ch;
+    font-size: var(--step-1);
+    color: rgb(var(--fg-muted));
+    margin-block-end: 2rem;
+  }
+
+  .hero-cta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.8rem;
+  }
+}
+
+/* ============================================================
    NAVIGATION (prototype parity: active dot + theme icon swap)
    ============================================================ */
 
