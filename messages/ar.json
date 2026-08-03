@@ -58,7 +58,8 @@
   },
   "Services": {
     "eyebrow": "ما أقدمه",
-    "title": "الخدمات"
+    "title": "الخدمات",
+    "primaryService": "خدمة أساسية"
   },
   "Projects": {
     "eyebrow": "أعمال مختارة",

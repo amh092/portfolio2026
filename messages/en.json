@@ -58,7 +58,8 @@
   },
   "Services": {
     "eyebrow": "What I offer",
-    "title": "Services"
+    "title": "Services",
+    "primaryService": "Primary service"
   },
   "Projects": {
     "eyebrow": "Selected work",
