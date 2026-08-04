@@ -66,11 +66,15 @@ export default async function LocaleLayout({
             — an inline script here would be re-created but never re-run,
             and React logs an error for it. data-theme itself must NOT be
             rendered by React: a JSX value would overwrite the visitor's
-            chosen theme on that same re-mount. */}
-        <script async src="/theme-init.js" />
+            chosen theme on that same re-mount.
+            blocking="render" holds first paint until the script has run —
+            async alone races paint and loses on a busy main thread, which
+            flashed dark for light-theme visitors on refresh. Browsers
+            without the attribute (older Safari) fall back to that race. */}
+        <script async src="/theme-init.js" blocking="render" />
         {/* Adds the session-gated hero-entrance class before first paint
             (see public/entrance-init.js) — same resource pattern as above. */}
-        <script async src="/entrance-init.js" />
+        <script async src="/entrance-init.js" blocking="render" />
       </head>
       <body>
         <BackgroundAtmosphere />

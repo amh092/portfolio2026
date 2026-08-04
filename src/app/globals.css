@@ -216,3 +216,56 @@ html.hero-entrance .hero-enter {
     animation: none;
   }
 }
+
+/* ============================================================
+   HERO ALIVE LAYER — Phase 5 Step 2R (liveliness proposal
+   Option A; §15.5 amendments recorded in phase-5-plan.md).
+   Keyframes referenced by animate-[…] utilities in
+   hero-section.tsx; the ember/burst canvas lives in
+   sections/hero-embers.tsx. All of it freezes under the
+   reduced-motion foundation (fill-mode none → resting styles).
+   ============================================================ */
+
+/* Breathing backdrop glow behind the hero h1 (pulse ≥ 3s, tiny
+   amplitude per §15.5 — the glow itself shipped in Phase 4). */
+@keyframes hero-glow-breathe {
+  0%,
+  100% {
+    opacity: 0.8;
+    transform: scale(0.97);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.05);
+  }
+}
+
+/* Slow highlight sweep across the hero-name gradient text
+   (overview §2 "slowly moving gradient"); needs bg-size 200%. */
+@keyframes hero-shimmer {
+  0%,
+  100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+/* Prototype .neon-pulse (3.4s), alphas scaled by --glow-a so the
+   dark theme equals the prototype exactly (--glow-a 0.45) and the
+   light theme auto-caps per §15.5. Pulled forward from Step 7 for
+   the hero CTA; Step 7 extends it to the contact submit button. */
+@keyframes neon-pulse {
+  0%,
+  100% {
+    box-shadow:
+      0 0 0 rgb(var(--accent) / 0),
+      0 10px 30px -14px rgb(var(--accent) / calc(var(--glow-a) * 1.56));
+  }
+  50% {
+    box-shadow:
+      0 0 10px rgb(var(--accent) / calc(var(--glow-a) * 0.78)),
+      0 0 28px rgb(var(--accent) / var(--glow-a));
+  }
+}

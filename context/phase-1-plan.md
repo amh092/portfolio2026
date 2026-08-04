@@ -628,6 +628,8 @@ Footer also carries the language switcher, per the overview; it stays visually q
 
 ### 15.5 Restraint rules (from overview + prototype)
 
+> **Amended 2026-08-04 (Phase 5 Step 2R):** hero ambient embers/bursts and the breathing heading glow were added to the allow-lists — see `phase-5-plan.md` §4 and `phase-5-liveliness-proposal.md` (Option A, approved).
+
 - Glow only on: primary CTA, active nav indicator, viewer edges, hero heading backdrop, decorative orbs.
 - Pulse cycles ≥ 3s, ease-in-out, tiny amplitude; glow alpha capped by `--glow-a`.
 - Gradients limited to the accent→indigo pair.

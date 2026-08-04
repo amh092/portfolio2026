@@ -1,4 +1,5 @@
 import { getTranslations } from "next-intl/server";
+import HeroEmbers from "@/components/sections/hero-embers";
 import Button from "@/components/ui/button";
 import Eyebrow from "@/components/ui/eyebrow";
 import { CONTAINER_CLASSES } from "@/components/ui/section";
@@ -8,20 +9,24 @@ import { CONTAINER_CLASSES } from "@/components/ui/section";
 // and let the hero scroll internally): the title glow's negative inset
 // otherwise widens the scrollable area past the viewport on small
 // screens, and mobile browsers zoom the whole page out to fit it.
+// relative: containing block for the HeroEmbers canvas.
 const HERO_CLASSES =
-  "flex min-h-svh items-center overflow-x-clip pt-[calc(var(--nav-h)_+_clamp(3rem,8vw,6rem))] pb-[clamp(3rem,7vw,6rem)]";
+  "relative flex min-h-svh items-center overflow-x-clip pt-[calc(var(--nav-h)_+_clamp(3rem,8vw,6rem))] pb-[clamp(3rem,7vw,6rem)]";
 
 // Prototype .hero-name scale; the static soft glow backdrop (before:) is
-// allowed by phase-1-plan §15.5. rtl: = Arabic: Cairo glyphs run narrower
+// allowed by phase-1-plan §15.5 and breathes on a 4s cycle (Step 2R,
+// keyframes in globals.css). rtl: = Arabic: Cairo glyphs run narrower
 // than Inter's — a wider measure keeps the heading to two lines.
 const HERO_TITLE_CLASSES =
-  "relative mb-[1.3rem] max-w-[18ch] text-balance text-step-4 tracking-[-0.045em] before:pointer-events-none before:absolute before:inset-x-[-12%] before:inset-y-[-25%] before:-z-1 before:content-[''] before:bg-[radial-gradient(50%_60%_at_50%_50%,rgb(var(--accent)/calc(var(--glow-a)*0.28)),transparent_75%)] rtl:max-w-[24ch] rtl:tracking-normal";
+  "relative mb-[1.3rem] max-w-[18ch] text-balance text-step-4 tracking-[-0.045em] before:pointer-events-none before:absolute before:inset-x-[-12%] before:inset-y-[-25%] before:-z-1 before:content-[''] before:bg-[radial-gradient(50%_60%_at_50%_50%,rgb(var(--accent)/calc(var(--glow-a)*0.28)),transparent_75%)] before:animate-[hero-glow-breathe_4s_ease-in-out_infinite] rtl:max-w-[24ch] rtl:tracking-normal";
 
 // Prototype .grad; mirrored for RTL so the accent falls at the end of the
 // reading direction in both locales. Raw gradients (not bg-linear-*):
 // v4's gradient utilities interpolate in oklab, which shifts the colors.
+// bg-size 200% + hero-shimmer (Step 2R) sweep the gradient slowly across
+// the name — the overview §2 "slowly moving gradient".
 const HERO_TITLE_GRAD_CLASSES =
-  "bg-[linear-gradient(100deg,rgb(var(--fg))_20%,rgb(var(--accent))_55%,rgb(var(--accent-2))_85%)] bg-clip-text text-transparent rtl:bg-[linear-gradient(-100deg,rgb(var(--fg))_20%,rgb(var(--accent))_55%,rgb(var(--accent-2))_85%)]";
+  "bg-[linear-gradient(100deg,rgb(var(--fg))_20%,rgb(var(--accent))_55%,rgb(var(--accent-2))_85%)] bg-clip-text text-transparent bg-[length:200%_100%] animate-[hero-shimmer_6s_ease-in-out_infinite] rtl:bg-[linear-gradient(-100deg,rgb(var(--fg))_20%,rgb(var(--accent))_55%,rgb(var(--accent-2))_85%)]";
 
 // Hero per phase-1-plan §5. No availability pill and no profile image —
 // permanent Phase 1 omissions (§17). The prototype's stats row and 3D
@@ -34,6 +39,7 @@ export default async function HeroSection() {
 
   return (
     <section id="home" aria-labelledby="home-heading" className={HERO_CLASSES}>
+      <HeroEmbers />
       <div className={CONTAINER_CLASSES}>
         <Eyebrow className="hero-enter">{t("eyebrow")}</Eyebrow>
         <h1
@@ -46,7 +52,12 @@ export default async function HeroSection() {
           {t("lead")}
         </p>
         <div className="hero-enter flex flex-wrap gap-[0.8rem] [--hero-enter-i:3]">
-          <Button href="#projects">{t("ctaPrimary")}</Button>
+          <Button
+            href="#projects"
+            className="animate-[neon-pulse_3.4s_ease-in-out_infinite]"
+          >
+            {t("ctaPrimary")}
+          </Button>
           <Button href="#contact" variant="ghost">
             {t("ctaSecondary")}
           </Button>

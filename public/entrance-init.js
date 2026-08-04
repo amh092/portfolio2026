@@ -21,5 +21,5 @@
   // for same-session remounts.
   setTimeout(function () {
     html.classList.remove("hero-entrance");
-  }, 20000000);
+  }, 2000);
 })();
