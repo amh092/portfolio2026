@@ -20,3 +20,5 @@ One list item per completed step: phase · sub-phase — date. Newest last.
 - Phase 4 · Step 10 — Final audit (baselines, copy, i18n keys, a11y, scrollspy/anchors/language switch, lint + build; 2 fixes) — implemented 2026-08-04, awaiting review
 - Phase 4 — audit approved, merged to `main` (fast-forward), branch deleted — 2026-08-04
 - Phase 5 · Step 1 — Phase setup on `feature/animations`: `motion@12.43.0` installed, reduced-motion foundation verified (already in `globals.css` since Phase 2; nav dot static + instant anchors under emulation) — approved and committed 2026-08-04
+- Phase 5 · Step 2 — Hero entrance (four blocks, 0.9s/0.09s-stagger/power3.out; CSS gated by pre-paint session script `entrance-init.js`, no replay on language switch) — implemented 2026-08-04, awaiting review
+- Phase 5 · Step 2 (review fix) — entrance was missable (started at first paint, racing the eye); added 250ms lead-in to mirror the prototype's pre-timeline beat, gate removal → 2s — fixed 2026-08-04, awaiting re-review

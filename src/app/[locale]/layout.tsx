@@ -68,6 +68,9 @@ export default async function LocaleLayout({
             rendered by React: a JSX value would overwrite the visitor's
             chosen theme on that same re-mount. */}
         <script async src="/theme-init.js" />
+        {/* Adds the session-gated hero-entrance class before first paint
+            (see public/entrance-init.js) — same resource pattern as above. */}
+        <script async src="/entrance-init.js" />
       </head>
       <body>
         <BackgroundAtmosphere />

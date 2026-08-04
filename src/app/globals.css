@@ -32,6 +32,8 @@
   --step-4: clamp(2.5rem, 1.6rem + 4.2vw, 4.75rem);
 
   --ease: cubic-bezier(0.22, 1, 0.36, 1);
+  /* GSAP power3.out equivalent — the prototype's entrance/reveal timeline ease */
+  --ease-out-quart: cubic-bezier(0.165, 0.84, 0.44, 1);
 
   /* dark theme (default) */
   --bg: 9 11 16;
@@ -178,5 +180,39 @@ html[lang="ar"] {
       animation-iteration-count: 1 !important;
       transition-duration: 0.01ms !important;
     }
+  }
+}
+
+/* ============================================================
+   HERO ENTRANCE — Phase 5 Step 2
+   Prototype hero timeline: y 26px → 0, opacity 0 → 1, 0.9s,
+   0.09s stagger, power3.out. Plays only under html.hero-entrance,
+   which public/entrance-init.js adds before first paint on the
+   session's first load (never with reduced motion, never without
+   JS) and removes ~1.7s later — the SSR markup itself never hides
+   anything, and a language-switch remount renders static.
+   ============================================================ */
+
+@keyframes hero-enter {
+  from {
+    opacity: 0;
+    transform: translateY(26px);
+  }
+}
+
+html.hero-entrance .hero-enter {
+  animation: hero-enter 0.9s var(--ease-out-quart) both;
+  /* 250ms lead-in: the prototype's timeline only starts after the GSAP
+     CDN fetch + DOMContentLoaded, so its hero holds a hidden beat before
+     sweeping in — CSS starts at first paint, so the beat must be explicit
+     or the entrance races the visitor's attention and gets missed. */
+  animation-delay: calc(250ms + var(--hero-enter-i, 0) * 90ms);
+}
+
+/* The reduced-motion foundation zeroes durations but not delays —
+   never let the backwards fill hide a block under reduced motion. */
+@media (prefers-reduced-motion: reduce) {
+  html.hero-entrance .hero-enter {
+    animation: none;
   }
 }

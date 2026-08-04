@@ -25,22 +25,27 @@ const HERO_TITLE_GRAD_CLASSES =
 
 // Hero per phase-1-plan §5. No availability pill and no profile image —
 // permanent Phase 1 omissions (§17). The prototype's stats row and 3D
-// visual carry unapproved content and are not part of §5; entrance
-// animation is Phase 5.
+// visual carry unapproved content and are not part of §5.
+// hero-enter (+ --hero-enter-i stagger index) drives the session-gated
+// entrance — see globals.css HERO ENTRANCE and public/entrance-init.js;
+// without the gate class these are inert and the markup stays visible.
 export default async function HeroSection() {
   const t = await getTranslations("Hero");
 
   return (
     <section id="home" aria-labelledby="home-heading" className={HERO_CLASSES}>
       <div className={CONTAINER_CLASSES}>
-        <Eyebrow>{t("eyebrow")}</Eyebrow>
-        <h1 id="home-heading" className={HERO_TITLE_CLASSES}>
+        <Eyebrow className="hero-enter">{t("eyebrow")}</Eyebrow>
+        <h1
+          id="home-heading"
+          className={`${HERO_TITLE_CLASSES} hero-enter [--hero-enter-i:1]`}
+        >
           <span className={HERO_TITLE_GRAD_CLASSES}>{t("title")}</span>
         </h1>
-        <p className="mb-8 max-w-[56ch] text-step-1 text-fg-muted">
+        <p className="hero-enter mb-8 max-w-[56ch] text-step-1 text-fg-muted [--hero-enter-i:2]">
           {t("lead")}
         </p>
-        <div className="flex flex-wrap gap-[0.8rem]">
+        <div className="hero-enter flex flex-wrap gap-[0.8rem] [--hero-enter-i:3]">
           <Button href="#projects">{t("ctaPrimary")}</Button>
           <Button href="#contact" variant="ghost">
             {t("ctaSecondary")}
