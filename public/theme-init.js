@@ -6,6 +6,6 @@
   var t = "dark";
   try {
     if (localStorage.theme === "light") t = "light";
-  } catch (e) {}
+  } catch {}
   document.documentElement.dataset.theme = t;
 })();

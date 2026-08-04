@@ -4,7 +4,7 @@ Living artifact for Phase 4. Executed step by step through the prompts in `conte
 
 ## 1. Phase status
 
-**In progress.** Branch `feature/main-sections` created 2026-08-02; Steps 1–9 approved and committed. Next: Step 10 — final Phase 4 audit. Merge to `main` only after the Step 10 audit is approved.
+**Audit complete — awaiting final approval.** Branch `feature/main-sections` created 2026-08-02; Steps 1–9 approved and committed; Step 10 audit run 2026-08-04 (all checks pass, two defects fixed). Merge to `main` only after Ahmed approves the audit.
 
 ## 2. Step breakdown and progress
 
@@ -22,7 +22,7 @@ Run one step at a time via `phase-4-prompts.md`; a step is Done only after Ahmed
 | 7B | Skills section (`data/skills.ts`, 5 categories) | §13 | Done — approved 2026-08-04 |
 | 8 | Contact section — UI only, form does not submit | §14.1 | Done — approved 2026-08-04 |
 | 9 | Footer + back-to-top | §14.2 | Done — approved 2026-08-04 |
-| 10 | Full-page audit vs baseline screenshots; phase close | whole plan | Not started |
+| 10 | Full-page audit vs baseline screenshots; phase close | whole plan | Implemented 2026-08-04 — all checks pass, 2 fixes; awaiting approval |
 
 ## 3. Scope boundaries
 
@@ -58,6 +58,9 @@ Run one step at a time via `phase-4-prompts.md`; a step is Done only after Ahmed
 
 | Date | Decision | Status |
 |------|----------|--------|
+| 2026-08-04 | Step 10 fix 1: the three-d scaffold's placeholder paragraph (`{title} — Phase 4`, inherited from the Phase 2 skeleton via Step 1) removed — it was the only hard-coded visible string in the section components and read as mixed-language text in AR («أعمال ثلاثية الأبعاد — Phase 4»). The section body is now a clean head-only placeholder until the Phase 6 viewer; no replacement string invented. Scrollspy re-verified with the shorter section | Fixed 2026-08-04 — review at Step 10 |
+| 2026-08-04 | Step 10 fix 2: `public/theme-init.js` `catch (e)` → optional catch binding `catch {}` — removes the only ESLint warning; lint is now fully clean | Fixed 2026-08-04 — review at Step 10 |
+| 2026-08-04 | Step 10 audit notes (no action): `Contact.form.sending/success/error` are the only unused message keys — intentional, approved at Step 8 for Phase 7 reuse. The language switcher's literal `EN`/`ع` labels and `English`/`العربية` aria-labels are deliberate Phase 3-approved exceptions (language names stay in their own language). Navbar brand-mark "A" is aria-hidden decorative | Recorded |
 | 2026-08-04 | Step 9 back-to-top: rendered as the §14.2 visible text link («العودة إلى الأعلى» + ArrowUp icon) inside the footer, targeting `#home` per the prompt. The prototype's separate floating `.to-top` button (fixed, appears on scroll) was not built — its scroll-driven show/hide is client JS in Phase 5 territory; revisit there if wanted | Approved 2026-08-04 |
 | 2026-08-04 | Step 9 footer switcher: `LanguageSwitcher` reused with `activeSection="contact"` — the navbar's scrollspy state is local to it, and the footer is only usable at the page bottom where contact is the active section; `scroll: false` preserves the visual position either way. Verified: switching from the footer lands on `/{locale}#contact` at the same scroll position | Approved 2026-08-04 |
 | 2026-08-04 | Step 9 structure: `layout/footer.tsx` server component rendered from the [locale] layout after `{children}`; prototype footer look (border-t, `bg-bg-2/50`, 2.5rem block padding, flex-wrap justify-between); links = §14.2 order GitHub · LinkedIn · Email as 38px `ICON_BUTTON_CLASSES` icon buttons with `aria-label` from the social-links data (no new strings); year interpolated into the §14.2 copyright at build time (SSG) and renders as Western digits in both locales — switch to Arabic-Indic (٢٠٢٦) in AR if preferred. Icon map extracted to `SOCIAL_LINK_ICONS` in `ui/brand-icons.tsx`; contact section refactored to reuse it (no visual change) | Approved 2026-08-04 (Western year digits kept) |

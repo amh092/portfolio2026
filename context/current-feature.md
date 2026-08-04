@@ -6,7 +6,7 @@ Phase 4 — Main Sections
 
 <!-- Not Started|In Progress|Completed -->
 
-In Progress
+Completed
 
 ## Goals
 
@@ -41,6 +41,13 @@ Out of scope (deferred):
 - Executed step by step via `context/phase-4-prompts.md` (11 approval gates); one step per prompt, each awaiting Ahmed's approval
 - Step progress and decisions tracked in `context/phase-4-plan.md`
 
+### Deferred to Phases 5–8 (recorded at the Step 10 audit)
+
+- **Phase 5:** scroll reveals + staggered entrances; card/method-row hover lifts, neon shadows, and pointer-follow glow; hero entrance motion; primary-button `neon-pulse`; background orb drift; the prototype's floating scroll-appearing to-top button (Step 9 decision — the footer link ships instead); Motion install
+- **Phase 6:** 3D viewer — the `three-d` section body is a clean head-only placeholder; GLB copies (§16 rows 4–6) and robot preview stills (§16 rows 7–9); `CARD_GRID_WIDE_CLASSES` already sized for the 3D grid
+- **Phase 7:** contact-form wiring (Server Action + Zod, spam protection, rate limiting, email provider); the §14.1 sending/success/error strings already live unused in `Contact.form` for reuse; validation-message strings still to draft
+- **Phase 8:** localized SEO metadata, `hreflang`, sitemap/robots, OG image (§16 row 10), branded favicon (§16 row 12), profile photo decision (§16 row 11 — supply or exclude), §15.3 contrast checks (amber on light, accent small text), Lighthouse, deployment
+
 ## History
 
 <!-- Keep this updated. Earliest to latest -->
@@ -72,3 +79,4 @@ Out of scope (deferred):
 - 2026-08-04 — Step 8 approved (incl. the `type="button"` inert-form mechanism, no placeholders/required markers, same-tab contact links, and the inlined brand icons) and committed. Next: Step 9 — Footer and back-to-top
 - 2026-08-04 — Step 9 implemented: footer from phase-1-plan §14.2 verbatim — brand line, © {year} copyright (year interpolated, currently 2026), GitHub · LinkedIn · Email icon links reusing `src/data/social-links.ts`, the existing language switcher, and a visible "Back to top" / «العودة إلى الأعلى» link → `#home` (the prototype's floating scroll-appearing button was not requested and its show/hide behavior is Phase 5 territory). Rendered from the [locale] layout below `{children}`; no anchor, visually quiet (border-t, bg-2/50, small text). Footer switcher passes `activeSection="contact"` — verified switch from footer lands on `/ar#contact` with scroll preserved. Icon map extracted to `SOCIAL_LINK_ICONS` in `ui/brand-icons.tsx` (contact section refactored to reuse it, no visual change). No new strings. Lint + build pass; 21/21 browser checks (structure, link hrefs/labels, back-to-top scroll, EN/AR × dark/light × 1440/390 no overflow). Awaiting Step 9 review
 - 2026-08-04 — Step 9 approved (incl. the in-footer back-to-top link instead of the prototype's floating button, the footer switcher's `activeSection="contact"`, and Western year digits in both locales) and committed. Next: Step 10 — final Phase 4 audit
+- 2026-08-04 — Step 10 (final audit) implemented: full page verified against all five baseline screenshots (desktop dark/light EN, desktop dark AR, mobile dark EN — only approved content-driven differences); all copy re-checked verbatim against phase-1-plan (EN + AR, incl. data files and alt text); en/ar key sets identical (70/70, only unused keys = the 3 approved Phase 7 form states); one h1 + correct landmarks/aria; 45+ browser checks pass (scrollspy all 8 sections, anchor nav, back-to-top, section- and theme-preserving language switch, keyboard order incl. skip link and form, inert form, mobile drawer, zero horizontal overflow EN/AR × 1440/390). Two defects fixed: the three-d scaffold's hard-coded "— Phase 4" placeholder text removed (body now a clean head-only placeholder for Phase 6) and the unused `catch (e)` binding in `theme-init.js` dropped (lint now warning-free). Lint + build pass. Phase marked Completed; not merged — awaiting Ahmed's final review
