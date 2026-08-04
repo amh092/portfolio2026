@@ -1,52 +1,55 @@
 # Current Feature
 
-Phase 4 — Main Sections
+Phase 5 — Animation and Neon Styling
 
 ## Status
 
 <!-- Not Started|In Progress|Completed -->
 
-Completed
+In Progress
 
 ## Goals
 
 <!-- Goals & requirements -->
 
-Build the eight page sections plus the footer from the roadmap, with all copy verbatim from the approved `context/phase-1-plan.md`:
+Animate the completed Phase 4 sections per the prototype (`ahmed-portfolio-prototype.html` — behavior source of truth; GSAP code is reference only, implementation uses Motion + CSS per the stack table), bounded by the `phase-1-plan.md` §15.5 restraint rules. No new copy.
 
-- Hero section (§5) — no availability pill, no profile image (permanent omissions)
-- Business-growth section (§6) — intro + 5 benefit cards
-- Services section (§7) — `data/services.ts` + 6 cards, 3 primary emphasized
-- Projects section (§8, §9) — `data/projects.ts` + 3 cards (Tavolla → RentFlow → Insally), live-demo links only, optimized WebP card images (§16 rows 1–3)
-- About section (§12) — approved biographies
-- Skills section (§13) — `data/skills.ts`, 5 categories, badge-style tags
-- Contact section (§14.1) — UI only; the form renders but does not submit
-- Footer + back-to-top (§14.2)
-- Shared UI primitives: section heading (eyebrow + fluid heading), buttons (primary gradient / ghost), technology badge, status pill, card surface, page background atmosphere
-- All visible text in `messages/en.json` / `messages/ar.json` (one namespace per section); structured content in typed files under `src/data/` with types in `src/types/`
-- Styling matches the prototype's static look (`ahmed-portfolio-prototype.html` + baseline screenshots in `styling-reference.md`), verified in both locales, both themes, desktop and mobile
+Roadmap Phase 5 items:
+
+- Hero entrance animation
+- Scroll reveals (section heads + standalone blocks)
+- Staggered card entrances (service cards and the other card grids)
+- Project-card hover states
+- Active navigation glow (shipped in Phase 3 — verify vs the prototype and under reduced motion)
+- Subtle button pulsing (primary CTAs, `neon-pulse`)
+- Reduced-motion support (global foundation + every step verified)
+- Mobile animation performance testing
+
+Phase 4 deferred-to-5 items (recorded at the Phase 4 Step 10 audit):
+
+- Scroll reveals + staggered entrances
+- Card/method-row hover lifts, neon shadows, and pointer-follow card glow
+- Hero entrance motion
+- Primary-button `neon-pulse`
+- Background orb drift
+- The prototype's floating scroll-appearing to-top button (optional — Step 9 decision gate, Ahmed's call; the footer link shipped in Phase 4 either way)
+- Motion install
 
 Out of scope (deferred):
 
-- Phase 5 — scroll reveals, staggered entrances, pulsing/neon animations, pointer-follow card glow, hero entrance motion; Motion is not installed
-- Phase 6 — 3D viewer; the `three-d` section body stays a clean placeholder
-- Phase 7 — contact-form submission, validation, spam protection, email provider
-- Phase 8 — SEO metadata, sitemap, OG image, contrast testing, Lighthouse, deployment
+- Phase 6 — everything 3D: viewer, model loading states, the `three-d` section body (its section head still gets the standard reveal; the body stays a placeholder)
+- Phase 7 — contact-form submission states (loading pulse during submission arrives with a real submission)
+- Phase 8 — SEO metadata, contrast testing, Lighthouse, sitemap/OG/favicon assets, deployment
+- Not planned at all: overview-listed effects absent from the prototype (hero particles, moving gradients, connecting lines, hover tilt, card expansion, featured-card pulsing) — revisit only if Ahmed asks
 
 ## Notes
 
 <!-- Any extra notes -->
 
-- Branch: `feature/main-sections` — merge to `main` only after the Step 10 audit is approved
-- Executed step by step via `context/phase-4-prompts.md` (11 approval gates); one step per prompt, each awaiting Ahmed's approval
-- Step progress and decisions tracked in `context/phase-4-plan.md`
-
-### Deferred to Phases 5–8 (recorded at the Step 10 audit)
-
-- **Phase 5:** scroll reveals + staggered entrances; card/method-row hover lifts, neon shadows, and pointer-follow glow; hero entrance motion; primary-button `neon-pulse`; background orb drift; the prototype's floating scroll-appearing to-top button (Step 9 decision — the footer link ships instead); Motion install
-- **Phase 6:** 3D viewer — the `three-d` section body is a clean head-only placeholder; GLB copies (§16 rows 4–6) and robot preview stills (§16 rows 7–9); `CARD_GRID_WIDE_CLASSES` already sized for the 3D grid
-- **Phase 7:** contact-form wiring (Server Action + Zod, spam protection, rate limiting, email provider); the §14.1 sending/success/error strings already live unused in `Contact.form` for reuse; validation-message strings still to draft
-- **Phase 8:** localized SEO metadata, `hreflang`, sitemap/robots, OG image (§16 row 10), branded favicon (§16 row 12), profile photo decision (§16 row 11 — supply or exclude), §15.3 contrast checks (amber on light, accent small text), Lighthouse, deployment
+- Branch: `feature/animations` — merge to `main` only after the Step 10 audit is approved (Phase 4 merged to `main` 2026-08-04)
+- Executed step by step via `context/phase-5-prompts.md` (10 approval gates, Step 9 optional); one step per prompt, each awaiting Ahmed's approval
+- Step progress and decisions tracked in `context/phase-5-plan.md`
+- Every step: reduced-motion check, both locales, both themes, 1440/390, lint + build
 
 ## History
 
@@ -80,3 +83,6 @@ Out of scope (deferred):
 - 2026-08-04 — Step 9 implemented: footer from phase-1-plan §14.2 verbatim — brand line, © {year} copyright (year interpolated, currently 2026), GitHub · LinkedIn · Email icon links reusing `src/data/social-links.ts`, the existing language switcher, and a visible "Back to top" / «العودة إلى الأعلى» link → `#home` (the prototype's floating scroll-appearing button was not requested and its show/hide behavior is Phase 5 territory). Rendered from the [locale] layout below `{children}`; no anchor, visually quiet (border-t, bg-2/50, small text). Footer switcher passes `activeSection="contact"` — verified switch from footer lands on `/ar#contact` with scroll preserved. Icon map extracted to `SOCIAL_LINK_ICONS` in `ui/brand-icons.tsx` (contact section refactored to reuse it, no visual change). No new strings. Lint + build pass; 21/21 browser checks (structure, link hrefs/labels, back-to-top scroll, EN/AR × dark/light × 1440/390 no overflow). Awaiting Step 9 review
 - 2026-08-04 — Step 9 approved (incl. the in-footer back-to-top link instead of the prototype's floating button, the footer switcher's `activeSection="contact"`, and Western year digits in both locales) and committed. Next: Step 10 — final Phase 4 audit
 - 2026-08-04 — Step 10 (final audit) implemented: full page verified against all five baseline screenshots (desktop dark/light EN, desktop dark AR, mobile dark EN — only approved content-driven differences); all copy re-checked verbatim against phase-1-plan (EN + AR, incl. data files and alt text); en/ar key sets identical (70/70, only unused keys = the 3 approved Phase 7 form states); one h1 + correct landmarks/aria; 45+ browser checks pass (scrollspy all 8 sections, anchor nav, back-to-top, section- and theme-preserving language switch, keyboard order incl. skip link and form, inert form, mobile drawer, zero horizontal overflow EN/AR × 1440/390). Two defects fixed: the three-d scaffold's hard-coded "— Phase 4" placeholder text removed (body now a clean head-only placeholder for Phase 6) and the unused `catch (e)` binding in `theme-init.js` dropped (lint now warning-free). Lint + build pass. Phase marked Completed; not merged — awaiting Ahmed's final review
+- 2026-08-04 — Phase 4 audit approved (via the Phase 5 Step 1 prompt); lint + build re-verified on `feature/main-sections`, fast-forward merged to `main`, branch deleted (local + origin, matching the Phase 3 pattern). Phase 5 (Animation and Neon Styling) started on branch `feature/animations`
+- 2026-08-04 — Phase 5 Step 1 implemented: this file rewritten for Phase 5; **`motion@12.43.0`** installed (the stack table's "Motion for React" — current package name of the former `framer-motion`, confirmed via motion.dev docs; imports from `motion/react`; not yet used anywhere, name/version awaiting approval). The overview §Animation System reduced-motion foundation was found **already present verbatim** in `globals.css` from Phase 2 — no CSS change needed, so zero visual change with emulation off holds by construction. Verified under DevTools emulation: nav dot-pulse neutralized (0.01ms × 1 → static), anchor scrolling instant (1 frame vs 78 smooth), all sections visible, EN/AR × 1440/390 + light-theme spot check (19/19 checks); no JS-driven scrolling in source, so the CSS override fully governs anchors. Noted: 3 pre-existing high `npm audit` advisories (Next-bundled postcss, sharp) — unrelated to motion, deferred to Phase 8. Lint + build pass. Awaiting Step 1 review
+- 2026-08-04 — Step 1 approved (incl. `motion@12.43.0` as the animation package and keeping the Phase 2 reduced-motion block as the global foundation) and committed. Next: Step 2 — Hero entrance animation

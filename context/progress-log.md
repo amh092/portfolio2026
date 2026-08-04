@@ -18,3 +18,5 @@ One list item per completed step: phase · sub-phase — date. Newest last.
 - Phase 4 · Step 8 — Contact section UI (`types/social-link.ts`, `data/social-links.ts`, inert form + 4 contact methods) — approved and committed 2026-08-04
 - Phase 4 · Step 9 — Footer + back-to-top (`layout/footer.tsx`, GitHub · LinkedIn · Email links, language switcher) — approved and committed 2026-08-04
 - Phase 4 · Step 10 — Final audit (baselines, copy, i18n keys, a11y, scrollspy/anchors/language switch, lint + build; 2 fixes) — implemented 2026-08-04, awaiting review
+- Phase 4 — audit approved, merged to `main` (fast-forward), branch deleted — 2026-08-04
+- Phase 5 · Step 1 — Phase setup on `feature/animations`: `motion@12.43.0` installed, reduced-motion foundation verified (already in `globals.css` since Phase 2; nav dot static + instant anchors under emulation) — approved and committed 2026-08-04
