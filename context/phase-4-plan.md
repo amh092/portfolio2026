@@ -4,7 +4,7 @@ Living artifact for Phase 4. Executed step by step through the prompts in `conte
 
 ## 1. Phase status
 
-**In progress.** Branch `feature/main-sections` created 2026-08-02; Steps 1–8 approved and committed. Next: Step 9 — Footer and back-to-top. Merge to `main` only after the Step 10 audit is approved.
+**In progress.** Branch `feature/main-sections` created 2026-08-02; Steps 1–9 approved and committed. Next: Step 10 — final Phase 4 audit. Merge to `main` only after the Step 10 audit is approved.
 
 ## 2. Step breakdown and progress
 
@@ -21,7 +21,7 @@ Run one step at a time via `phase-4-prompts.md`; a step is Done only after Ahmed
 | 7A | About section | §12 | Done — approved 2026-08-04 |
 | 7B | Skills section (`data/skills.ts`, 5 categories) | §13 | Done — approved 2026-08-04 |
 | 8 | Contact section — UI only, form does not submit | §14.1 | Done — approved 2026-08-04 |
-| 9 | Footer + back-to-top | §14.2 | Not started |
+| 9 | Footer + back-to-top | §14.2 | Done — approved 2026-08-04 |
 | 10 | Full-page audit vs baseline screenshots; phase close | whole plan | Not started |
 
 ## 3. Scope boundaries
@@ -58,6 +58,9 @@ Run one step at a time via `phase-4-prompts.md`; a step is Done only after Ahmed
 
 | Date | Decision | Status |
 |------|----------|--------|
+| 2026-08-04 | Step 9 back-to-top: rendered as the §14.2 visible text link («العودة إلى الأعلى» + ArrowUp icon) inside the footer, targeting `#home` per the prompt. The prototype's separate floating `.to-top` button (fixed, appears on scroll) was not built — its scroll-driven show/hide is client JS in Phase 5 territory; revisit there if wanted | Approved 2026-08-04 |
+| 2026-08-04 | Step 9 footer switcher: `LanguageSwitcher` reused with `activeSection="contact"` — the navbar's scrollspy state is local to it, and the footer is only usable at the page bottom where contact is the active section; `scroll: false` preserves the visual position either way. Verified: switching from the footer lands on `/{locale}#contact` at the same scroll position | Approved 2026-08-04 |
+| 2026-08-04 | Step 9 structure: `layout/footer.tsx` server component rendered from the [locale] layout after `{children}`; prototype footer look (border-t, `bg-bg-2/50`, 2.5rem block padding, flex-wrap justify-between); links = §14.2 order GitHub · LinkedIn · Email as 38px `ICON_BUTTON_CLASSES` icon buttons with `aria-label` from the social-links data (no new strings); year interpolated into the §14.2 copyright at build time (SSG) and renders as Western digits in both locales — switch to Arabic-Indic (٢٠٢٦) in AR if preferred. Icon map extracted to `SOCIAL_LINK_ICONS` in `ui/brand-icons.tsx`; contact section refactored to reuse it (no visual change) | Approved 2026-08-04 (Western year digits kept) |
 | 2026-08-04 | Step 8 inert-form mechanism: no `action`, no handler, no validation attributes (no `required`, no `maxLength`, no `noValidate` needed) and the "Send Message" button rendered `type="button"` — a `type="submit"` with no action would still trigger the browser's default GET navigation (page reload, field values in the URL). Verified inert in the browser: click and Enter-in-field change nothing. Phase 7 flips it to a real submit with Server Action + Zod. The §14.1 sending/success/error strings live in `Contact.form` now for Phase 7 reuse; only the idle state renders | Approved 2026-08-04 |
 | 2026-08-04 | Step 8 contact methods: `src/types/social-link.ts` (id, `LocalizedText` label, `detail` address line, href, `SocialLinkIcon` union — mirrors the Service/Skill pattern) + `src/data/social-links.ts` with the four §14.1 methods. GitHub/LinkedIn labels stay in English in both locales (product names); WhatsApp AR label واتساب per §14.1. Details render inside `<bdi dir="ltr">` so the phone's leading `+` and the addresses read correctly in RTL; LinkedIn shows the full confirmed path (wraps via `overflow-wrap: anywhere` on mobile). Links open in the same tab per the prototype — flag: switch to new-tab like the project live-demo links if preferred (needs a new aria string) | Approved 2026-08-04 (same-tab kept) |
 | 2026-08-04 | Step 8 brand icons: installed lucide-react 1.28 removed its deprecated brand icons (Github, Linkedin) and never shipped WhatsApp, so the three glyphs are inlined in `ui/brand-icons.tsx` using the prototype's own lucide-style 24px stroke paths (WhatsApp = the prototype's message-bubble glyph); Email uses lucide `Mail`. Reused by the Step 9 footer | Approved 2026-08-04 |

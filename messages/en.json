@@ -99,5 +99,10 @@
       "success": "Thanks — I'll get back to you soon.",
       "error": "Something went wrong. Please try again or email me directly."
     }
+  },
+  "Footer": {
+    "brand": "Ahmed Webcraft",
+    "copyright": "© {year} Ahmed Webcraft. All rights reserved.",
+    "backToTop": "Back to top"
   }
 }

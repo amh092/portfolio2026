@@ -16,3 +16,4 @@ One list item per completed step: phase · sub-phase — date. Newest last.
 - Phase 4 · Step 7A — About section (§12 biographies verbatim) — approved and committed 2026-08-04
 - Phase 4 · Step 7B — Skills section (`types/skill.ts`, `data/skills.ts`, 5 categories with badge tags) — approved and committed 2026-08-04
 - Phase 4 · Step 8 — Contact section UI (`types/social-link.ts`, `data/social-links.ts`, inert form + 4 contact methods) — approved and committed 2026-08-04
+- Phase 4 · Step 9 — Footer + back-to-top (`layout/footer.tsx`, GitHub · LinkedIn · Email links, language switcher) — approved and committed 2026-08-04

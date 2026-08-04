@@ -1,4 +1,6 @@
-import type { SVGProps } from "react";
+import { Mail } from "lucide-react";
+import type { ComponentType, SVGProps } from "react";
+import type { SocialLinkIcon } from "@/types/social-link";
 
 // GitHub, LinkedIn, and WhatsApp glyphs on lucide's 24px stroke grid,
 // paths taken from the prototype's inline icon set — the installed
@@ -46,3 +48,14 @@ export function WhatsAppIcon(props: SVGProps<SVGSVGElement>) {
     </BrandIcon>
   );
 }
+
+/** SocialLink icon slug → component (contact methods, footer links). */
+export const SOCIAL_LINK_ICONS: Record<
+  SocialLinkIcon,
+  ComponentType<{ className?: string; "aria-hidden"?: boolean }>
+> = {
+  mail: Mail,
+  github: GitHubIcon,
+  linkedin: LinkedInIcon,
+  whatsapp: WhatsAppIcon,
+};

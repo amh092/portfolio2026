@@ -1,27 +1,10 @@
-import { Mail } from "lucide-react";
 import { getLocale, getTranslations } from "next-intl/server";
-import type { ComponentType } from "react";
-import {
-  GitHubIcon,
-  LinkedInIcon,
-  WhatsAppIcon,
-} from "@/components/ui/brand-icons";
+import { SOCIAL_LINK_ICONS } from "@/components/ui/brand-icons";
 import Button from "@/components/ui/button";
 import Section from "@/components/ui/section";
 import SectionHeading from "@/components/ui/section-heading";
 import { SOCIAL_LINKS } from "@/data/social-links";
 import type { AppLocale } from "@/types/locale";
-import type { SocialLinkIcon } from "@/types/social-link";
-
-const METHOD_ICONS: Record<
-  SocialLinkIcon,
-  ComponentType<{ className?: string }>
-> = {
-  mail: Mail,
-  github: GitHubIcon,
-  linkedin: LinkedInIcon,
-  whatsapp: WhatsAppIcon,
-};
 
 // Prototype .method row (the translateX hover slide is Phase 5, like the
 // card lifts; hover here is the plain color transition).
@@ -55,7 +38,7 @@ export default async function ContactSection() {
           />
           <ul className="mt-[1.8rem] grid gap-[0.7rem]">
             {SOCIAL_LINKS.map((link) => {
-              const Icon = METHOD_ICONS[link.icon];
+              const Icon = SOCIAL_LINK_ICONS[link.icon];
               return (
                 <li key={link.id}>
                   <a href={link.href} className={METHOD_CLASSES}>
