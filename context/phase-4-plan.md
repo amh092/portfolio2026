@@ -4,7 +4,7 @@ Living artifact for Phase 4. Executed step by step through the prompts in `conte
 
 ## 1. Phase status
 
-**In progress.** Branch `feature/main-sections` created 2026-08-02; Steps 1–7B approved and committed. Next: Step 8 — Contact section (UI only). Merge to `main` only after the Step 10 audit is approved.
+**In progress.** Branch `feature/main-sections` created 2026-08-02; Steps 1–8 approved and committed. Next: Step 9 — Footer and back-to-top. Merge to `main` only after the Step 10 audit is approved.
 
 ## 2. Step breakdown and progress
 
@@ -20,7 +20,7 @@ Run one step at a time via `phase-4-prompts.md`; a step is Done only after Ahmed
 | 6 | Projects section (`data/projects.ts` + 3 cards, Tavolla → RentFlow → Insally) | §8, §9 | Done — approved 2026-08-04 |
 | 7A | About section | §12 | Done — approved 2026-08-04 |
 | 7B | Skills section (`data/skills.ts`, 5 categories) | §13 | Done — approved 2026-08-04 |
-| 8 | Contact section — UI only, form does not submit | §14.1 | Not started |
+| 8 | Contact section — UI only, form does not submit | §14.1 | Done — approved 2026-08-04 |
 | 9 | Footer + back-to-top | §14.2 | Not started |
 | 10 | Full-page audit vs baseline screenshots; phase close | whole plan | Not started |
 
@@ -58,6 +58,10 @@ Run one step at a time via `phase-4-prompts.md`; a step is Done only after Ahmed
 
 | Date | Decision | Status |
 |------|----------|--------|
+| 2026-08-04 | Step 8 inert-form mechanism: no `action`, no handler, no validation attributes (no `required`, no `maxLength`, no `noValidate` needed) and the "Send Message" button rendered `type="button"` — a `type="submit"` with no action would still trigger the browser's default GET navigation (page reload, field values in the URL). Verified inert in the browser: click and Enter-in-field change nothing. Phase 7 flips it to a real submit with Server Action + Zod. The §14.1 sending/success/error strings live in `Contact.form` now for Phase 7 reuse; only the idle state renders | Approved 2026-08-04 |
+| 2026-08-04 | Step 8 contact methods: `src/types/social-link.ts` (id, `LocalizedText` label, `detail` address line, href, `SocialLinkIcon` union — mirrors the Service/Skill pattern) + `src/data/social-links.ts` with the four §14.1 methods. GitHub/LinkedIn labels stay in English in both locales (product names); WhatsApp AR label واتساب per §14.1. Details render inside `<bdi dir="ltr">` so the phone's leading `+` and the addresses read correctly in RTL; LinkedIn shows the full confirmed path (wraps via `overflow-wrap: anywhere` on mobile). Links open in the same tab per the prototype — flag: switch to new-tab like the project live-demo links if preferred (needs a new aria string) | Approved 2026-08-04 (same-tab kept) |
+| 2026-08-04 | Step 8 brand icons: installed lucide-react 1.28 removed its deprecated brand icons (Github, Linkedin) and never shipped WhatsApp, so the three glyphs are inlined in `ui/brand-icons.tsx` using the prototype's own lucide-style 24px stroke paths (WhatsApp = the prototype's message-bubble glyph); Email uses lucide `Mail`. Reused by the Step 9 footer | Approved 2026-08-04 |
+| 2026-08-04 | Step 8 styling: prototype contact-grid (.85fr/1.15fr, collapses ≤ `lg` like the navbar) with head + method rows left, form card right; method-row hover = color transition only (the translateX slide joins the Phase 5 lifts); inputs get the §15.2 focus treatment (accent/60 border + 3px accent/14 ring), replacing the global outline; no placeholders — the prototype's placeholder strings are not §14.1-approved copy and labels alone are sufficient; section head reuses `tight`; `Contact.title` scaffold value replaced by the §14.1 heading (nav label unchanged) | Approved 2026-08-04 |
 | 2026-08-04 | Step 7B data shape: `src/types/skill.ts` (`SkillCategory` with `LocalizedText` label + `SkillCategoryIcon` union, mirroring the Service pattern); skill names typed `string[]` and kept in English in both locales — the §13 note requests Arabic for category labels only, and the items are technical product names. Categories in §13 order (Frontend, Backend & Databases, 3D & Interactive, Internationalization, Tools & Testing) — differs from the prototype's placeholder order, content order follows the plan | Approved 2026-08-04 |
 | 2026-08-04 | Step 7B layout: prototype `.grid.g-2` as new `CARD_GRID_WIDE_CLASSES` in `ui/card.ts` (340px min columns → 3+2 at desktop, matching the baseline screenshot; also serves the Phase 6 3D grid); cards use the shared `CARD_SURFACE_CLASSES`; tags rendered as a `ul` (screen readers announce counts) styled per prototype `.skill-tag`, hover = color/border/background transition only — translateY lift + neon shadow deferred to Phase 5 like the card hovers | Approved 2026-08-04 |
 | 2026-08-04 | Step 7B category icons (lucide): Code (Frontend), Server (Backend & Databases), Cuboid (3D & Interactive), Languages (Internationalization), Wrench (Tools & Testing). Four mirror the prototype's icon hints; Cuboid replaces the prototype's cube to avoid repeating Step 3's Box and Step 4's Rotate3d | Approved 2026-08-04 |

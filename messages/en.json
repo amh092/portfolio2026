@@ -87,6 +87,17 @@
   },
   "Contact": {
     "eyebrow": "Let's talk",
-    "title": "Contact"
+    "title": "Let's work together",
+    "sub": "Have a website, web application, or interactive 3D idea? Let's discuss how it can support your business.",
+    "form": {
+      "name": "Name",
+      "email": "Email",
+      "subject": "Subject",
+      "message": "Message",
+      "submit": "Send Message",
+      "sending": "Sending…",
+      "success": "Thanks — I'll get back to you soon.",
+      "error": "Something went wrong. Please try again or email me directly."
+    }
   }
 }
