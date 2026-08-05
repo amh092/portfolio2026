@@ -23,4 +23,5 @@ One list item per completed step: phase · sub-phase — date. Newest last.
 - Phase 5 · Step 2 — Hero entrance (four blocks, 0.9s/0.09s-stagger/power3.out; CSS gated by pre-paint session script `entrance-init.js`, no replay on language switch) — implemented 2026-08-04, awaiting review
 - Phase 5 · Step 2 (review fix) — entrance was missable (started at first paint, racing the eye); added 250ms lead-in to mirror the prototype's pre-timeline beat, gate removal → 2s — fixed 2026-08-04, awaiting re-review
 - Phase 5 · Step 2R — Hero alive (liveliness Option A: breathing glow, name shimmer, CTA neon-pulse, ember canvas + finale burst + CTA sparks; §15.5 amended) — implemented 2026-08-04, awaiting review
-- Phase 5 · Step 2R (review fix) — dark flash on light-mode refresh (pre-existing async theme-init race vs first paint) fixed via `blocking="render"` on both head scripts; 8/8 flashes → 0/8 — fixed 2026-08-04, awaiting review
+- Phase 5 · Step 2R (review fix) — dark flash on light-mode refresh (pre-existing async theme-init race vs first paint) fixed via `blocking="render"` on both head scripts; 8/8 flashes → 0/8 — fixed 2026-08-04
+- Phase 5 · Step 2/2R — approved in full and committed 2026-08-05

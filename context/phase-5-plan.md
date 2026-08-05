@@ -13,7 +13,7 @@ Run one step at a time via `phase-5-prompts.md`; a step is Done only after Ahmed
 | Step | Builds | Source | Status |
 |---|---|---|---|
 | 1 | Merge Phase 4 → `main`; branch `feature/animations`; install Motion; global reduced-motion foundation | overview §Animation System (Reduced Motion), stack table | Done — approved 2026-08-04 |
-| 2 | Hero entrance animation (staggered fade/slide, once per session); revised as **Step 2R "Hero alive"** (+ liveliness Option A: breathing glow, name shimmer, CTA pulse, ember field, finale burst, CTA sparks) | overview §2 Hero Animation; prototype hero timeline; `phase-5-liveliness-proposal.md` | Implemented 2026-08-04 — awaiting approval |
+| 2 | Hero entrance animation (staggered fade/slide, once per session); revised as **Step 2R "Hero alive"** (+ liveliness Option A: breathing glow, name shimmer, CTA pulse, ember field, finale burst, CTA sparks) | overview §2 Hero Animation; prototype hero timeline; `phase-5-liveliness-proposal.md` | Done — approved 2026-08-05 |
 | 3 | Scroll-reveal mechanism + section heads and standalone blocks | prototype `.reveal` + section-reveal triggers | Pending |
 | 4 | Staggered card-grid reveals (growth, services, projects, skills) | prototype grid stagger; overview per-section lists | Pending |
 | 5 | Hover states deferred from Phase 4: card lifts, neon shadows, icon glow, tag lift, method-row slide | prototype `.card:hover` family | Pending |
@@ -59,6 +59,7 @@ Run one step at a time via `phase-5-prompts.md`; a step is Done only after Ahmed
 
 | Date | Decision | Status |
 |------|----------|--------|
+| 2026-08-05 | **Step 2/2R approved by Ahmed in full and committed**: the CSS-gated entrance mechanism (pre-paint session script, 250ms lead-in, 2s safety window), the Option A alive layer with its §15.5 amendments, and the `blocking="render"` theme-flash fix. Next: Step 3 — scroll reveals | Approved 2026-08-05 |
 | 2026-08-04 | Phase 5 broken into 10 approval gates (Step 9 optional); prompts authored in `context/phase-5-prompts.md`; single branch `feature/animations`; Motion chosen over the prototype's GSAP per the stack table, prototype timeline kept as behavioral reference | Proposed — awaiting Ahmed |
 | 2026-08-04 | Open question (Step 2): hero entrance would replay on every locale switch because the locale layout remounts — the prototype animates only on first load. Proposal: run the entrance once per browser session (sessionStorage flag), skip on subsequent mounts | Implemented at Step 2 (see the Step 2 entries below) — awaiting approval |
 | 2026-08-04 | Open question (Step 5): gate hover lifts behind `@media (hover: hover)` so touch devices don't get sticky-hover states — the prototype doesn't gate, but it also wasn't built for touch | Open — decide at Step 5 |
