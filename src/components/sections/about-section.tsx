@@ -1,4 +1,5 @@
 import { getTranslations } from "next-intl/server";
+import Reveal from "@/components/ui/reveal";
 import Section from "@/components/ui/section";
 import SectionHeading from "@/components/ui/section-heading";
 
@@ -16,7 +17,9 @@ export default async function AboutSection() {
         eyebrow={t("eyebrow")}
         title={t("title")}
       />
-      <p className="max-w-[65ch] text-fg-muted">{t("bio")}</p>
+      <Reveal index={1}>
+        <p className="max-w-[65ch] text-fg-muted">{t("bio")}</p>
+      </Reveal>
     </Section>
   );
 }

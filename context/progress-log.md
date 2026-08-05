@@ -25,3 +25,4 @@ One list item per completed step: phase · sub-phase — date. Newest last.
 - Phase 5 · Step 2R — Hero alive (liveliness Option A: breathing glow, name shimmer, CTA neon-pulse, ember canvas + finale burst + CTA sparks; §15.5 amended) — implemented 2026-08-04, awaiting review
 - Phase 5 · Step 2R (review fix) — dark flash on light-mode refresh (pre-existing async theme-init race vs first paint) fixed via `blocking="render"` on both head scripts; 8/8 flashes → 0/8 — fixed 2026-08-04
 - Phase 5 · Step 2/2R — approved in full and committed 2026-08-05
+- Phase 5 · Step 3 — Scroll reveals (`ui/reveal.tsx`, Motion `inView`/`animate`; 7 section heads + about bio + contact methods/form; hash-landing + language-switch instant, reduced-motion/no-JS safe) — implemented 2026-08-05, awaiting review

@@ -1,4 +1,5 @@
 import Eyebrow from "@/components/ui/eyebrow";
+import Reveal from "@/components/ui/reveal";
 
 type SectionHeadingProps = {
   /** id for the heading element, referenced by the section's aria-labelledby */
@@ -14,7 +15,10 @@ type SectionHeadingProps = {
 };
 
 // Section head per the prototype's .sec-head pattern (h2 — the page's
-// single h1 lives in the hero, which has its own markup).
+// single h1 lives in the hero, which has its own markup). The head div
+// doubles as the Step 3 scroll-reveal box (Reveal renders the same div,
+// stagger slot 0 of its section's group) — the hero and footer don't use
+// SectionHeading, so exactly the seven non-hero heads reveal.
 export default function SectionHeading({
   headingId,
   title,
@@ -24,7 +28,7 @@ export default function SectionHeading({
   tight = false,
 }: SectionHeadingProps) {
   return (
-    <div
+    <Reveal
       className={`${tight ? "mb-6" : "mb-[clamp(2.5rem,5vw,4rem)]"} max-w-[64ch]${
         center ? " mx-auto text-center" : ""
       }`}
@@ -42,6 +46,6 @@ export default function SectionHeading({
           {sub}
         </p>
       )}
-    </div>
+    </Reveal>
   );
 }
