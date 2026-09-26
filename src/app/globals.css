@@ -94,6 +94,10 @@ html[lang="ar"] {
   /* --step--1 (labels/eyebrows) via arbitrary value: text-(length:--step--1) */
 
   --shadow-card: var(--shadow);
+  /* Prototype hover shadows, scaled by the theme's glow strength. */
+  --shadow-card-hover: 0 20px 45px -25px rgb(var(--accent) / calc(var(--glow-a) * 0.6 / 0.45));
+  --shadow-icon-hover: 0 0 18px -2px rgb(var(--accent) / calc(var(--glow-a) * 0.7 / 0.45));
+  --shadow-skill-hover: 0 6px 18px -8px rgb(var(--accent) / calc(var(--glow-a) / 0.45));
 
   --ease-smooth: var(--ease);
 }

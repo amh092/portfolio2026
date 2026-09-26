@@ -1,6 +1,5 @@
-// Card class consts (not components — inner markup varies per section;
-// Services reuses these in Step 4). Hover lift, pointer-follow glow, and
-// neon shadows are Phase 5; hover here is the plain color transition.
+// Shared card utilities. Tailwind's hover variants require hover support;
+// motion-safe disables movement under reduced motion. Pointer glow is Step 6.
 
 /** Prototype .grid.g-3 — auto-fit card columns (business growth, services). */
 export const CARD_GRID_CLASSES =
@@ -14,7 +13,7 @@ export const CARD_GRID_WIDE_CLASSES =
 // featured variant replaces border-border and the project variant drops the
 // padding, instead of fighting the base for specificity.
 const CARD_BASE_CLASSES =
-  "relative overflow-hidden rounded-lg border bg-surface transition-[border-color,background-color] duration-400 ease-smooth hover:border-accent/40 hover:bg-surface-2";
+  "group/card relative overflow-hidden rounded-lg border bg-surface transition-[translate,border-color,background-color,box-shadow] duration-400 ease-smooth hover:border-accent/40 hover:bg-surface-2 hover:shadow-card-hover motion-safe:hover:-translate-y-[5px]";
 
 /** Prototype .card: surface, border, hover tint. rounded-lg = the remapped 24px radius. */
 export const CARD_SURFACE_CLASSES = `${CARD_BASE_CLASSES} border-border p-[1.6rem]`;
@@ -27,4 +26,4 @@ export const CARD_PROJECT_CLASSES = `${CARD_BASE_CLASSES} border-border flex fle
 
 /** Prototype .card-icon: accent chip; sizes any lucide svg dropped inside. */
 export const CARD_ICON_CLASSES =
-  "mb-[1.1rem] grid size-11 place-items-center rounded-[13px] border border-accent/25 bg-accent/12 text-accent [&_svg]:size-[21px]";
+  "mb-[1.1rem] grid size-11 place-items-center rounded-[13px] border border-accent/25 bg-accent/12 text-accent transition-[translate,background-color,box-shadow] duration-400 ease-smooth group-hover/card:bg-accent/20 group-hover/card:shadow-icon-hover motion-safe:group-hover/card:-translate-y-[2px] [&_svg]:size-[21px]";

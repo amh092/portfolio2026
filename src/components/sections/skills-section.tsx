@@ -26,9 +26,9 @@ const CATEGORY_ICONS: Record<SkillCategoryIcon, LucideIcon> = {
   wrench: Wrench,
 };
 
-// Prototype .skill-tag (hover lift + neon shadow are Phase 5; color transition only).
+// Prototype skill-tag feedback; movement respects reduced motion.
 const SKILL_TAG_CLASSES =
-  "rounded-[10px] border border-border bg-surface px-[0.8rem] py-[0.4rem] text-[0.8rem] font-medium text-fg-muted transition-[color,border-color,background-color] duration-300 ease-smooth hover:border-accent/50 hover:bg-accent/8 hover:text-fg";
+  "cursor-default rounded-[10px] border border-border bg-surface px-[0.8rem] py-[0.4rem] text-[0.8rem] font-medium text-fg-muted transition-[translate,color,border-color,background-color,box-shadow] duration-300 ease-smooth hover:border-accent/50 hover:bg-accent/8 hover:text-fg hover:shadow-skill-hover motion-safe:hover:-translate-y-[2px]";
 
 export default async function SkillsSection() {
   // The [locale] layout 404s unknown locales, so this cast is safe.

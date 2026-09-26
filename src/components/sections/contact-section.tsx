@@ -7,10 +7,9 @@ import SectionHeading from "@/components/ui/section-heading";
 import { SOCIAL_LINKS } from "@/data/social-links";
 import type { AppLocale } from "@/types/locale";
 
-// Prototype .method row (the translateX hover slide is Phase 5, like the
-// card lifts; hover here is the plain color transition).
+// Prototype method-row slide follows reading direction and respects reduced motion.
 const METHOD_CLASSES =
-  "flex items-center gap-[0.9rem] rounded-md border border-border bg-surface px-[1.1rem] py-[0.95rem] transition-[border-color,background-color] duration-300 ease-smooth hover:border-accent/45 hover:bg-surface-2";
+  "flex items-center gap-[0.9rem] rounded-md border border-border bg-surface px-[1.1rem] py-[0.95rem] transition-[translate,border-color,background-color] duration-300 ease-smooth hover:border-accent/45 hover:bg-surface-2 motion-safe:ltr:hover:translate-x-[3px] motion-safe:rtl:hover:-translate-x-[3px]";
 const METHOD_ICON_CLASSES =
   "grid size-[38px] flex-none place-items-center rounded-[11px] bg-accent/12 text-accent";
 
