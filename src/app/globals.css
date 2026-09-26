@@ -187,6 +187,31 @@ html[lang="ar"] {
   }
 }
 
+/* Prototype card overlay. Its hit testing stays with the card's content;
+   JS writes only the two percentage coordinates, once per animation frame. */
+@utility pointer-glow {
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    pointer-events: none;
+    background: radial-gradient(
+      30rem 18rem at var(--mx, 50%) var(--my, 0%),
+      rgb(var(--accent) / calc(var(--glow-a) * 0.1 / 0.45)),
+      transparent 60%
+    );
+    opacity: 0;
+    transition: opacity 0.4s var(--ease);
+  }
+
+  @media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+    &:hover::after {
+      opacity: 1;
+    }
+  }
+}
+
 /* ============================================================
    HERO ENTRANCE — Phase 5 Step 2
    Prototype hero timeline: y 26px → 0, opacity 0 → 1, 0.9s,

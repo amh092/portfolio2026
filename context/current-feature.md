@@ -50,7 +50,7 @@ Out of scope (deferred):
 - Executed step by step via `context/phase-5-prompts.md` (10 approval gates, Step 9 optional); one step per prompt, each awaiting Ahmed's approval
 - Step progress and decisions tracked in `context/phase-5-plan.md`
 - Every step: reduced-motion check, both locales, both themes, 1440/390, lint + build
-- Current review (2026-09-26): Step 4 approved via "next step" (already committed as `7e2d29c`); Step 5 hover effects implemented and verified, awaiting review. Next is Step 6 (pointer-follow card glow).
+- Active work (2026-09-26): Step 5 approved via "next" (already committed as `bdffc2c`); implementing Step 6 — pointer-follow card glow with one passive pointer listener, frame-batched CSS coordinate updates, and no effect on touch/reduced motion.
 
 ## History
 

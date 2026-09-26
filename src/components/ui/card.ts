@@ -1,5 +1,5 @@
 // Shared card utilities. Tailwind's hover variants require hover support;
-// motion-safe disables movement under reduced motion. Pointer glow is Step 6.
+// motion-safe disables movement under reduced motion.
 
 /** Prototype .grid.g-3 — auto-fit card columns (business growth, services). */
 export const CARD_GRID_CLASSES =
@@ -13,7 +13,7 @@ export const CARD_GRID_WIDE_CLASSES =
 // featured variant replaces border-border and the project variant drops the
 // padding, instead of fighting the base for specificity.
 const CARD_BASE_CLASSES =
-  "group/card relative overflow-hidden rounded-lg border bg-surface transition-[translate,border-color,background-color,box-shadow] duration-400 ease-smooth hover:border-accent/40 hover:bg-surface-2 hover:shadow-card-hover motion-safe:hover:-translate-y-[5px]";
+  "pointer-glow group/card relative overflow-hidden rounded-lg border bg-surface transition-[translate,border-color,background-color,box-shadow] duration-400 ease-smooth hover:border-accent/40 hover:bg-surface-2 hover:shadow-card-hover motion-safe:hover:-translate-y-[5px]";
 
 /** Prototype .card: surface, border, hover tint. rounded-lg = the remapped 24px radius. */
 export const CARD_SURFACE_CLASSES = `${CARD_BASE_CLASSES} border-border p-[1.6rem]`;

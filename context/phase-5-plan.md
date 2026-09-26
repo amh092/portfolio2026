@@ -4,7 +4,7 @@ Living artifact for Phase 5. Executed step by step through the prompts in `conte
 
 ## 1. Phase status
 
-**In progress — Steps 1–4 approved; Step 5 (hover states) implemented and verified 2026-09-26, awaiting approval.** Phase 4 was approved via the Step 1 prompt and fast-forward merged to `main` 2026-08-04 (lint + build re-verified first); `feature/main-sections` deleted locally and on origin. Phase 5 work happens on branch `feature/animations`.
+**In progress — Steps 1–5 approved; Step 6 (pointer-follow card glow) in progress 2026-09-26.** Phase 4 was approved via the Step 1 prompt and fast-forward merged to `main` 2026-08-04 (lint + build re-verified first); `feature/main-sections` deleted locally and on origin. Phase 5 work happens on branch `feature/animations`.
 
 ## 2. Step breakdown and progress
 
@@ -16,8 +16,8 @@ Run one step at a time via `phase-5-prompts.md`; a step is Done only after Ahmed
 | 2 | Hero entrance animation (staggered fade/slide, once per session); revised as **Step 2R "Hero alive"** (+ liveliness Option A: breathing glow, name shimmer, CTA pulse, ember field, finale burst, CTA sparks) | overview §2 Hero Animation; prototype hero timeline; `phase-5-liveliness-proposal.md` | Done — approved 2026-08-05 |
 | 3 | Scroll-reveal mechanism + section heads and standalone blocks | prototype `.reveal` + section-reveal triggers | Done — approved 2026-09-26 via "ok do it" |
 | 4 | Staggered card-grid reveals (growth, services, projects, skills) | prototype grid stagger; overview per-section lists | Done — approved 2026-09-26 via "next step" |
-| 5 | Hover states deferred from Phase 4: card lifts, neon shadows, icon glow, tag lift, method-row slide | prototype `.card:hover` family | Implemented 2026-09-26 — awaiting approval |
-| 6 | Pointer-follow card glow (`--mx`/`--my` radial) | prototype pointermove handler + `.card::after` | Pending |
+| 5 | Hover states deferred from Phase 4: card lifts, neon shadows, icon glow, tag lift, method-row slide | prototype `.card:hover` family | Done — approved 2026-09-26 via "next" |
+| 6 | Pointer-follow card glow (`--mx`/`--my` radial) | prototype pointermove handler + `.card::after` | In progress 2026-09-26 |
 | 7 | Neon pulsing on primary buttons; verify active-nav-dot pulse | overview §Neon Pulsing Effects; prototype `.neon-pulse` | Pending |
 | 8 | Background orb drift (gentle scroll parallax) | prototype orb scrub tweens | Pending |
 | 9 | **Optional (open decision):** floating scroll-appearing to-top button | prototype `.to-top`; Phase 4 Step 9 deferral | Decision gate |
@@ -38,7 +38,7 @@ Run one step at a time via `phase-5-prompts.md`; a step is Done only after Ahmed
 
 - **Motion, not GSAP.** The stack table fixes "Motion for React and CSS". The prototype's GSAP + ScrollTrigger code is *behavioral reference only* — durations, eases, staggers, and trigger points are read from it, but the implementation uses the `motion` package and plain CSS. GSAP is never installed.
 - **§15.5 restraint rules bind every step:** glow only on primary CTA, active nav indicator, viewer edges, hero heading backdrop, decorative orbs; pulse cycles ≥ 3s, ease-in-out, tiny amplitude; glow alpha capped by `--glow-a`; no glow behind body text; no flashing; full reduced-motion support.
-  - *Interpretation to confirm at Step 5:* the prototype's card **hover** neon shadows and pointer-follow glow are transient interaction feedback, not resting glow, so they don't violate the "glow only on" list. Flagged for Ahmed's confirmation.
+  - **Step 5 approved 2026-09-26:** transient hover feedback (card shadows and pointer-follow glow) is permitted beyond the resting-glow allow-list; hover-capability gating is retained.
 - **Sections stay server components.** Animation is added via small `'use client'` wrapper components that receive server-rendered children — no section is converted wholesale to a client component.
 - **Content is never hostage to JS.** SSR HTML must not permanently hide content: reveals are progressive enhancement with a safety net (mirroring the prototype's `no-gsap` fallback and 4s sweep), and landing mid-page (hash link, section-preserving language switch) shows everything immediately.
 - **No new visible copy.** Any string a step genuinely needs (e.g. an aria-label) is drafted minimally in both languages and flagged as "New strings for approval". Step 9 reuses the existing `Footer` back-to-top string.
@@ -59,6 +59,8 @@ Run one step at a time via `phase-5-prompts.md`; a step is Done only after Ahmed
 
 | Date | Decision | Status |
 |------|----------|--------|
+| 2026-09-26 | Step 5 approved via "next" (existing commit `bdffc2c`); Step 6 implemented with `ui/card-pointer-glow.tsx`, mounted once from the server page. One passive document pointermove listener, latest-event rAF batching, one card-rect read and two percentage-property writes per frame; no React state or per-card handlers. Tailwind `pointer-glow` utility supplies the prototype's 30rem × 18rem radial `::after`, transparent at 60%, pointer-events none, inherited radius, and 0.4s opacity fade. Dark alpha 0.10; light alpha scales with `--glow-a`. | Implemented — verification in progress |
+| 2026-09-26 | Step 6 review choice: disable both the CSS overlay and JS listener unless `(hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference)`. Media changes reattach/disable the listener; disabling/unmount cancels a queued frame and clears custom coordinates. Ignore touch pointer events even on hybrid devices. Percentages use physical left/top in both locales. No new visible strings or dependencies. | Proposed for Step 6 review |
 | 2026-09-26 | Step 5 verification: lint + production build pass; 13 browser scenarios pass in isolated Chrome — EN/AR × dark/light × 1440/390 hover matrix (all four card types, icon feedback, skill tags, direction-aware contact rows, pointer-leave restoration, keyboard focus rings, no overflow), reduced-motion EN/AR, touch EN/AR, and reveal/hover coexistence including cleared entrance transforms. Dark and light screenshots inspected. Browser tests wait for actual CSS transition completion; no new project test dependency. Hover gating and transient-glow interpretation remain the two Step 5 review choices. | Verified — awaiting approval |
 | 2026-09-26 | Step 4 approved via "next step"; existing commit `7e2d29c` already contains that work. Step 5 adds pure Tailwind CSS hover feedback: cards lift 5px with prototype border/background/shadow; growth/service icon chips brighten and lift 2px; skill tags lift 2px with shadow; contact rows slide 3px toward inline-end (right EN, left AR). Individual CSS `translate` composes with Motion's entrance `transform`; no new client component or dependency. | Implemented and verified — awaiting review |
 | 2026-09-26 | Step 5 review choices: retain Tailwind v4's built-in `@media (hover: hover)` gating, including named group-hover icons, to avoid sticky effects on touch. `motion-safe` gates every new translation; reduced-motion users retain instant color/shadow feedback. Treat the prototype's hover-only neon shadows as transient feedback allowed beyond the resting-glow allow-list; scale their alphas with `--glow-a` as the existing hero pulse does (dark matches prototype, light is softer). No new copy. | Proposed for Step 5 review |

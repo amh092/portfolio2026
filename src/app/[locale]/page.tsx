@@ -8,6 +8,7 @@ import ProjectsSection from "@/components/sections/projects-section";
 import ServicesSection from "@/components/sections/services-section";
 import SkillsSection from "@/components/sections/skills-section";
 import ThreeDSection from "@/components/sections/three-d-section";
+import CardPointerGlow from "@/components/ui/card-pointer-glow";
 
 // Section order per phase-1-plan §2; anchor IDs live in each section
 // component and must stay in sync with src/data/sections.ts (scrollspy).
@@ -17,6 +18,7 @@ export default async function HomePage({ params }: PageProps<"/[locale]">) {
 
   return (
     <main id="main">
+      <CardPointerGlow />
       <HeroSection />
       <BusinessGrowthSection />
       <ServicesSection />
