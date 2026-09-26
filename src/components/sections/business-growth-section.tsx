@@ -5,6 +5,7 @@ import {
   CARD_ICON_CLASSES,
   CARD_SURFACE_CLASSES,
 } from "@/components/ui/card";
+import Reveal from "@/components/ui/reveal";
 import Section from "@/components/ui/section";
 import SectionHeading from "@/components/ui/section-heading";
 
@@ -30,7 +31,7 @@ export default async function BusinessGrowthSection() {
         title={t("title")}
         sub={t("intro")}
       />
-      <div className={CARD_GRID_CLASSES}>
+      <Reveal variant="grid" className={CARD_GRID_CLASSES}>
         {BENEFITS.map(({ key, Icon }) => (
           <div key={key} className={CARD_SURFACE_CLASSES}>
             <div className={CARD_ICON_CLASSES}>
@@ -44,7 +45,7 @@ export default async function BusinessGrowthSection() {
             </p>
           </div>
         ))}
-      </div>
+      </Reveal>
     </Section>
   );
 }

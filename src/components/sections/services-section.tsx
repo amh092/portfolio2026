@@ -14,6 +14,7 @@ import {
   CARD_ICON_CLASSES,
   CARD_SURFACE_CLASSES,
 } from "@/components/ui/card";
+import Reveal from "@/components/ui/reveal";
 import Section from "@/components/ui/section";
 import SectionHeading from "@/components/ui/section-heading";
 import { SERVICES } from "@/data/services";
@@ -42,7 +43,7 @@ export default async function ServicesSection() {
         eyebrow={t("eyebrow")}
         title={t("title")}
       />
-      <div className={CARD_GRID_CLASSES}>
+      <Reveal variant="grid" className={CARD_GRID_CLASSES}>
         {SERVICES.map((service) => {
           const Icon = SERVICE_ICONS[service.icon];
           return (
@@ -69,7 +70,7 @@ export default async function ServicesSection() {
             </div>
           );
         })}
-      </div>
+      </Reveal>
     </Section>
   );
 }

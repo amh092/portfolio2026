@@ -26,3 +26,5 @@ One list item per completed step: phase · sub-phase — date. Newest last.
 - Phase 5 · Step 2R (review fix) — dark flash on light-mode refresh (pre-existing async theme-init race vs first paint) fixed via `blocking="render"` on both head scripts; 8/8 flashes → 0/8 — fixed 2026-08-04
 - Phase 5 · Step 2/2R — approved in full and committed 2026-08-05
 - Phase 5 · Step 3 — Scroll reveals (`ui/reveal.tsx`, Motion `inView`/`animate`; 7 section heads + about bio + contact methods/form; hash-landing + language-switch instant, reduced-motion/no-JS safe) — implemented 2026-08-05, awaiting review
+- Phase 5 · Step 3 — approved via "ok do it" 2026-09-26
+- Phase 5 · Step 4 — Staggered card-grid reveals (19 cards, 34px / 0.75s / 0.07s at section top 72%; shared trigger and completion cleanup fixes; 18/18 browser scenarios, lint + build pass) — implemented 2026-09-26, awaiting review

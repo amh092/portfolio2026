@@ -2,6 +2,7 @@ import { ExternalLink } from "lucide-react";
 import { getLocale, getTranslations } from "next-intl/server";
 import Image from "next/image";
 import { CARD_GRID_CLASSES, CARD_PROJECT_CLASSES } from "@/components/ui/card";
+import Reveal from "@/components/ui/reveal";
 import Section from "@/components/ui/section";
 import SectionHeading from "@/components/ui/section-heading";
 import StatusPill from "@/components/ui/status-pill";
@@ -28,7 +29,7 @@ export default async function ProjectsSection() {
         eyebrow={t("eyebrow")}
         title={t("title")}
       />
-      <div className={CARD_GRID_CLASSES}>
+      <Reveal variant="grid" className={CARD_GRID_CLASSES}>
         {PROJECTS.map((project) => (
           <article key={project.slug} className={CARD_PROJECT_CLASSES}>
             <div className="relative aspect-16/10 overflow-hidden border-b border-border bg-surface-2">
@@ -92,7 +93,7 @@ export default async function ProjectsSection() {
             </div>
           </article>
         ))}
-      </div>
+      </Reveal>
     </Section>
   );
 }

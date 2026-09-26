@@ -11,6 +11,7 @@ import {
   CARD_GRID_WIDE_CLASSES,
   CARD_SURFACE_CLASSES,
 } from "@/components/ui/card";
+import Reveal from "@/components/ui/reveal";
 import Section from "@/components/ui/section";
 import SectionHeading from "@/components/ui/section-heading";
 import { SKILL_CATEGORIES } from "@/data/skills";
@@ -43,7 +44,7 @@ export default async function SkillsSection() {
         title={t("title")}
         sub={t("sub")}
       />
-      <div className={CARD_GRID_WIDE_CLASSES}>
+      <Reveal variant="grid" className={CARD_GRID_WIDE_CLASSES}>
         {SKILL_CATEGORIES.map((category) => {
           const Icon = CATEGORY_ICONS[category.icon];
           return (
@@ -62,7 +63,7 @@ export default async function SkillsSection() {
             </div>
           );
         })}
-      </div>
+      </Reveal>
     </Section>
   );
 }

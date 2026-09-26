@@ -1,56 +1,66 @@
 "use client";
 
 import { useEffect, useRef, type ReactNode } from "react";
-import { animate, inView } from "motion";
+import { inView, stagger } from "motion";
+import { animate } from "motion/mini";
 
-// Prototype section-reveal timeline: y 30px → 0, 0.8s, power3.out,
-// 0.1s stagger per group slot, triggered when the *section* top crosses
-// 78% of the viewport (GSAP `start: "top 78%"` ≙ inView margin -22%).
+// Prototype timelines, both triggered by the containing section's top.
 const EASE_OUT_QUART = [0.165, 0.84, 0.44, 1] as const;
-const TRIGGER_VH = 0.78;
-const TRIGGER_MARGIN = "0px 0px -22% 0px";
-const DISTANCE_PX = 30;
-const DURATION_S = 0.8;
-const STAGGER_S = 0.1;
+const PRESETS = {
+  block: { trigger: 0.78, distance: 30, duration: 0.8, stagger: 0.1 },
+  grid: { trigger: 0.72, distance: 34, duration: 0.75, stagger: 0.07 },
+} as const;
 const SWEEP_MS = 4000;
 
 type RevealProps = {
   children: ReactNode;
   /** Stagger slot within the section's reveal group (delay = index × 0.1s) */
   index?: number;
+  /** Grid mode animates existing direct children in DOM/reading order. */
+  variant?: keyof typeof PRESETS;
   className?: string;
 };
 
-// Scroll-reveal wrapper (Phase 5 Step 3) — progressive enhancement that
-// keeps sections server components (children arrive server-rendered).
-// The SSR markup is never hidden: this hides its box only when the whole
-// box is still below the viewport at mount, so hash landings, the
-// section-preserving language switch, and no-JS/reduced-motion visitors
+// Progressive enhancement; server-rendered children retain their markup.
+// SSR is never hidden: only sections below their trigger line are armed,
+// so hash landings, locale switches, and no-JS/reduced-motion visitors
 // always see content instantly. Reveals run once and never re-hide; the
 // prototype's 4s sweep rescues anything hidden inside the viewport in
 // case a trigger never fires.
 export default function Reveal({
   children,
   index = 0,
+  variant = "block",
   className,
 }: RevealProps) {
   const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const el = ref.current;
-    if (!el) return;
+    if (!el || !("IntersectionObserver" in window)) return;
     const reduceMq = matchMedia("(prefers-reduced-motion: reduce)");
     if (reduceMq.matches) return;
 
+    const preset = PRESETS[variant];
+    const targets =
+      variant === "grid"
+        ? Array.from(el.children).filter(
+            (child): child is HTMLElement => child instanceof HTMLElement,
+          )
+        : [el];
+    if (!targets.length) return;
+
     const show = () => {
-      el.style.opacity = "";
-      el.style.transform = "";
+      targets.forEach((target) => {
+        target.style.opacity = "";
+        target.style.transform = "";
+      });
     };
 
     // The prototype triggers on the section, not the element — deep
     // blocks (contact form) animate with their section's head group.
     const section = el.closest("section") ?? el;
-    if (section.getBoundingClientRect().top < innerHeight * TRIGGER_VH) {
+    if (section.getBoundingClientRect().top < innerHeight * preset.trigger) {
       return; // already at/above the trigger line → static, no animation
     }
 
@@ -74,50 +84,76 @@ export default function Reveal({
       if (precedesLanding) return;
     }
 
-    el.style.opacity = "0";
-    el.style.transform = `translateY(${DISTANCE_PX}px)`;
+    targets.forEach((target) => {
+      target.style.opacity = "0";
+      target.style.transform = `translateY(${preset.distance}px)`;
+    });
 
-    const stop = inView(
-      section,
-      () => {
-        stop(); // once — never re-hide
-        animate(
-          el,
-          { opacity: 1, transform: "translateY(0px)" },
-          {
-            duration: DURATION_S,
-            delay: index * STAGGER_S,
-            ease: EASE_OUT_QUART,
-          },
-        ).finished.then(show); // clearProps parity with the prototype
-      },
-      { margin: TRIGGER_MARGIN },
-    );
+    let revealed = false;
+    let animation: ReturnType<typeof animate> | undefined;
+    let stop = () => {};
+
+    const finish = () => {
+      revealed = true;
+      stop();
+      animation?.cancel();
+      show();
+    };
+
+    const observe = () => {
+      stop();
+      if (revealed) return;
+      // IntersectionObserver percentages resolve against viewport WIDTH.
+      // Pixels keep the 78%/72% height-based triggers exact at every size.
+      stop = inView(
+        section,
+        () => {
+          if (revealed) return;
+          revealed = true;
+          stop();
+          animation = animate(
+            targets,
+            { opacity: 1, transform: "translateY(0px)" },
+            {
+              duration: preset.duration,
+              delay:
+                variant === "grid"
+                  ? stagger(preset.stagger)
+                  : index * preset.stagger,
+              ease: EASE_OUT_QUART,
+            },
+          );
+          animation.finished.then(show);
+        },
+        { margin: `0px 0px ${innerHeight * (preset.trigger - 1)}px 0px` },
+      );
+    };
+    observe();
+    window.addEventListener("resize", observe);
 
     const sweep = window.setTimeout(() => {
       if (
-        getComputedStyle(el).opacity === "0" &&
-        el.getBoundingClientRect().top < innerHeight
+        !revealed &&
+        targets.some((target) => target.getBoundingClientRect().top < innerHeight)
       ) {
-        show();
+        finish();
       }
     }, SWEEP_MS);
 
     const onReduceChange = () => {
       if (reduceMq.matches) {
-        stop();
-        show();
+        finish();
       }
     };
     reduceMq.addEventListener("change", onReduceChange);
 
     return () => {
-      stop();
+      finish();
       clearTimeout(sweep);
+      window.removeEventListener("resize", observe);
       reduceMq.removeEventListener("change", onReduceChange);
-      show();
     };
-  }, [index]);
+  }, [index, variant]);
 
   return (
     <div ref={ref} className={className}>
