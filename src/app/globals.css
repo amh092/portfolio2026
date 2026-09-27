@@ -283,8 +283,8 @@ html.hero-entrance .hero-enter {
 
 /* Prototype .neon-pulse (3.4s), alphas scaled by --glow-a so the
    dark theme equals the prototype exactly (--glow-a 0.45) and the
-   light theme auto-caps per §15.5. Pulled forward from Step 7 for
-   the hero CTA; Step 7 extends it to the contact submit button. */
+   light theme auto-caps per §15.5. Shared by the hero CTA and the
+   contact button; this decorative pulse does not indicate submission. */
 @keyframes neon-pulse {
   0%,
   100% {

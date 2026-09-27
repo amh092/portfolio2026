@@ -30,3 +30,8 @@ One list item per completed step: phase · sub-phase — date. Newest last.
 - Phase 5 · Step 4 — Staggered card-grid reveals (19 cards, 34px / 0.75s / 0.07s at section top 72%; shared trigger and completion cleanup fixes; 18/18 browser scenarios, lint + build pass) — implemented 2026-09-26, awaiting review
 - Phase 5 · Step 4 — approved via "next step" 2026-09-26 (existing commit `7e2d29c`)
 - Phase 5 · Step 5 — Card/icon/tag hover lifts and theme-scaled shadows; EN/AR contact-row slide; hover-device/reduced-motion gating; 13 browser scenarios, lint + build pass — implemented 2026-09-26, awaiting review
+- Phase 5 · Step 5 — approved via "next" 2026-09-26 (existing commit `bdffc2c`)
+- Phase 5 · Step 6 — Pointer-follow card glow; 13/13 browser scenarios, lint + build pass; implementation in `a18b758` — verification recorded 2026-09-27, awaiting review
+- Remaining MVP tasks summarized as headings in `context/remaining-tasks.md` — 2026-09-27
+- Phase 5 · Step 6 — approved via "move to next sep" 2026-09-27 (existing commit `a18b758`)
+- Phase 5 · Step 7 — Contact button shares the hero's 3.4s neon pulse; active-nav dot verified at prototype 2.6s; 8/8 EN/AR, theme, viewport, and reduced-motion browser scenarios, lint + build pass — implemented 2026-09-27, awaiting review

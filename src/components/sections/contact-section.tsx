@@ -114,7 +114,10 @@ export default async function ContactSection() {
                 className={`${INPUT_CLASSES} min-h-[130px] resize-y`}
               />
             </div>
-            <Button type="button" className="justify-self-start">
+            <Button
+              type="button"
+              className="justify-self-start animate-[neon-pulse_3.4s_ease-in-out_infinite]"
+            >
               {t("form.submit")}
             </Button>
           </form>
