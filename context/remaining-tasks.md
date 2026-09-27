@@ -2,11 +2,9 @@
 
 ## Current Review
 
-### Approve Phase 5 · Step 7 — Contact Button Pulse and Navigation Glow Verification
+### Approve Phase 5 · Step 8 — Background Orb Drift
 
 ## Phase 5 — Finish Animation and Styling
-
-### Step 8 — Subtle Background Orb Drift
 
 ### Step 9 — Floating Back-to-Top Button (Optional)
 
