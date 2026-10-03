@@ -14,6 +14,7 @@ import { CONTAINER_CLASSES } from "@/components/ui/section";
 const NAV_DOT_CLASSES =
   "absolute bottom-px left-1/2 size-[5px] -translate-x-1/2 scale-40 rounded-full bg-accent opacity-0 shadow-[0_0_8px_1px_rgb(var(--accent)/0.9)] transition-[opacity,scale] duration-300 ease-smooth group-aria-[current=true]:opacity-100 group-aria-[current=true]:scale-100 group-aria-[current=true]:animate-dot-pulse";
 import LanguageSwitcher from "./language-switcher";
+import BackToTop from "./back-to-top";
 import MobileMenu from "./mobile-menu";
 import ThemeToggle from "./theme-toggle";
 
@@ -126,6 +127,7 @@ export default function Navbar() {
         activeSection={activeSection}
         onClose={() => setMenuOpen(false)}
       />
+      <BackToTop menuOpen={menuOpen} />
     </>
   );
 }

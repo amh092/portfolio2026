@@ -2,11 +2,9 @@
 
 ## Current Review
 
-### Approve Phase 5 · Step 8 — Background Orb Drift
+### Approve Phase 5 · Step 9 — Floating Back-to-Top Button
 
 ## Phase 5 — Finish Animation and Styling
-
-### Step 9 — Floating Back-to-Top Button (Optional)
 
 ### Step 10 — Mobile Performance and Final Animation Audit
 

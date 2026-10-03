@@ -20,7 +20,7 @@ export default async function Footer() {
   const t = await getTranslations("Footer");
 
   return (
-    <footer className="border-t border-border bg-bg-2/50 py-10">
+    <footer className="border-t border-border bg-bg-2/50 pt-10 pb-20">
       <div
         className={`${CONTAINER_CLASSES} flex flex-wrap items-center justify-between gap-6`}
       >

@@ -37,3 +37,5 @@ One list item per completed step: phase · sub-phase — date. Newest last.
 - Phase 5 · Step 7 — Contact button shares the hero's 3.4s neon pulse; active-nav dot verified at prototype 2.6s; 8/8 EN/AR, theme, viewport, and reduced-motion browser scenarios, lint + build pass — implemented 2026-09-27, awaiting review
 - Phase 5 · Step 7 — approved via "next step" 2026-09-27 (existing commit `e8ca895`)
 - Phase 5 · Step 8 — Scroll-linked background orb drift (18% / −14%), static reduced-motion/no-JS fallback; 14/14 browser scenarios plus live prototype comparison, ~59.5fps at 390px under 4× CPU throttle, lint + build pass — implemented 2026-09-27, awaiting review
+- Phase 5 · Step 8 — approved via "next step" 2026-10-03 (existing commit `620f919`)
+- Phase 5 · Step 9 — Floating back-to-top button, keyboard/focus and reduced-motion support, RTL positioning, and footer clearance; 12/12 interaction scenarios + 6/6 overlap checks, lint + build pass — implemented 2026-10-03, awaiting review
