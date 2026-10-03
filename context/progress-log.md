@@ -39,3 +39,5 @@ One list item per completed step: phase · sub-phase — date. Newest last.
 - Phase 5 · Step 8 — Scroll-linked background orb drift (18% / −14%), static reduced-motion/no-JS fallback; 14/14 browser scenarios plus live prototype comparison, ~59.5fps at 390px under 4× CPU throttle, lint + build pass — implemented 2026-09-27, awaiting review
 - Phase 5 · Step 8 — approved via "next step" 2026-10-03 (existing commit `620f919`)
 - Phase 5 · Step 9 — Floating back-to-top button, keyboard/focus and reduced-motion support, RTL positioning, and footer clearance; 12/12 interaction scenarios + 6/6 overlap checks, lint + build pass — implemented 2026-10-03, awaiting review
+- Phase 5 · Step 9 — approved via "next step" 2026-10-03 (existing commit `888f789`)
+- Phase 5 · Step 10 — 24/24 automated audit scenarios, lint + build pass; ~60fps throttled mobile scroll with zero long tasks/CLS; native macOS Reduce Motion check pending manual setting change — 2026-10-03

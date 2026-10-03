@@ -1,14 +1,12 @@
 # Remaining Tasks
 
-## Current Review
+## Current Action
 
-### Approve Phase 5 · Step 9 — Floating Back-to-Top Button
+### Complete Phase 5 · Step 10 — Native macOS Reduce Motion Check
 
 ## Phase 5 — Finish Animation and Styling
 
-### Step 10 — Mobile Performance and Final Animation Audit
-
-### Approve Phase 5 and Merge to Main
+### Review the Final Phase 5 Audit and Approve Merge to Main
 
 ## Phase 6 — Interactive 3D Showcase
 
