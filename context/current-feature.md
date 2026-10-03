@@ -40,7 +40,7 @@ Out of scope (deferred):
 - Phase 6 — everything 3D: viewer, model loading states, the `three-d` section body (its section head still gets the standard reveal; the body stays a placeholder)
 - Phase 7 — contact-form submission states (loading pulse during submission arrives with a real submission)
 - Phase 8 — SEO metadata, contrast testing, Lighthouse, sitemap/OG/favicon assets, deployment
-- Not planned at all: overview-listed effects absent from the prototype (hero particles, moving gradients, connecting lines, hover tilt, card expansion, featured-card pulsing) — revisit only if Ahmed asks
+- Excluded: animated connecting lines, project-card tilt/expansion, and featured-service-card pulsing. Hero embers/bursts, heading-glow breathing, and name-gradient shimmer shipped under the approved Step 2R Option A amendment.
 
 ## Notes
 
@@ -50,7 +50,7 @@ Out of scope (deferred):
 - Executed step by step via `context/phase-5-prompts.md` (10 approval gates, Step 9 optional); one step per prompt, each awaiting Ahmed's approval
 - Step progress and decisions tracked in `context/phase-5-plan.md`
 - Every step: reduced-motion check, both locales, both themes, 1440/390, lint + build
-- Current review (2026-10-03): Step 9 floating back-to-top button implemented and verified. Lint, build, 12/12 browser scenarios, and 6/6 footer-clearance checks pass. Next after approval: Step 10 — mobile performance and final Phase 5 audit. Glanceable remaining work: `context/remaining-tasks.md`.
+- Active audit (2026-10-03): Step 9 approved via "next step" (commit `888f789`); Step 10 final audit in progress. Browser regressions and throttled mobile performance pass; native macOS Reduce Motion verification needs the setting enabled in System Settings because macOS rejected the attempted preference write. Glanceable remaining work: `context/remaining-tasks.md`.
 
 ## History
 

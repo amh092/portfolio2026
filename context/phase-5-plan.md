@@ -4,7 +4,7 @@ Living artifact for Phase 5. Executed step by step through the prompts in `conte
 
 ## 1. Phase status
 
-**In progress — Steps 1–8 approved; Step 9 (floating back-to-top button) implemented and verified 2026-10-03, awaiting review.** Phase 4 was approved via the Step 1 prompt and fast-forward merged to `main` 2026-08-04 (lint + build re-verified first); `feature/main-sections` deleted locally and on origin. Phase 5 work happens on branch `feature/animations`.
+**In progress — Steps 1–9 approved; Step 10 final audit underway 2026-10-03.** Phase 4 was approved via the Step 1 prompt and fast-forward merged to `main` 2026-08-04 (lint + build re-verified first); `feature/main-sections` deleted locally and on origin. Phase 5 work happens on branch `feature/animations`.
 
 ## 2. Step breakdown and progress
 
@@ -20,8 +20,8 @@ Run one step at a time via `phase-5-prompts.md`; a step is Done only after Ahmed
 | 6 | Pointer-follow card glow (`--mx`/`--my` radial) | prototype pointermove handler + `.card::after` | Done — approved 2026-09-27 via "move to next sep" |
 | 7 | Neon pulsing on primary buttons; verify active-nav-dot pulse | overview §Neon Pulsing Effects; prototype `.neon-pulse` | Done — approved 2026-09-27 via "next step" |
 | 8 | Background orb drift (gentle scroll parallax) | prototype orb scrub tweens | Done — approved 2026-10-03 via "next step" |
-| 9 | Floating scroll-appearing to-top button (optional step selected) | prototype `.to-top`; Phase 4 Step 9 deferral | Implemented and verified 2026-10-03 — awaiting review |
-| 10 | Mobile animation performance test + final Phase 5 audit; phase close | roadmap; whole plan | Pending |
+| 9 | Floating scroll-appearing to-top button (optional step selected) | prototype `.to-top`; Phase 4 Step 9 deferral | Done — approved 2026-10-03 via "next step" |
+| 10 | Mobile animation performance test + final Phase 5 audit; phase close | roadmap; whole plan | In progress 2026-10-03 |
 
 ## 3. Scope boundaries
 
@@ -32,7 +32,7 @@ Run one step at a time via `phase-5-prompts.md`; a step is Done only after Ahmed
 - **Phase 6** — everything 3D: viewer, model loading states, the `three-d` section body (its section head still gets the standard Step 3 reveal; the body stays a placeholder).
 - **Phase 7** — form submission states (loading pulse during submission is Phase 7, when a submission exists).
 - **Phase 8** — Lighthouse scoring, contrast checks, SEO, deployment.
-- **Not planned at all:** hero background particles, moving hero gradient, animated connecting lines between skills, hover tilt on project cards, smooth card expansion — listed in the overview as "possible" but absent from the prototype, which is the behavior source of truth. Revisit only if Ahmed asks.
+- **Excluded:** animated connecting lines between skills, project-card tilt/expansion, and featured-service-card pulsing. The hero ember/burst layer and name-gradient shimmer are included through the approved Step 2R Option A amendment above.
 
 ## 4. Standing decisions (restated where they bite)
 
@@ -44,6 +44,7 @@ Run one step at a time via `phase-5-prompts.md`; a step is Done only after Ahmed
 - **No new visible copy.** Any string a step genuinely needs (e.g. an aria-label) is drafted minimally in both languages and flagged as "New strings for approval". Step 9 reuses the existing `Footer` back-to-top string.
 - **Already shipped, don't rebuild:** the active-nav neon dot + `dot-pulse` (Phase 3) — Step 7 only verifies it against the prototype and confirms reduced-motion kills it. The static heading glow, button hover glow, and plain color/border hover transitions from Phase 4 stay as-is; Phase 5 layers on top.
 - **Footer stays quiet** — the prototype gives it no reveal and no animation; Phase 5 adds none.
+- **Animation-property audit:** entrances, reveals, hover movement, and orb drift use transform/translate and opacity, without animating layout dimensions. The approved glow pulses/shadows, pointer radial gradient, hero-name background-position shimmer, and ember canvas also repaint. The generic transform/opacity-only checklist is not a literal description of those approved effects; Step 10 measures their combined cost instead of retuning them.
 - **§15.5 amendments (Step 2R, liveliness Option A — approved by Ahmed 2026-08-04):** the glow allow-list gains *hero ambient embers/bursts (decorative canvas)*; the pulse list gains *the hero heading backdrop glow (4s breathe)*; the overview's "avoid constant large background movement" is relaxed to *subtle, capped drift* (hero embers + the Step 8 orbs). Everything else holds: pulse cycles ≥ 3s, glow alpha capped by `--glow-a` (the ember/pulse alphas scale with it), no glow behind body text, **no flashing/strobing ever** (bursts bloom ≤ ~1/s), full reduced-motion support. The prototype remains the behavior source for the original effects; `phase-5-liveliness-proposal.md` is the spec for the new layer. Not ported back into `phase-1-plan.md` §15.5 beyond a pointer line.
 
 ## 5. Quality gates (every step)

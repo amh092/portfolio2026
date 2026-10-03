@@ -218,7 +218,7 @@ html[lang="ar"] {
    0.09s stagger, power3.out. Plays only under html.hero-entrance,
    which public/entrance-init.js adds before first paint on the
    session's first load (never with reduced motion, never without
-   JS) and removes ~1.7s later — the SSR markup itself never hides
+   JS) and removes 2s later — the SSR markup itself never hides
    anything, and a language-switch remount renders static.
    ============================================================ */
 
