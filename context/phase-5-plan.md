@@ -4,7 +4,7 @@ Living artifact for Phase 5. Executed step by step through the prompts in `conte
 
 ## 1. Phase status
 
-**In progress — Steps 1–9 approved; Step 10 automated audit passed 2026-10-03. Native macOS Reduce Motion check remains pending before phase completion and final review.** Phase 4 was approved via the Step 1 prompt and fast-forward merged to `main` 2026-08-04 (lint + build re-verified first); `feature/main-sections` deleted locally and on origin. Phase 5 work happens on branch `feature/animations`.
+**Completed — Steps 1–9 approved; Step 10 automated audit passed 2026-10-03. Native macOS Reduce Motion verification deferred to Phase 8 following Ahmed's "next" after the deferral offer. Ready for final review; merge awaits approval.** Phase 4 was approved via the Step 1 prompt and fast-forward merged to `main` 2026-08-04 (lint + build re-verified first); `feature/main-sections` deleted locally and on origin. Phase 5 work is on branch `feature/animations`.
 
 ## 2. Step breakdown and progress
 
@@ -21,7 +21,7 @@ Run one step at a time via `phase-5-prompts.md`; a step is Done only after Ahmed
 | 7 | Neon pulsing on primary buttons; verify active-nav-dot pulse | overview §Neon Pulsing Effects; prototype `.neon-pulse` | Done — approved 2026-09-27 via "next step" |
 | 8 | Background orb drift (gentle scroll parallax) | prototype orb scrub tweens | Done — approved 2026-10-03 via "next step" |
 | 9 | Floating scroll-appearing to-top button (optional step selected) | prototype `.to-top`; Phase 4 Step 9 deferral | Done — approved 2026-10-03 via "next step" |
-| 10 | Mobile animation performance test + final Phase 5 audit; phase close | roadmap; whole plan | Automated checks passed — native macOS reduced-motion check pending |
+| 10 | Mobile animation performance test + final Phase 5 audit; phase close | roadmap; whole plan | Audit complete — native Mac check deferred to Phase 8; awaiting final review |
 
 ## 3. Scope boundaries
 
@@ -31,7 +31,7 @@ Run one step at a time via `phase-5-prompts.md`; a step is Done only after Ahmed
 
 - **Phase 6** — everything 3D: viewer, model loading states, the `three-d` section body (its section head still gets the standard Step 3 reveal; the body stays a placeholder).
 - **Phase 7** — form submission states (loading pulse during submission is Phase 7, when a submission exists).
-- **Phase 8** — Lighthouse scoring, contrast checks, SEO, deployment.
+- **Phase 8** — native macOS Reduce Motion verification, Lighthouse scoring, contrast checks, SEO, deployment.
 - **Excluded:** animated connecting lines between skills, project-card tilt/expansion, and featured-service-card pulsing. The hero ember/burst layer and name-gradient shimmer are included through the approved Step 2R Option A amendment above.
 
 ## 4. Standing decisions (restated where they bite)
@@ -60,8 +60,9 @@ Run one step at a time via `phase-5-prompts.md`; a step is Done only after Ahmed
 
 | Date | Decision | Status |
 |------|----------|--------|
+| 2026-10-03 | Ahmed replied "next" after the offer to skip the native Mac check. Taken as direction to defer native macOS Reduce Motion verification to Phase 8 and finish the Phase 5 review. All automated results stand; the native check is unverified. Marked phase Completed, updated the audit and remaining tasks; no runtime changes. | Ready for final review; not merged |
 | 2026-10-03 | Step 9 approved via "next step" (commit `888f789`). Step 10 automated audit: **24/24 scenarios pass**, including 64 correct scrollspy observations, initial/live reduced motion, no JS, all reveal targets and hover types, keyboard traversal, inert form, locale/theme/section preservation, and no overflow. Mobile 390px/DPR2/touch/4× CPU: 59.50–60.00fps, p95 16.7–16.8ms, zero scroll long tasks/CLS; isolated slowest frame 50ms. Lint + build pass. Full report: `context/phase-5-audit.md`. | Automated audit verified |
-| 2026-10-03 | Native macOS reduced-motion integration check remains required by Step 10. `NSWorkspace` reports disabled; macOS rejected the preference write, and a read confirmed no change. Requested manual enablement in System Settings, or explicit deferral. Browser emulation passed but is not recorded as a native OS test. Keep phase In Progress and do not merge until this is resolved and the final audit is approved. | Pending user action |
+| 2026-10-03 | Native macOS reduced-motion integration check was required by Step 10. `NSWorkspace` reported disabled; macOS rejected the preference write, and a read confirmed no change. Requested manual enablement in System Settings, or deferral. Browser emulation passed but is not recorded as a native OS test. | Deferred to Phase 8 by the subsequent decision above |
 | 2026-10-03 | Step 9 verification: lint + production build pass; **12/12 browser scenarios pass** in isolated Chrome — EN/AR × dark/light × 1440/390, exact viewport threshold, 44px size and logical placement, 350ms transition, hover glow, keyboard focus/activation, smooth scroll, focus return, resize, mobile-menu suppression, and live reduced motion. Also initial reduced-motion hash landing in both locales, section/theme-preserving locale switch, and no-JS footer fallback. **6/6 additional footer-clearance checks pass** at 390/768/1280 in both locales; live prototype comparison and independent source review pass. Screenshots inspected; no page errors or horizontal overflow. Temporary test artifacts remain in /tmp. | Verified — awaiting Step 9 review |
 | 2026-10-03 | Step 8 approved via "next step" (existing commit `620f919`); proceeded with the optional Step 9 floating button as the next planned step. New `layout/back-to-top.tsx` is mounted beside the mobile menu in Navbar, reusing `Footer.backToTop` in both locales. Prototype 44px circle, 24px bottom/logical-end offsets, z80, blurred translucent surface, 350ms fade/12px slide, hover border and theme-scaled shadow. Threshold is one viewport per the Step 9 prompt, replacing the prototype's fixed 600px. Passive scroll listener only sets state when the threshold changes; initial mount and resize also sync it. | Implemented and verified — awaiting Step 9 review |
 | 2026-10-03 | Step 9 accessibility: hidden and mobile-menu-covered states are disabled, aria-hidden, and removed from tab order. Activation checks reduced motion at click time (instant versus smooth scroll) and moves focus to the header home link with `preventScroll`. No new visible strings or dependencies; existing footer link remains available without JS. | Implemented and verified — awaiting Step 9 review |

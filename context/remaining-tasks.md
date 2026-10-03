@@ -2,7 +2,7 @@
 
 ## Current Action
 
-### Complete Phase 5 · Step 10 — Native macOS Reduce Motion Check
+### Review the Completed Phase 5 Audit
 
 ## Phase 5 — Finish Animation and Styling
 
@@ -45,6 +45,8 @@
 ### Audit Arabic Typography, RTL/LTR, and Responsive Layouts
 
 ### Verify Keyboard Navigation, Accessibility, and Color Contrast
+
+### Verify Native macOS Reduce Motion (Deferred from Phase 5)
 
 ### Test Supported Desktop and Mobile Browsers
 

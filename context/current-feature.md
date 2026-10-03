@@ -6,7 +6,7 @@ Phase 5 — Animation and Neon Styling
 
 <!-- Not Started|In Progress|Completed -->
 
-In Progress
+Completed
 
 ## Goals
 
@@ -39,7 +39,7 @@ Out of scope (deferred):
 
 - Phase 6 — everything 3D: viewer, model loading states, the `three-d` section body (its section head still gets the standard reveal; the body stays a placeholder)
 - Phase 7 — contact-form submission states (loading pulse during submission arrives with a real submission)
-- Phase 8 — SEO metadata, contrast testing, Lighthouse, sitemap/OG/favicon assets, deployment
+- Phase 8 — native macOS Reduce Motion verification, SEO metadata, contrast testing, Lighthouse, sitemap/OG/favicon assets, deployment
 - Excluded: animated connecting lines, project-card tilt/expansion, and featured-service-card pulsing. Hero embers/bursts, heading-glow breathing, and name-gradient shimmer shipped under the approved Step 2R Option A amendment.
 
 ## Notes
@@ -50,7 +50,7 @@ Out of scope (deferred):
 - Executed step by step via `context/phase-5-prompts.md` (10 approval gates, Step 9 optional); one step per prompt, each awaiting Ahmed's approval
 - Step progress and decisions tracked in `context/phase-5-plan.md`
 - Every step: reduced-motion check, both locales, both themes, 1440/390, lint + build
-- Audit handoff (2026-10-03): Step 9 approved via "next step" (commit `888f789`). Step 10: all 24 automated scenarios, lint, and build pass; native macOS Reduce Motion is the only outstanding check. macOS rejected the attempted preference write, so the setting must be enabled manually or that check explicitly deferred before marking Phase 5 Completed. Full findings: `context/phase-5-audit.md`. Remaining work: `context/remaining-tasks.md`.
+- Audit handoff (2026-10-03): Step 10 complete with all 24 automated scenarios, lint, and build passing. Ahmed's "next", following the offer to skip the native Mac check, is taken as direction to defer that verification to Phase 8 and finish the Phase 5 review. The native check remains unverified; browser emulation passed. Phase 5 is Completed and ready for final review; merge awaits approval. Full findings: `context/phase-5-audit.md`. Remaining work: `context/remaining-tasks.md`.
 
 ## History
 
@@ -101,3 +101,4 @@ Out of scope (deferred):
 - 2026-09-27 — Step 7 approved via "next step" (existing commit `e8ca895`); Step 8 implemented: `layout/orb-drift.tsx` wraps the server-rendered backdrop and binds only the two orb transforms to full-page progress through Motion `scroll` + `motion/mini` `animate`. Orb 1 travels 0→18% of its own height, orb 2 0→−14%, linear with no easing lag; grid, washes, blur, opacity, and logical RTL placement stay fixed. Static SSR/no-JS fallback; live reduced-motion changes cancel subscriptions/animations and clear committed transforms. Lint + build pass; 14/14 browser scenarios pass (EN/AR × themes × 1440/390, top/mid/bottom, resize, reduced motion, no JS, hash landing, locale remount, forced ScrollTimeline fallback, mobile performance). At 390px with 4× CPU throttle: 59.5fps average, 16.8ms p95 frame interval, no intervals over 50ms. Live prototype endpoint comparison and independent source review pass; screenshots inspected. No new strings or dependencies. Awaiting Step 8 review; not committed.
 - 2026-10-03 — Step 8 approved via "next step" (existing commit `620f919`); Step 9 implemented: a 44px floating back-to-top button appears past one viewport, at bottom inline-end (right EN / left AR). Reuses `Footer.backToTop`, prototype 350ms fade/12px slide, blurred surface, and theme-scaled hover glow. Hidden/menu-covered states are disabled and removed from tab order; activation returns focus to the header home link and checks reduced motion for instant versus smooth scrolling. Passive threshold listener with resize and cleanup. Browser QA found a mobile footer-link overlap; increasing footer bottom padding to 80px preserves both controls. Lint + build pass; 12/12 interaction scenarios (EN/AR × themes × 1440/390, threshold, hover, keyboard, focus return, resize, menu, initial/live reduced motion, hashes, locale switch, no-JS) plus 6/6 footer-clearance checks at 390/768/1280 pass. Live prototype comparison, screenshot inspection, and independent source review pass. No new strings or dependencies. Awaiting Step 9 review; not committed.
 - 2026-10-03 — Step 9 approved via "next step"; Step 10 automated audit passed: 8 EN/AR × theme × viewport regression scenarios (including 64 correct scrollspy checks), 8 initial reduced-motion/no-JS cases, 4 live prototype/keyboard comparisons, and 4 mobile performance runs at 390×844/DPR2/touch with 4× CPU throttle. Average 59.50–60.00fps, p95 16.7–16.8ms, zero scroll long tasks or layout shift; slowest isolated frame 50ms. All scope items accounted for; approved paint-based effects documented without retuning. Corrected stale scope exclusions and entrance-timeout comment (already committed as `0a8588e`). No runtime defect found by completed checks. Native macOS Reduce Motion remains pending: OS preference write rejected, native state still disabled, user action requested. Phase stays In Progress; not merged. Findings in `context/phase-5-audit.md`.
+- 2026-10-03 — Phase 5 marked Completed for final review. Ahmed replied "next" after the offer to skip the native Mac check; native macOS Reduce Motion verification is deferred to Phase 8 and remains unverified. All 24 automated audit scenarios, lint, and build passed in Step 10. Updated the audit, plan, and remaining-task headings. No runtime changes, commit, or merge in this closeout; final merge approval remains pending.

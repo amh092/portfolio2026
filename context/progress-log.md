@@ -41,3 +41,4 @@ One list item per completed step: phase · sub-phase — date. Newest last.
 - Phase 5 · Step 9 — Floating back-to-top button, keyboard/focus and reduced-motion support, RTL positioning, and footer clearance; 12/12 interaction scenarios + 6/6 overlap checks, lint + build pass — implemented 2026-10-03, awaiting review
 - Phase 5 · Step 9 — approved via "next step" 2026-10-03 (existing commit `888f789`)
 - Phase 5 · Step 10 — 24/24 automated audit scenarios, lint + build pass; ~60fps throttled mobile scroll with zero long tasks/CLS; native macOS Reduce Motion check pending manual setting change — 2026-10-03
+- Phase 5 · Step 10 — audit complete; native macOS Reduce Motion verification deferred to Phase 8 following "next" after the deferral offer. Phase marked Completed; awaiting final review and merge approval — 2026-10-03

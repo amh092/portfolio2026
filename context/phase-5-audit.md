@@ -4,7 +4,7 @@ Date: 2026-10-03 · Branch: `feature/animations` · Step 9 approved via “next 
 
 ## Status
 
-All 24 automated scenarios passed: 8 regression cases, 8 initial reduced-motion/no-JavaScript cases, 4 prototype/keyboard comparisons, and 4 throttled performance runs. Native macOS Reduce Motion verification is the only outstanding check; browser emulation passed. Phase 5 remains In Progress until that check is completed or explicitly deferred. Do not merge or begin Phase 6 before final review.
+Phase 5 is Completed and ready for final review. All 24 automated scenarios passed: 8 regression cases, 8 initial reduced-motion/no-JavaScript cases, 4 prototype/keyboard comparisons, and 4 throttled performance runs. Following the offer to skip the native Mac check, Ahmed replied "next"; that is taken as direction to defer native macOS Reduce Motion verification to Phase 8. Browser emulation passed; the native check remains unverified. Merge awaits final approval.
 
 ## Scope Coverage
 
@@ -66,11 +66,11 @@ No frame interval exceeded 50ms. The slower isolated frames are recorded above; 
 
 Movement uses transform/translate and opacity without animating layout dimensions. Approved shadow/glow pulses, pointer gradients, the name shimmer, and canvas effects also repaint; the generic “all animation is transform/opacity-only” checklist cannot literally describe those already-approved effects. They remain unchanged, and their combined cost is included in these measurements.
 
-## Native macOS Reduce Motion — Pending
+## Native macOS Reduce Motion — Deferred to Phase 8
 
-The native macOS preference currently reports disabled through `NSWorkspace`. A temporary `defaults write com.apple.universalaccess reduceMotion -bool true` was rejected by macOS; a follow-up read confirmed that the preference remained unset. No system setting was changed.
+During the audit, the native macOS preference reported disabled through `NSWorkspace`. A temporary `defaults write com.apple.universalaccess reduceMotion -bool true` was rejected by macOS; a follow-up read confirmed that the preference remained unset. No system setting was changed. On 2026-10-03, Ahmed replied "next" after being offered deferral; this check is carried into Phase 8 accessibility verification.
 
-To complete this check, enable **System Settings → Accessibility → Display → Reduce motion** and notify the assistant. The verification must use a fresh browser without a DevTools media override. Afterward, restore the preferred setting. Browser emulation has already passed but does not substitute for this native integration check.
+When completing this check in Phase 8, enable **System Settings → Accessibility → Display → Reduce motion** and verify in a fresh browser without a DevTools media override. Confirm all content is visible, motion effects are stopped, and anchor scrolling is instant. Afterward, restore the preferred setting. Browser emulation has already passed but does not substitute for this native integration check.
 
 ## Corrections and Deferred Work
 
@@ -79,6 +79,6 @@ To complete this check, enable **System Settings → Accessibility → Display �
 - No approved animation was restyled or retuned.
 - Phase 6: 3D assets, viewers, loading/fallback states, and rendering performance.
 - Phase 7: form validation, email delivery, spam protection, and submission states.
-- Phase 8: SEO, contrast/accessibility breadth, supported-browser/device coverage, Lighthouse, dependency/security review, and deployment.
+- Phase 8: native macOS Reduce Motion verification, SEO, contrast/accessibility breadth, supported-browser/device coverage, Lighthouse, dependency/security review, and deployment.
 
 Temporary evidence: `/tmp/phase5-audit-matrix.json`, `/tmp/phase5-audit-extra.log`, `/tmp/phase5-performance.json`, `/tmp/phase5-prototype.json`. These are session artifacts; the results above are the durable audit record.
