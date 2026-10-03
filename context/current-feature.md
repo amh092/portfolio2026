@@ -1,56 +1,42 @@
 # Current Feature
 
-Phase 5 — Animation and Neon Styling
+Phase 6 — Interactive 3D Showcase
 
 ## Status
 
 <!-- Not Started|In Progress|Completed -->
 
-Completed
+In Progress
 
 ## Goals
 
-<!-- Goals & requirements -->
+Build the approved Insally robot showcase from `phase-1-plan.md` §§10–11 and §16, using the prototype's viewer presentation and the overview's performance requirements.
 
-Animate the completed Phase 4 sections per the prototype (`ahmed-portfolio-prototype.html` — behavior source of truth; GSAP code is reference only, implementation uses Motion + CSS per the stack table), bounded by the `phase-1-plan.md` §15.5 restraint rules. No new copy.
+- Install Three.js, React Three Fiber, Drei, and Three.js TypeScript definitions.
+- Prepare the three optimized robot GLBs and individual WebP preview/fallback stills; preserve the source assets.
+- Render approved titles, descriptions, tools, and previews in both locales.
+- Load one interactive model at a time, only after an explicit action; provide rotate/zoom controls.
+- Add loading progress, errors/retry, and static fallbacks for unavailable WebGL or JavaScript.
+- Pause animation/rendering offscreen and in hidden tabs; support live reduced-motion changes and keyboard operation.
+- Verify mobile performance, asset loading, accessibility, both themes, and EN/AR layouts.
 
-Roadmap Phase 5 items:
+## Scope
 
-- Hero entrance animation
-- Scroll reveals (section heads + standalone blocks)
-- Staggered card entrances (service cards and the other card grids)
-- Project-card hover states
-- Active navigation glow (shipped in Phase 3 — verify vs the prototype and under reduced motion)
-- Subtle button pulsing (primary CTAs, `neon-pulse`)
-- Reduced-motion support (global foundation + every step verified)
-- Mobile animation performance testing
-
-Phase 4 deferred-to-5 items (recorded at the Phase 4 Step 10 audit):
-
-- Scroll reveals + staggered entrances
-- Card/method-row hover lifts, neon shadows, and pointer-follow card glow
-- Hero entrance motion
-- Primary-button `neon-pulse`
-- Background orb drift
-- The prototype's floating scroll-appearing to-top button (optional — Step 9 decision gate, Ahmed's call; the footer link shipped in Phase 4 either way)
-- Motion install
-
-Out of scope (deferred):
-
-- Phase 6 — everything 3D: viewer, model loading states, the `three-d` section body (its section head still gets the standard reveal; the body stays a placeholder)
-- Phase 7 — contact-form submission states (loading pulse during submission arrives with a real submission)
-- Phase 8 — native macOS Reduce Motion verification, SEO metadata, contrast testing, Lighthouse, sitemap/OG/favicon assets, deployment
-- Excluded: animated connecting lines, project-card tilt/expansion, and featured-service-card pulsing. Hero embers/bursts, heading-glow breathing, and name-gradient shimmer shipped under the approved Step 2R Option A amendment.
+- Approved models: Primary-Stage, Middle-Stage, and High-School-Stage Insally robots; names and descriptions from `phase-1-plan.md` §11.
+- Sources: `/Users/ahmed/Projects/react/insally/public/models/{primary,intermed,highschool}-optimized.glb`.
+- Showcase the web integration of Meshy AI-generated assets; do not describe Ahmed as their modeler.
+- Contact submission remains Phase 7. SEO, broader browser/device verification, native macOS Reduce Motion verification deferred from Phase 5, and deployment remain Phase 8.
+- Optional fullscreen and additional scenes are excluded from the initial implementation plan.
 
 ## Notes
 
-<!-- Any extra notes -->
-
-- Branch: `feature/animations` — merge to `main` only after the Step 10 audit is approved (Phase 4 merged to `main` 2026-08-04)
-- Executed step by step via `context/phase-5-prompts.md` (10 approval gates, Step 9 optional); one step per prompt, each awaiting Ahmed's approval
-- Step progress and decisions tracked in `context/phase-5-plan.md`
-- Every step: reduced-motion check, both locales, both themes, 1440/390, lint + build
-- Audit handoff (2026-10-03): Step 10 complete with all 24 automated scenarios, lint, and build passing. Ahmed's "next", following the offer to skip the native Mac check, is taken as direction to defer that verification to Phase 8 and finish the Phase 5 review. The native check remains unverified; browser emulation passed. Phase 5 is Completed and ready for final review; merge awaits approval. Full findings: `context/phase-5-audit.md`. Remaining work: `context/remaining-tasks.md`.
+- Phase 5 audit approved via "next" after the commit/merge request on 2026-10-03. Closeout was already committed as `299036f`; lint/build re-verified, then fast-forward merged into local `main`. The existing animation branch is retained; no remote push or branch deletion was requested.
+- Phase 6 branch: `feature/three-d-showcase`.
+- Plan and step prompts: `context/phase-6-plan.md`, `context/phase-6-prompts.md`; continue one reviewable step per prompt.
+- Current step: Step 1 implemented — phase setup, dependency compatibility, and source inventory. Installed Three.js 0.186.1, Fiber 9.8.1, Drei 10.7.9, and @types/three 0.186.0. Lint/build, dependency resolution, and 8/8 browser smoke scenarios pass. Ready for Step 1 review; next is model preparation and preview capture. Step 1 remains uncommitted.
+- Three optimized GLBs are available and self-contained; per-model preview images must be captured in Step 2.
+- New interface strings will be drafted in EN/AR alongside the step that needs them, with approval called out. Approved model content is reused verbatim.
+- Current npm audit: 11 affected packages (10 high, 1 critical), all present at unchanged versions before the 3D installation; none of the added 3D packages is listed. Record and remediation remain in Phase 8 before deployment; details in `phase-6-plan.md` §5.
 
 ## History
 
@@ -102,3 +88,5 @@ Out of scope (deferred):
 - 2026-10-03 — Step 8 approved via "next step" (existing commit `620f919`); Step 9 implemented: a 44px floating back-to-top button appears past one viewport, at bottom inline-end (right EN / left AR). Reuses `Footer.backToTop`, prototype 350ms fade/12px slide, blurred surface, and theme-scaled hover glow. Hidden/menu-covered states are disabled and removed from tab order; activation returns focus to the header home link and checks reduced motion for instant versus smooth scrolling. Passive threshold listener with resize and cleanup. Browser QA found a mobile footer-link overlap; increasing footer bottom padding to 80px preserves both controls. Lint + build pass; 12/12 interaction scenarios (EN/AR × themes × 1440/390, threshold, hover, keyboard, focus return, resize, menu, initial/live reduced motion, hashes, locale switch, no-JS) plus 6/6 footer-clearance checks at 390/768/1280 pass. Live prototype comparison, screenshot inspection, and independent source review pass. No new strings or dependencies. Awaiting Step 9 review; not committed.
 - 2026-10-03 — Step 9 approved via "next step"; Step 10 automated audit passed: 8 EN/AR × theme × viewport regression scenarios (including 64 correct scrollspy checks), 8 initial reduced-motion/no-JS cases, 4 live prototype/keyboard comparisons, and 4 mobile performance runs at 390×844/DPR2/touch with 4× CPU throttle. Average 59.50–60.00fps, p95 16.7–16.8ms, zero scroll long tasks or layout shift; slowest isolated frame 50ms. All scope items accounted for; approved paint-based effects documented without retuning. Corrected stale scope exclusions and entrance-timeout comment (already committed as `0a8588e`). No runtime defect found by completed checks. Native macOS Reduce Motion remains pending: OS preference write rejected, native state still disabled, user action requested. Phase stays In Progress; not merged. Findings in `context/phase-5-audit.md`.
 - 2026-10-03 — Phase 5 marked Completed for final review. Ahmed replied "next" after the offer to skip the native Mac check; native macOS Reduce Motion verification is deferred to Phase 8 and remains unverified. All 24 automated audit scenarios, lint, and build passed in Step 10. Updated the audit, plan, and remaining-task headings. No runtime changes, commit, or merge in this closeout; final merge approval remains pending.
+- 2026-10-03 — Phase 5 final audit approved via "next" after the commit/merge request. User had committed closeout as `299036f`; lint and build re-verified, then fast-forward merged `feature/animations` into local `main`. Native macOS Reduce Motion verification remains deferred to Phase 8. Phase 6 started with documented scope, dependency setup, and source inventory; animation branch retained.
+- 2026-10-03 — Phase 6 Step 1 implemented on `feature/three-d-showcase`: added Three.js 0.186.1, Fiber 9.8.1, Drei 10.7.9, and development-only @types/three 0.186.0; documented seven reviewable steps and inventoried all three approved optimized GLBs. Per-model preview stills are the next asset task. Dependency resolution, lint/build, and 8/8 production-browser smoke scenarios pass (EN/AR × themes × 1440/390, reduced motion, visible headings, no overflow/errors/model fetches). Existing application source and copy unchanged. Current audit lists 11 existing affected packages, including critical Next.js findings; recorded for Phase 8 remediation before deployment. Ready for Step 1 review; uncommitted.

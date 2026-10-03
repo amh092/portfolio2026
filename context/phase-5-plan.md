@@ -4,7 +4,7 @@ Living artifact for Phase 5. Executed step by step through the prompts in `conte
 
 ## 1. Phase status
 
-**Completed — Steps 1–9 approved; Step 10 automated audit passed 2026-10-03. Native macOS Reduce Motion verification deferred to Phase 8 following Ahmed's "next" after the deferral offer. Ready for final review; merge awaits approval.** Phase 4 was approved via the Step 1 prompt and fast-forward merged to `main` 2026-08-04 (lint + build re-verified first); `feature/main-sections` deleted locally and on origin. Phase 5 work is on branch `feature/animations`.
+**Completed and approved — Step 10 accepted via "next" after the commit/merge request on 2026-10-03. Lint/build re-verified; `feature/animations` fast-forward merged into local `main` at `299036f`. Native macOS Reduce Motion verification remains deferred to Phase 8.** Phase 6 setup continues on `feature/three-d-showcase`; the animation branch is retained and no remote push was performed.
 
 ## 2. Step breakdown and progress
 
@@ -21,7 +21,7 @@ Run one step at a time via `phase-5-prompts.md`; a step is Done only after Ahmed
 | 7 | Neon pulsing on primary buttons; verify active-nav-dot pulse | overview §Neon Pulsing Effects; prototype `.neon-pulse` | Done — approved 2026-09-27 via "next step" |
 | 8 | Background orb drift (gentle scroll parallax) | prototype orb scrub tweens | Done — approved 2026-10-03 via "next step" |
 | 9 | Floating scroll-appearing to-top button (optional step selected) | prototype `.to-top`; Phase 4 Step 9 deferral | Done — approved 2026-10-03 via "next step" |
-| 10 | Mobile animation performance test + final Phase 5 audit; phase close | roadmap; whole plan | Audit complete — native Mac check deferred to Phase 8; awaiting final review |
+| 10 | Mobile animation performance test + final Phase 5 audit; phase close | roadmap; whole plan | Done — approved and merged locally 2026-10-03; native Mac check deferred to Phase 8 |
 
 ## 3. Scope boundaries
 
@@ -60,6 +60,7 @@ Run one step at a time via `phase-5-prompts.md`; a step is Done only after Ahmed
 
 | Date | Decision | Status |
 |------|----------|--------|
+| 2026-10-03 | Final audit and commit/merge request approved via "next". Closeout already committed as `299036f`; lint/build passed again, then fast-forward merged into local `main`. Started `feature/three-d-showcase` for Phase 6. Native Mac check remains deferred to Phase 8. | Approved and merged locally; animation branch retained |
 | 2026-10-03 | Ahmed replied "next" after the offer to skip the native Mac check. Taken as direction to defer native macOS Reduce Motion verification to Phase 8 and finish the Phase 5 review. All automated results stand; the native check is unverified. Marked phase Completed, updated the audit and remaining tasks; no runtime changes. | Ready for final review; not merged |
 | 2026-10-03 | Step 9 approved via "next step" (commit `888f789`). Step 10 automated audit: **24/24 scenarios pass**, including 64 correct scrollspy observations, initial/live reduced motion, no JS, all reveal targets and hover types, keyboard traversal, inert form, locale/theme/section preservation, and no overflow. Mobile 390px/DPR2/touch/4× CPU: 59.50–60.00fps, p95 16.7–16.8ms, zero scroll long tasks/CLS; isolated slowest frame 50ms. Lint + build pass. Full report: `context/phase-5-audit.md`. | Automated audit verified |
 | 2026-10-03 | Native macOS reduced-motion integration check was required by Step 10. `NSWorkspace` reported disabled; macOS rejected the preference write, and a read confirmed no change. Requested manual enablement in System Settings, or deferral. Browser emulation passed but is not recorded as a native OS test. | Deferred to Phase 8 by the subsequent decision above |

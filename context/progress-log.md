@@ -42,3 +42,5 @@ One list item per completed step: phase · sub-phase — date. Newest last.
 - Phase 5 · Step 9 — approved via "next step" 2026-10-03 (existing commit `888f789`)
 - Phase 5 · Step 10 — 24/24 automated audit scenarios, lint + build pass; ~60fps throttled mobile scroll with zero long tasks/CLS; native macOS Reduce Motion check pending manual setting change — 2026-10-03
 - Phase 5 · Step 10 — audit complete; native macOS Reduce Motion verification deferred to Phase 8 following "next" after the deferral offer. Phase marked Completed; awaiting final review and merge approval — 2026-10-03
+- Phase 5 — final audit approved via "next" after commit/merge request; closeout already committed as `299036f`, lint/build re-verified, fast-forward merged into local `main`; animation branch retained — 2026-10-03
+- Phase 6 · Step 1 — setup on `feature/three-d-showcase`, Three.js/Fiber/Drei and types installed, approved model inventory and seven-step plan recorded; lint/build, dependency resolution, and 8/8 browser smoke checks pass — implemented 2026-10-03, ready for review
