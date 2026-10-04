@@ -4,14 +4,14 @@ Approved content: `phase-1-plan.md` §§10–11 and §16. Presentation: `ahmed-p
 
 ## 1. Status
 
-In Progress — Step 1 implemented and verified on `feature/three-d-showcase`; ready for review. Phase 5 was approved via "next" and fast-forward merged into local `main` at `299036f` on 2026-10-03 after lint/build passed. Its native macOS Reduce Motion check remains deferred to Phase 8. The animation branch is retained; no remote push has been performed.
+In Progress — Step 2 implemented and verified on `feature/three-d-showcase`; ready for review. Step 1 was committed as `5ad25a6`; progression to Step 2 followed "do what is required now" on 2026-10-04. Phase 5 was approved via "next" and fast-forward merged into local `main` at `299036f` on 2026-10-03 after lint/build passed. Its native macOS Reduce Motion check remains deferred to Phase 8. The animation branch is retained; no remote push has been performed.
 
 ## 2. Steps
 
 | Step | Deliverable | Status |
 | --- | --- | --- |
-| 1 | Phase setup, compatible Three.js/Fiber/Drei dependencies, source inventory | Implemented 2026-10-03 — ready for review |
-| 2 | Prepare optimized GLBs and capture three WebP preview/fallback stills | Not started |
+| 1 | Phase setup, compatible Three.js/Fiber/Drei dependencies, source inventory | Committed `5ad25a6`; accepted for progression 2026-10-04 |
+| 2 | Prepare optimized GLBs and capture three WebP preview/fallback stills | Implemented 2026-10-04 — ready for review |
 | 3 | Typed model content and static showcase cards, approved EN/AR copy | Not started |
 | 4 | Explicit-load viewer with one active model, rotate/zoom/reset controls | Not started |
 | 5 | Loading progress, retry/error handling, WebGL and context-loss fallbacks | Not started |
@@ -43,13 +43,13 @@ Source root: `/Users/ahmed/Projects/react/insally/public/models/`.
 | `intermed-optimized.glb` | `public/models/robot-middle.glb` | 1,956,696 | 13,750 | 10,555 |
 | `highschool-optimized.glb` | `public/models/robot-highschool.glb` | 2,180,440 | 12,633 | 10,499 |
 
-All three are self-contained GLB 2 files with one skinned mesh and ten animation clips. Required extension: `EXT_texture_webp`; optional: `KHR_materials_specular`. Embedded textures are 1024×1024 WebP. No Draco or meshopt decoder is required by the current files.
+All three source files are self-contained GLB 2 files with one skinned mesh and ten animation clips. Required source extension: `EXT_texture_webp`; optional: `KHR_materials_specular`. Embedded textures are 1024×1024 WebP. The sources need no Draco or Meshopt decoder; the prepared portfolio copies additionally require Meshopt as recorded below.
 
 Shared clips: `Agree_Gesture`, `Backflip`, `Big_Wave_Hello`, `Jump_with_Arms_Open`, `Motivational_Cheer`, `Running`, `Show_Both_Arm_Muscles`, `Stand_Up10`, `Victory_Cheer`, `Walking`. Select a suitable subtle clip only after visual inspection; do not autoplay vigorous clips by default.
 
-Primary and high-school each contain two byte-identical embedded images (315,906 and 317,460 bytes respectively). Step 2 should evaluate deduplication and further meshopt/Draco compression against fidelity, animation integrity, and decoder cost. Additional optimization tooling must have a concrete purpose; avoid adding runtime dependencies for asset preparation.
+Primary and high-school sources each contain two byte-identical embedded images (315,906 and 317,460 bytes respectively). Step 2 evaluated deduplication and further meshopt/Draco compression against fidelity, animation integrity, and decoder cost; the final copies use texture deduplication and lossless Meshopt. Unlike the sources, the final GLBs require the Meshopt decoder. Full results and integration instructions: `phase-6-assets.md`.
 
-Dedicated preview stills are absent. Capture ~800px WebP images at `public/images/three-d/robot-{primary,middle,highschool}.webp`, with the approved stage-specific alt text. Existing Insally page screenshots are references, not substitutes for these stills.
+Step 2 captured 800×600 WebP stills at `public/images/three-d/robot-{primary,middle,highschool}.webp` (20–22 KB each), directly from the prepared models. Apply the approved stage-specific alt text when integrating the cards in Step 3.
 
 Insally reference code flags integration concerns to verify: skinned-model normalization can be affected by armature scaling, animation root motion can shift a robot out of frame, and skinned-mesh frustum culling can cause disappearing parts. Inspect `components/robot/three/robot-model-normalization.ts`, `components/robot/review/RobotsReviewScene.tsx`, and the culling treatment in `components/garden/TeamRobots.tsx` when implementing the viewer; do not copy unrelated garden behavior or global preloads. Preserve the authored emissive, transparent, double-sided materials during optimization and verify their appearance.
 
@@ -89,4 +89,13 @@ Dependency audit on 2026-10-03 reports 11 affected packages (10 high, 1 critical
 - This verifies setup and existing-page compatibility; actual renderer imports, WebGL behavior, and GLB decoding will be verified when the viewer/assets are implemented.
 - Independent read-only review confirmed approved scope and asset inventory; animation ownership, culling, and material-fidelity concerns are recorded above.
 - Session evidence: `/tmp/phase6-setup-smoke.json` and `/tmp/phase6-setup-{en-dark-1440,ar-light-390}.png`. Production preview: `http://127.0.0.1:3101`.
-- Step 1 changes remain uncommitted for review. Next: Step 2, prepare the three models and preview stills.
+- Step 1 was subsequently committed as `5ad25a6`; this corrects the earlier stale uncommitted status.
+
+## 8. Step 2 verification — 2026-10-04
+
+- Prepared all three final GLBs and 800×600 WebP previews; model bytes reduced by 31.4% overall, from 6,291,912 to 4,315,004. Sources are unchanged; no application/dependency/message changes.
+- Compared deduplication, lossless Meshopt, 16-bit Meshopt, and 16-bit Draco. Selected lossless Meshopt after independent decoded-data equivalence checks and pixel-identical source/candidate captures. Geometry attributes, skeletons, materials/textures, and all ten clips are preserved.
+- Rendered all 15 source/candidate combinations and sampled 750 clip poses. Re-rendered the three final public GLBs and inspected all three encoded WebPs. Zero browser exceptions; Khronos validator limitations and the pre-existing skin-parent warning are recorded in `phase-6-assets.md`.
+- Lint/build pass; 8/8 production browser scenarios pass across both locales/themes and 1440/390px, plus all three final model/image checks. These asset checks do not establish physical-device performance or the later viewer lifecycle behavior.
+- Final files, hashes, size comparisons, capture settings, and the required on-demand Meshopt decoder integration are documented in `phase-6-assets.md` and `phase-6-asset-manifest.json`.
+- Step 2 remains uncommitted for review. Next: Step 3, typed content and static showcase cards.

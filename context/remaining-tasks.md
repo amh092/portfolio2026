@@ -2,11 +2,9 @@
 
 ## Current Action
 
-### Review Phase 6 · Step 1 — Dependencies and Implementation Plan
+### Review Phase 6 · Step 2 — Optimized Models and Preview Images
 
 ## Phase 6 — Interactive 3D Showcase
-
-### Optimize Model Files and Prepare Preview Images
 
 ### Add Static Showcase Cards and Approved Model Content
 
