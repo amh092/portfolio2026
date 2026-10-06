@@ -1,0 +1,166 @@
+import {
+  AnimationMixer,
+  Box3,
+  BufferGeometry,
+  Group,
+  Material,
+  Mesh,
+  Object3D,
+  Skeleton,
+  SkinnedMesh,
+  Texture,
+  Vector3,
+} from "three";
+import { GLTFLoader, type GLTF } from "three/addons/loaders/GLTFLoader.js";
+import { MeshoptDecoder } from "three/addons/libs/meshopt_decoder.module.js";
+
+type ModelResource = BufferGeometry | Material | Skeleton | Texture;
+
+/** Each load owns its assets; no useGLTF/useLoader cache or shared clones. */
+function createResourceOwner() {
+  const resources = new Set<ModelResource>();
+  const bitmaps = new Set<ImageBitmap>();
+  let disposed = false;
+
+  function release(resource: ModelResource) {
+    resource.dispose();
+    if (!(resource instanceof Texture)) return;
+    const image: unknown = resource.source.data;
+    if (
+      typeof ImageBitmap !== "undefined" &&
+      image instanceof ImageBitmap &&
+      !bitmaps.has(image)
+    ) {
+      bitmaps.add(image);
+      image.close();
+    }
+  }
+
+  function track(value: unknown): void {
+    if (Array.isArray(value)) {
+      value.forEach(track);
+    } else if (value instanceof Object3D) {
+      value.traverse((object) => {
+        if (object instanceof Mesh) {
+          track(object.geometry);
+          track(object.material);
+        }
+        if (object instanceof SkinnedMesh) track(object.skeleton);
+      });
+    } else if (
+      value instanceof BufferGeometry ||
+      value instanceof Material ||
+      value instanceof Skeleton ||
+      value instanceof Texture
+    ) {
+      if (resources.has(value)) return;
+      resources.add(value);
+      if (value instanceof Material) Object.values(value).forEach(track);
+      if (disposed) release(value);
+    }
+  }
+
+  return {
+    track,
+    dispose() {
+      if (disposed) return;
+      disposed = true;
+      resources.forEach(release);
+    },
+  };
+}
+
+/** Track individual dependencies too, so a failed/abandoned parse releases late assets. */
+export function createModelLoader() {
+  const owner = createResourceOwner();
+  const loader = new GLTFLoader().setMeshoptDecoder(MeshoptDecoder);
+  loader.register((parser) => {
+    const getDependency = parser.getDependency.bind(parser);
+    parser.getDependency = (type, index) =>
+      getDependency(type, index).then((value: unknown) => {
+        owner.track(value);
+        return value;
+      });
+    const loadGeometries = parser.loadGeometries.bind(parser);
+    parser.loadGeometries = (primitives) =>
+      loadGeometries(primitives).then((geometries) => {
+        owner.track(geometries);
+        return geometries;
+      });
+    return { name: "portfolio_resource_ownership" };
+  });
+
+  return {
+    async load(url: string, signal: AbortSignal) {
+      const response = await fetch(url, { signal });
+      if (!response.ok) throw new Error("The model could not be downloaded.");
+      const bytes = await response.arrayBuffer();
+      signal.throwIfAborted();
+      const basePath = new URL(".", new URL(url, location.href)).href;
+      const model = await loader.parseAsync(bytes, basePath);
+      model.scenes.forEach(owner.track);
+      return model;
+    },
+    dispose: owner.dispose,
+  };
+}
+
+export function getPosedBounds(model: Object3D) {
+  const bounds = new Box3();
+  const vertex = new Vector3();
+  model.updateMatrixWorld(true);
+  model.traverse((object) => {
+    if (!(object instanceof Mesh)) return;
+    if (object instanceof SkinnedMesh) object.skeleton.update();
+    const positions = object.geometry.getAttribute("position");
+    for (let index = 0; index < positions.count; index++) {
+      object.getVertexPosition(index, vertex).applyMatrix4(object.matrixWorld);
+      bounds.expandByPoint(vertex);
+    }
+  });
+  if (bounds.isEmpty() || ![...bounds.min, ...bounds.max].every(Number.isFinite)) {
+    throw new Error("The model has invalid bounds.");
+  }
+  return bounds;
+}
+
+export function prepareModel(model: GLTF) {
+  const mixer = new AnimationMixer(model.scene);
+  const group = new Group();
+  group.add(model.scene);
+  model.scene.traverse((object) => {
+    if (object instanceof Mesh) object.frustumCulled = false;
+  });
+
+  // Sample the preview's pose once. No animation clock runs in this step.
+  const hips = model.scene.getObjectByName("Hips");
+  const rootPosition = hips?.position.clone();
+  const clip = model.animations.find((animation) => animation.name === "Agree_Gesture");
+  if (clip) {
+    mixer.clipAction(clip).play();
+    mixer.setTime(0.6);
+    if (hips && rootPosition) {
+      hips.position.x = rootPosition.x;
+      hips.position.z = rootPosition.z;
+    }
+  }
+
+  const bounds = getPosedBounds(group);
+  const center = bounds.getCenter(new Vector3());
+  const height = bounds.max.y - bounds.min.y;
+  if (height <= 0) throw new Error("The model has no height.");
+  const scale = 2.4 / height;
+  group.scale.setScalar(scale);
+  group.position.copy(center).multiplyScalar(-scale);
+  const normalizedBounds = getPosedBounds(group);
+
+  return {
+    group,
+    bounds: normalizedBounds,
+    dispose() {
+      mixer.stopAllAction();
+      mixer.uncacheRoot(model.scene);
+      group.removeFromParent();
+    },
+  };
+}

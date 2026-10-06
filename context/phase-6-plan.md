@@ -4,16 +4,16 @@ Approved content: `phase-1-plan.md` §§10–11 and §16. Presentation: `ahmed-p
 
 ## 1. Status
 
-In Progress — Step 2 implemented and verified on `feature/three-d-showcase`; ready for review. Step 1 was committed as `5ad25a6`; progression to Step 2 followed "do what is required now" on 2026-10-04. Phase 5 was approved via "next" and fast-forward merged into local `main` at `299036f` on 2026-10-03 after lint/build passed. Its native macOS Reduce Motion check remains deferred to Phase 8. The animation branch is retained; no remote push has been performed.
+In Progress — Step 4 implementation and verification underway on `feature/three-d-showcase`; stop for user review after this step. Step 3's static cards and typed content are committed as `fe92d29`, accepted for progression via "next" on 2026-10-06. Step 2 is committed as `5d06cf6`, accepted via "next step" on 2026-10-04. Step 1 is committed as `5ad25a6`, accepted via "do what is required now" on 2026-10-04. Phase 5 was approved via "next" and fast-forward merged into local `main` at `299036f` on 2026-10-03 after lint/build passed. Its native macOS Reduce Motion check remains deferred to Phase 8. The animation branch is retained; no remote push has been performed.
 
 ## 2. Steps
 
 | Step | Deliverable | Status |
 | --- | --- | --- |
 | 1 | Phase setup, compatible Three.js/Fiber/Drei dependencies, source inventory | Committed `5ad25a6`; accepted for progression 2026-10-04 |
-| 2 | Prepare optimized GLBs and capture three WebP preview/fallback stills | Implemented 2026-10-04 — ready for review |
-| 3 | Typed model content and static showcase cards, approved EN/AR copy | Not started |
-| 4 | Explicit-load viewer with one active model, rotate/zoom/reset controls | Not started |
+| 2 | Prepare optimized GLBs and capture three WebP preview/fallback stills | Committed `5d06cf6`; accepted for progression 2026-10-04 |
+| 3 | Typed model content and static showcase cards, approved EN/AR copy | Committed `fe92d29`; accepted for progression 2026-10-06 |
+| 4 | Explicit-load viewer with one active model, rotate/zoom/reset controls | In progress 2026-10-06; verification pending |
 | 5 | Loading progress, retry/error handling, WebGL and context-loss fallbacks | Not started |
 | 6 | Model animation, live reduced-motion handling, offscreen/hidden-tab pausing and resource cleanup | Not started |
 | 7 | Full showcase audit: accessibility, performance, network behavior and page regressions | Not started |
@@ -98,4 +98,34 @@ Dependency audit on 2026-10-03 reports 11 affected packages (10 high, 1 critical
 - Rendered all 15 source/candidate combinations and sampled 750 clip poses. Re-rendered the three final public GLBs and inspected all three encoded WebPs. Zero browser exceptions; Khronos validator limitations and the pre-existing skin-parent warning are recorded in `phase-6-assets.md`.
 - Lint/build pass; 8/8 production browser scenarios pass across both locales/themes and 1440/390px, plus all three final model/image checks. These asset checks do not establish physical-device performance or the later viewer lifecycle behavior.
 - Final files, hashes, size comparisons, capture settings, and the required on-demand Meshopt decoder integration are documented in `phase-6-assets.md` and `phase-6-asset-manifest.json`.
-- Step 2 remains uncommitted for review. Next: Step 3, typed content and static showcase cards.
+- Step 2 was subsequently committed as `5d06cf6` and accepted via "next step" on 2026-10-04; this corrects the earlier stale uncommitted status.
+
+## 9. Step 3 implementation record — 2026-10-06
+
+- Commit `fe92d29` adds typed model content in `src/types/three-d-project.ts` and `src/data/three-d-projects.ts`, plus three server-rendered static showcase cards with the prepared previews, approved EN/AR copy and alt text, and technology badges.
+- Accepted for progression via "next" on 2026-10-06. No separate Step 3 verification results are recorded here; Step 4 verification covers the integrated cards and viewer.
+
+## 10. Step 4 — in progress 2026-10-06
+
+- Implement the explicit-load viewer and one-active-model selection, with rotate/zoom/reset controls and a return-to-preview action. Keep approved model content server-rendered and load the renderer, Meshopt decoder, and selected GLB only on activation.
+- Verification pending: lint/build, pre-activation network isolation, all three model loads, switching and cleanup, keyboard/touch controls, static no-JS content, both locales/themes, responsive layout, and basic unavailable state.
+- Loading progress/retry/context-loss hardening remains Step 5; model animation and offscreen/hidden-tab lifecycle work remains Step 6; the full performance/accessibility audit remains Step 7.
+- Stop for user review after Step 4. New interface copy below is drafted for approval; approved model titles/descriptions are reused verbatim.
+
+### New Step 4 interface strings — pending approval
+
+| `ThreeD` key | English | Arabic |
+| --- | --- | --- |
+| `load` | Load 3D model | تحميل النموذج ثلاثي الأبعاد |
+| `loadAria` | Load 3D model — {model} | تحميل النموذج ثلاثي الأبعاد — {model} |
+| `viewerLabel` | 3D view — {model} | عرض ثلاثي الأبعاد — {model} |
+| `loading` | Loading 3D view… | جارٍ تحميل العرض ثلاثي الأبعاد… |
+| `hint` | Drag sideways to rotate. Use the buttons to zoom. | اسحب أفقياً للتدوير، واستخدم الأزرار للتقريب والإبعاد. |
+| `unavailable` | The 3D view is unavailable. You can still view the preview. | العرض ثلاثي الأبعاد غير متاح. يمكنك مشاهدة الصورة الثابتة. |
+| `rotateLeft` | Rotate left | تدوير لليسار |
+| `rotateRight` | Rotate right | تدوير لليمين |
+| `zoomIn` | Zoom in | تقريب |
+| `zoomOut` | Zoom out | إبعاد |
+| `reset` | Reset view | إعادة ضبط العرض |
+| `returnToPreview` | Return to preview | العودة إلى الصورة الثابتة |
+| `returnToPreviewAria` | Return to preview — {model} | العودة إلى الصورة الثابتة — {model} |

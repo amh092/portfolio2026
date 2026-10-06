@@ -73,7 +73,20 @@
   },
   "ThreeD": {
     "eyebrow": "In the browser",
-    "title": "3D Work"
+    "title": "3D Work",
+    "load": "Load 3D model",
+    "loadAria": "Load 3D model — {model}",
+    "viewerLabel": "3D view — {model}",
+    "loading": "Loading 3D view…",
+    "hint": "Drag sideways to rotate. Use the buttons to zoom.",
+    "unavailable": "The 3D view is unavailable. You can still view the preview.",
+    "rotateLeft": "Rotate left",
+    "rotateRight": "Rotate right",
+    "zoomIn": "Zoom in",
+    "zoomOut": "Zoom out",
+    "reset": "Reset view",
+    "returnToPreview": "Return to preview",
+    "returnToPreviewAria": "Return to preview — {model}"
   },
   "About": {
     "eyebrow": "Who I am",

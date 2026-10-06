@@ -46,3 +46,5 @@ One list item per completed step: phase · sub-phase — date. Newest last.
 - Phase 6 · Step 1 — setup on `feature/three-d-showcase`, Three.js/Fiber/Drei and types installed, approved model inventory and seven-step plan recorded; lint/build, dependency resolution, and 8/8 browser smoke checks pass — implemented 2026-10-03, ready for review
 - Phase 6 · Step 1 — committed as `5ad25a6`; accepted for progression via "do what is required now" 2026-10-04; stale uncommitted status corrected
 - Phase 6 · Step 2 — three lossless Meshopt GLBs (31.4% smaller overall) and actual-model 800×600 WebP previews; source hashes unchanged, independent fidelity audit, 750 rendered clip samples, pixel-identical source/candidate stills, 8/8 page smoke scenarios + 3/3 final asset checks, lint/build pass — implemented 2026-10-04, ready for review
+- Phase 6 · Step 2 — committed as `5d06cf6`; accepted for progression via "next step" 2026-10-04; stale uncommitted status corrected
+- Phase 6 · Step 3 — typed model data and static showcase cards implemented in `fe92d29`; accepted for progression via "next" 2026-10-06. Step 4 started; verification and user review remain pending

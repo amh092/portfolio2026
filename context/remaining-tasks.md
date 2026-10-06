@@ -2,17 +2,15 @@
 
 ## Current Action
 
-### Review Phase 6 · Step 2 — Optimized Models and Preview Images
+### Complete Phase 6 · Step 4 — On-Demand Viewer and Controls, Then Stop for Review
 
 ## Phase 6 — Interactive 3D Showcase
 
-### Add Static Showcase Cards and Approved Model Content
-
-### Build the Model Viewer and Controls
+### Finish and Verify the Model Viewer and Controls
 
 ### Add Loading Progress and Static Fallbacks
 
-### Load Models on Demand and Pause Offscreen Rendering
+### Add Model Animation and Pause Offscreen or Hidden-Tab Rendering
 
 ### Verify Mobile Performance and Accessibility
 
