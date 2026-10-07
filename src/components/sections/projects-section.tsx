@@ -14,7 +14,7 @@ import type { AppLocale } from "@/types/locale";
 // label (uppercase/tracking EN only) over muted step--1 body text.
 const PS_BLOCK_CLASSES = "border-s-2 border-accent/40 ps-[0.85rem]";
 const PS_LABEL_CLASSES =
-  "mb-[0.15rem] text-[0.7rem] font-bold uppercase tracking-[0.12em] text-accent rtl:text-[0.8rem] rtl:normal-case rtl:tracking-normal";
+  "mb-[0.15rem] text-[0.7rem] font-bold uppercase tracking-[0.12em] text-accent-text rtl:text-[0.8rem] rtl:normal-case rtl:tracking-normal";
 const PS_BODY_CLASSES = "text-(length:--step--1) text-fg-muted";
 
 export default async function ProjectsSection() {
@@ -83,7 +83,7 @@ export default async function ProjectsSection() {
                     aria-label={t("liveDemoAria", {
                       project: project.title[locale],
                     })}
-                    className="inline-flex items-center gap-[0.4rem] rounded-sm border border-border bg-surface-2 px-[0.9rem] py-2 text-[0.8rem] font-semibold transition-all duration-250 ease-smooth hover:border-accent/50 hover:text-accent"
+                    className="inline-flex items-center gap-[0.4rem] rounded-sm border border-border bg-surface-2 px-[0.9rem] py-2 text-[0.8rem] font-semibold transition-all duration-250 ease-smooth hover:border-accent/50 hover:text-accent-text"
                   >
                     <ExternalLink aria-hidden className="size-[15px]" />
                     {t("liveDemo")}

@@ -1,42 +1,31 @@
 # Current Feature
 
-Phase 6 — Interactive 3D Showcase
+Production Launch
 
 ## Status
 
-<!-- Not Started|In Progress|Completed -->
-
-In Progress
+Completed — deployed and verified on 2026-10-07
 
 ## Goals
 
-Build the approved Insally robot showcase from `phase-1-plan.md` §§10–11 and §16, using the prototype's viewer presentation and the overview's performance requirements.
+Prepare the portfolio for public deployment following Ahmed's request on 2026-10-07: "ok i want to lucnh do the necessary for deploying".
 
-- Install Three.js, React Three Fiber, Drei, and Three.js TypeScript definitions.
-- Prepare the three optimized robot GLBs and individual WebP preview/fallback stills; preserve the source assets.
-- Render approved titles, descriptions, tools, and previews in both locales.
-- Load one interactive model at a time, only after an explicit action; provide rotate/zoom controls.
-- Add loading progress, errors/retry, and static fallbacks for unavailable WebGL or JavaScript.
-- Pause animation/rendering offscreen and in hidden tabs; support live reduced-motion changes and keyboard operation.
-- Verify mobile performance, asset loading, accessibility, both themes, and EN/AR layouts.
-
-## Scope
-
-- Approved models: Primary-Stage, Middle-Stage, and High-School-Stage Insally robots; names and descriptions from `phase-1-plan.md` §11.
-- Sources: `/Users/ahmed/Projects/react/insally/public/models/{primary,intermed,highschool}-optimized.glb`.
-- Showcase the web integration of Meshy AI-generated assets; do not describe Ahmed as their modeler.
-- Contact submission remains Phase 7. SEO, broader browser/device verification, native macOS Reduce Motion verification deferred from Phase 5, and deployment remain Phase 8.
-- Optional fullscreen and additional scenes are excluded from the initial implementation plan.
+- Resolve dependency security findings with compatible supported updates and verify the final dependency tree.
+- Launch with confirmed direct contact links; the inactive form is removed. The initial public domain is portfolio2026-five-delta.vercel.app.
+- Add essential localized SEO, canonical/language URLs, sitemap, robots policy, sharing images, and branded icons.
+- Verify the production build, accessibility, responsive layouts, key interactions, and deployment configuration.
+- Use the established Vercel deployment target; check existing account/project linkage, then deploy and verify if access is available.
+- Retain the working static/on-demand 3D experience; additional model animation and full Phase 6 lifecycle enhancements are deferred to post-launch.
 
 ## Notes
 
-- Phase 5 audit approved via "next" after the commit/merge request on 2026-10-03. Closeout was already committed as `299036f`; lint/build re-verified, then fast-forward merged into local `main`. The existing animation branch is retained; no remote push or branch deletion was requested.
-- Phase 6 branch: `feature/three-d-showcase`.
-- Plan and step prompts: `context/phase-6-plan.md`, `context/phase-6-prompts.md`; continue one reviewable step per prompt.
-- Current step: Step 5 implemented and verified — localized download/preparation progress, retry, and WebGL/context-loss fallbacks; ready for review, uncommitted. Step 4 is committed as `14dc868` and accepted for progression via "next step" on 2026-10-07; its previously pending verification is covered by the integrated Step 5 checks (26/26 browser scenarios, lint/build pass). Next after review: Step 6 animation and rendering lifecycle. Step 3's typed content and static cards were committed as `fe92d29` and accepted for progression via "next" on 2026-10-06. Step 2 was committed as `5d06cf6` and approved via "next step" on 2026-10-04.
-- Step 1 is committed as `5ad25a6`; progression followed "do what is required now" on 2026-10-04. Final assets and verification are recorded in `phase-6-assets.md` / `phase-6-asset-manifest.json`. Prepared GLBs require the existing Three.js Meshopt decoder, which must remain inside the explicitly loaded renderer.
-- New interface strings will be drafted in EN/AR alongside the step that needs them, with approval called out. Approved model content is reused verbatim.
-- Current npm audit: 11 affected packages (10 high, 1 critical), all present at unchanged versions before the 3D installation; none of the added 3D packages is listed. Record and remediation remain in Phase 8 before deployment; details in `phase-6-plan.md` §5.
+- Launch branch: `feature/production-launch`, based on Phase 6 Step 5 commit `89a02df`.
+- Live site: https://portfolio2026-five-delta.vercel.app. Vercel deployment `dpl_HST4LafMEsaZ8kr2TwDBXCbYu5ho` is READY.
+- Lint/build, 18/18 local production scenarios, and live EN desktop/AR mobile checks pass. Nine local and two live axe scans report zero violations. Runtime audit is clean; five development-only high entries remain from one unpatched upstream braces advisory.
+- Deployed the verified working-tree snapshot. Launch changes remain uncommitted on `feature/production-launch`; no push, merge, or automatic Git deployment connection was performed.
+- Launch implementation and evidence: `context/launch-readiness.md`. User's launch request authorizes necessary implementation and deployment work. Do not treat prior one-step Phase 6 stopping points as limits on this launch request.
+- Preserve approved model/project claims, both locales, both themes, and existing contact destinations.
+- Do not publish repository context/reference/source assets with the deployed runtime. No remote messages, branch deletion, or unrelated work is requested.
 
 ## History
 
@@ -93,3 +82,5 @@ Build the approved Insally robot showcase from `phase-1-plan.md` §§10–11 and
 - 2026-10-04 — Phase 6 Step 1 confirmed committed as `5ad25a6`; progressed following "do what is required now". Step 2 prepared three lossless Meshopt GLBs (6,291,912 → 4,315,004 bytes) and three actual-model 800×600 WebP previews (63,436 bytes total). Source hashes unchanged; independent data-fidelity checks, pixel-identical capture poses, 750 sampled animation renders, 8/8 page regression scenarios, 3/3 final asset checks, lint/build all pass. Model/preview manifest, compression tradeoffs, validator limitations, and later decoder requirements recorded in `phase-6-assets.md` / `phase-6-asset-manifest.json`. No application, copy, or dependency changes. Subsequently committed as `5d06cf6` and accepted via "next step" on 2026-10-04.
 - 2026-10-06 — Phase 6 Step 3 confirmed implemented in `fe92d29`: typed model data and server-rendered static cards with approved EN/AR names, descriptions, tools, and preview alt text. Accepted for progression via "next"; Step 4 started on `feature/three-d-showcase`. Viewer/control verification is pending; 13 new EN/AR interface strings are drafted for review in `phase-6-plan.md`.
 - 2026-10-07 — Phase 6 Step 4 confirmed committed as `14dc868` and accepted for progression via "next step". Step 5 implemented: accurate localized byte/progress and preparation states, retry, unsupported-WebGL and context-loss recovery, static previews throughout, and a page-reload action for cached viewer-code failures. Lint/build pass; 26/26 production-browser scenarios pass across EN/AR, themes, desktop/mobile, no-JS, all three models, keyboard/touch, failed/slow requests, repeated retry, context loss, and loading cancellation. Screenshots inspected; independent review caught and resolved cached import retry behavior. Eleven new EN/AR strings documented in `phase-6-plan.md` for review. Step 5 ready for review, uncommitted; animation/lifecycle remains Step 6.
+
+- 2026-10-07 — Production launch completed following Ahmed's launch request: compatible security updates, localized SEO/sharing/discovery, branded assets, contrast fixes, and direct-contact launch scope. Lint/build and production/live Chrome checks pass; published to https://portfolio2026-five-delta.vercel.app under the separate Vercel `portfolio2026` project. Launch changes remain uncommitted; evidence and post-launch limitations in `context/launch-readiness.md`.

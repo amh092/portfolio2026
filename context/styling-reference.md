@@ -1,5 +1,12 @@
 # Styling Reference
 
+## Launch accessibility adjustments — 2026-10-07
+
+Production launch QA supersedes the original prototype colors for small text and white-on-gradient buttons: accent text uses `--accent-text` (dark `107 159 255`, light `29 78 216`), dim text uses dark `137 150 173` / light `92 104 126`, and primary-button backgrounds use `37 99 235` → `79 70 229`. Decorative accent/glow tokens remain unchanged. These changes address measured WCAG AA contrast failures in eyebrow labels and language buttons; see `launch-readiness.md`.
+
+The launch Contact section uses its approved heading/supporting copy opposite the four confirmed direct contact methods. The inactive form is removed until email submission is implemented.
+
+
 **Source of truth for all visual styling: [`ahmed-portfolio-prototype.html`](../ahmed-portfolio-prototype.html)** (repo root).
 
 When implementing any section or component in Next.js, match the prototype's look. Compare the implemented result in the browser against the baseline screenshots below before considering a feature done.

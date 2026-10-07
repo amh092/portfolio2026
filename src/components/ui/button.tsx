@@ -22,7 +22,7 @@ const BASE_CLASSES =
 
 const VARIANT_CLASSES: Record<ButtonVariant, string> = {
   primary:
-    "border-accent/60 bg-[linear-gradient(140deg,rgb(var(--accent)),rgb(var(--accent-2)))] text-white shadow-[0_10px_30px_-12px_rgb(var(--accent)/0.95)] hover:shadow-[0_16px_40px_-12px_rgb(var(--accent)),0_0_0_1px_rgb(var(--accent)/0.5)]",
+    "border-accent/60 bg-[linear-gradient(140deg,rgb(var(--accent-button)),rgb(var(--accent-button-2)))] text-white shadow-[0_10px_30px_-12px_rgb(var(--accent)/0.95)] hover:shadow-[0_16px_40px_-12px_rgb(var(--accent)),0_0_0_1px_rgb(var(--accent)/0.5)]",
   ghost: "border-border bg-transparent hover:bg-surface-2",
 };
 

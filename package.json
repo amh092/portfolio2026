@@ -2,6 +2,9 @@
   "name": "portfolio",
   "version": "0.1.0",
   "private": true,
+  "engines": {
+    "node": "24.x"
+  },
   "scripts": {
     "dev": "next dev",
     "build": "next build",
@@ -13,7 +16,7 @@
     "@react-three/fiber": "^9.8.1",
     "lucide-react": "^1.28.0",
     "motion": "^12.43.0",
-    "next": "^16.2.11",
+    "next": "16.3.8",
     "next-intl": "^4.13.4",
     "react": "^19.2.8",
     "react-dom": "^19.2.8",
@@ -26,7 +29,7 @@
     "@types/react-dom": "^19",
     "@types/three": "^0.186.0",
     "eslint": "^9.39.5",
-    "eslint-config-next": "^16.2.12",
+    "eslint-config-next": "16.3.8",
     "tailwindcss": "^4",
     "typescript": "^5"
   }

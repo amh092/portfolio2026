@@ -1,13 +1,15 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { hasLocale, NextIntlClientProvider, type Locale } from "next-intl";
+import { hasLocale, NextIntlClientProvider } from "next-intl";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { Cairo, Inter } from "next/font/google";
 import { routing } from "@/i18n/routing";
 import BackgroundAtmosphere from "@/components/layout/background-atmosphere";
 import Footer from "@/components/layout/footer";
 import Navbar from "@/components/layout/navbar";
+import SiteStructuredData from "@/components/layout/site-structured-data";
 import ThemeSync from "@/components/layout/theme-sync";
+import { getLanguageAlternates, getSiteUrl, isSiteIndexable } from "@/lib/site-config";
 import "../globals.css";
 
 const inter = Inter({
@@ -28,14 +30,53 @@ export async function generateMetadata(
   props: Omit<LayoutProps<"/[locale]">, "children">
 ): Promise<Metadata> {
   const { locale } = await props.params;
+  if (!hasLocale(routing.locales, locale)) {
+    notFound();
+  }
+
   const t = await getTranslations({
-    locale: locale as Locale,
+    locale,
     namespace: "Metadata",
   });
+  const title = t("title");
+  const description = t("description");
+  const indexable = isSiteIndexable();
+  const image = {
+    url: `/images/og/portfolio-${locale}.png`,
+    width: 1200,
+    height: 630,
+    alt: title,
+  };
 
   return {
-    title: t("title"),
-    description: t("description"),
+    metadataBase: getSiteUrl(),
+    title,
+    description,
+    alternates: {
+      canonical: `/${locale}`,
+      languages: getLanguageAlternates(),
+    },
+    openGraph: {
+      type: "website",
+      title,
+      description,
+      siteName: title,
+      url: `/${locale}`,
+      locale: locale === "ar" ? "ar_SA" : "en_US",
+      alternateLocale: locale === "ar" ? "en_US" : "ar_SA",
+      images: [image],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+      images: [image],
+    },
+    icons: {
+      icon: { url: "/icon.svg", type: "image/svg+xml" },
+      apple: { url: "/apple-icon.png", sizes: "180x180", type: "image/png" },
+    },
+    robots: { index: indexable, follow: indexable },
   };
 }
 
@@ -51,6 +92,7 @@ export default async function LocaleLayout({
   setRequestLocale(locale);
 
   const t = await getTranslations("Navigation");
+  const metadata = await getTranslations("Metadata");
 
   return (
     <html
@@ -77,12 +119,17 @@ export default async function LocaleLayout({
         <script async src="/entrance-init.js" blocking="render" />
       </head>
       <body>
+        <SiteStructuredData
+          locale={locale}
+          title={metadata("title")}
+          description={metadata("description")}
+        />
         <BackgroundAtmosphere />
         <NextIntlClientProvider>
           <ThemeSync />
           <a
             href="#main"
-            className="fixed -top-24 start-4 z-[200] rounded-[10px] bg-accent px-4 py-3 text-white transition-[top] duration-200 focus:top-4"
+            className="fixed -top-24 start-4 z-[200] rounded-[10px] bg-accent-button px-4 py-3 text-white transition-[top] duration-200 focus:top-4"
           >
             {t("skipLink")}
           </a>

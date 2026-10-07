@@ -1,49 +1,21 @@
 # Remaining Tasks
 
-## Current Action
+## Launch Status
 
-### Review Phase 6 · Step 5 — Loading Progress and Resilient Fallbacks (Implemented and Verified)
+Deployed and verified: https://portfolio2026-five-delta.vercel.app. No launch blockers remain. Launch source changes are uncommitted on `feature/production-launch`; committing and merging await explicit permission.
 
-## Phase 6 — Interactive 3D Showcase
+## Post-Launch Enhancements
 
-### Next: Step 6 — Model Animation and Rendering Lifecycle
+### Add a Contact Form with Email Delivery, Validation, Spam Protection, and Localized States
 
-### Add Model Animation and Pause Offscreen or Hidden-Tab Rendering
+### Add Model Animation and Expanded Offscreen or Hidden-Tab Lifecycle Controls
 
-### Verify Mobile Performance and Accessibility
+### Verify Physical Mobile Devices and Additional Supported Browsers
 
-## Phase 7 — Contact Form and Email
+### Verify Native macOS Reduce Motion
 
-### Add Client and Server Validation
+### Review Field Performance and Run Broader Lighthouse Checks
 
-### Connect the Email Provider
+### Resolve the Unpatched Development-Only Braces Advisory When a Compatible Fix Is Available
 
-### Add Spam Protection and Rate Limiting
-
-### Add Localized Loading, Success, and Error States
-
-### Test Form Submission and Failure Handling
-
-## Phase 8 — Quality and Launch
-
-### Complete Localized SEO Metadata and Structured Data
-
-### Add Canonical URLs, Language Alternatives, Sitemap, and Robots
-
-### Create Social Sharing Images and Favicons
-
-### Audit Arabic Typography, RTL/LTR, and Responsive Layouts
-
-### Verify Keyboard Navigation, Accessibility, and Color Contrast
-
-### Verify Native macOS Reduce Motion (Deferred from Phase 5)
-
-### Test Supported Desktop and Mobile Browsers
-
-### Optimize Assets and Run Lighthouse
-
-### Resolve Existing Dependency Advisories (11 Packages, Including Critical Next.js Findings)
-
-### Configure Production Environment and Deploy to Vercel
-
-### Connect the Custom Domain and Verify the Live Site
+### Connect a Custom Domain if Selected

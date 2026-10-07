@@ -1,36 +1,50 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Ahmed Webcraft
 
-## Getting Started
+English/Arabic portfolio built with Next.js, React, next-intl, Tailwind CSS, and an on-demand 3D showcase.
 
-First, run the development server:
+Live: [portfolio2026-five-delta.vercel.app](https://portfolio2026-five-delta.vercel.app).
 
-```bash
+## Local development
+
+Use Node.js 24 and the committed npm lockfile.
+
+```sh
+npm ci
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+The locale routes are `/en` and `/ar`. The launch contact section uses the verified email, WhatsApp, GitHub, and LinkedIn destinations in `src/data/social-links.ts`. It does not collect or submit form data.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Verification
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```sh
+npm run lint
+npm run build
+npm audit --omit=dev
+```
 
-## Learn More
+The build downloads Inter and Cairo through `next/font/google`, so it needs network access. Detailed launch evidence and remaining work are recorded in `context/launch-readiness.md`.
 
-To learn more about Next.js, take a look at the following resources:
+## Deployment
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Use the repository root as a Vercel Next.js project with Node.js 24.x. Keep the default install/build commands (`npm ci` / `npm run build`) and framework-managed output directory. No email API key or database is required for this launch.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Canonical URLs, language alternatives, structured data, and the sitemap use one origin, resolved in this order:
 
-## Deploy on Vercel
+1. `NEXT_PUBLIC_SITE_URL`, an HTTPS origin such as `https://your-domain.example`.
+2. Vercel's `VERCEL_PROJECT_PRODUCTION_URL` system variable.
+3. `http://localhost:3000` for local development only.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+For an initial Vercel address, leave `NEXT_PUBLIC_SITE_URL` unset and keep Vercel system environment variables enabled. For a custom domain, configure it in Vercel and set `NEXT_PUBLIC_SITE_URL` before rebuilding. The origin must have no path, query, credentials, or fragment.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+SEO is generated at build time: changing the domain or deployment environment requires a new build. Preview deployments and local origins emit `noindex` metadata and disallow crawling. Never deploy a local test build containing an example or localhost origin as a prebuilt production deployment.
+
+Once signed in to the intended Vercel account and linked to the correct project:
+
+```sh
+vercel deploy --prod
+```
+
+`.vercelignore` excludes project notes, reference material, local environment files, credentials, caches, and dependency directories from CLI uploads. Keep production secrets in Vercel's environment settings.
+
+After deployment, verify both locale routes, contact links, the 3D load/retry controls, `/robots.txt`, `/sitemap.xml`, canonical/social metadata, sharing images, and favicon on the actual public domain.

@@ -9,7 +9,7 @@ interface BackToTopProps {
 }
 
 const BUTTON_CLASSES =
-  "to-top fixed bottom-6 end-6 z-[80] grid size-11 cursor-pointer place-items-center rounded-full border border-border-strong bg-bg/80 text-fg-muted backdrop-blur-[10px] transition-[opacity,translate,color,border-color,box-shadow] duration-[350ms] ease-smooth hover:border-accent/50 hover:text-accent hover:shadow-[0_0_18px_-4px_rgb(var(--accent)/calc(var(--glow-a)/0.45))]";
+  "to-top fixed bottom-6 end-6 z-[80] grid size-11 cursor-pointer place-items-center rounded-full border border-border-strong bg-bg/80 text-fg-muted backdrop-blur-[10px] transition-[opacity,translate,color,border-color,box-shadow] duration-[350ms] ease-smooth hover:border-accent/50 hover:text-accent-text hover:shadow-[0_0_18px_-4px_rgb(var(--accent)/calc(var(--glow-a)/0.45))]";
 
 export default function BackToTop({ menuOpen }: BackToTopProps) {
   const t = useTranslations("Footer");

@@ -14,6 +14,9 @@
 :root {
   --accent: 59 130 246; /* #3b82f6 electric blue */
   --accent-2: 99 102 241; /* #6366f1 indigo, secondary */
+  --accent-text: 107 159 255; /* Readable accent text on dark surfaces. */
+  --accent-button: 37 99 235;
+  --accent-button-2: 79 70 229;
 
   --ff-en: var(--font-inter), system-ui, -apple-system, "Segoe UI", sans-serif;
   --ff-ar: var(--font-cairo), system-ui, "Segoe UI", sans-serif;
@@ -44,12 +47,13 @@
   --border-strong: 255 255 255 / 0.16;
   --fg: 236 240 248;
   --fg-muted: 160 170 190;
-  --fg-dim: 120 130 150;
+  --fg-dim: 137 150 173;
   --glow-a: 0.45;
   --shadow: 0 24px 60px -20px rgb(0 0 0 / 0.8);
 }
 
 html[data-theme="light"] {
+  --accent-text: 29 78 216;
   --bg: 248 250 253;
   --bg-2: 255 255 255;
   --surface: 9 11 16 / 0.025;
@@ -58,7 +62,7 @@ html[data-theme="light"] {
   --border-strong: 9 11 16 / 0.2;
   --fg: 16 20 28;
   --fg-muted: 82 92 110;
-  --fg-dim: 120 130 150;
+  --fg-dim: 92 104 126;
   --glow-a: 0.22;
   --shadow: 0 20px 50px -24px rgb(15 23 42 / 0.28);
 }
@@ -74,6 +78,8 @@ html[lang="ar"] {
 @theme inline {
   --color-accent: rgb(var(--accent));
   --color-accent-2: rgb(var(--accent-2));
+  --color-accent-text: rgb(var(--accent-text));
+  --color-accent-button: rgb(var(--accent-button));
   --color-bg: rgb(var(--bg));
   --color-bg-2: rgb(var(--bg-2));
   --color-surface: rgb(var(--surface));

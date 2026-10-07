@@ -5,7 +5,7 @@ import { usePathname, useRouter } from "@/i18n/navigation";
 import type { SectionId } from "@/data/sections";
 
 const BUTTON_CLASSES =
-  "cursor-pointer rounded-lg px-2.5 py-1.5 text-xs font-bold tracking-[0.03em] text-fg-dim transition-colors duration-250 ease-smooth aria-pressed:bg-accent/15 aria-pressed:text-accent aria-pressed:shadow-[inset_0_0_0_1px_rgb(var(--accent)/0.35)]";
+  "cursor-pointer rounded-lg px-2.5 py-1.5 text-xs font-bold tracking-[0.03em] text-fg-dim transition-colors duration-250 ease-smooth aria-pressed:bg-accent/15 aria-pressed:text-accent-text aria-pressed:shadow-[inset_0_0_0_1px_rgb(var(--accent)/0.35)]";
 
 export default function LanguageSwitcher({
   activeSection,
