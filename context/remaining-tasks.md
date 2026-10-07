@@ -2,13 +2,11 @@
 
 ## Current Action
 
-### Complete Phase 6 · Step 4 — On-Demand Viewer and Controls, Then Stop for Review
+### Review Phase 6 · Step 5 — Loading Progress and Resilient Fallbacks (Implemented and Verified)
 
 ## Phase 6 — Interactive 3D Showcase
 
-### Finish and Verify the Model Viewer and Controls
-
-### Add Loading Progress and Static Fallbacks
+### Next: Step 6 — Model Animation and Rendering Lifecycle
 
 ### Add Model Animation and Pause Offscreen or Hidden-Tab Rendering
 

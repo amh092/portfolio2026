@@ -22,17 +22,10 @@ import { createModelLoader, prepareModel } from "./model-assets";
 import {
   attachModelDrag,
   createViewerControls,
-  type ViewerControls,
 } from "./model-controls";
+import type { ModelRendererProps, ModelViewerError } from "./model-status";
 
 export type { ViewerControls } from "./model-controls";
-
-interface ModelRendererProps {
-  modelUrl: string;
-  label: string;
-  onReady: (controls: ViewerControls) => void;
-  onError: () => void;
-}
 
 function lightScene(scene: Scene, renderer: WebGLRenderer) {
   const key = new DirectionalLight(0xfff2df, 2.1);
@@ -58,6 +51,7 @@ export default function ModelRenderer({
   modelUrl,
   label,
   onReady,
+  onProgress,
   onError,
 }: ModelRendererProps) {
   const hostRef = useRef<HTMLDivElement>(null);
@@ -85,6 +79,7 @@ export default function ModelRenderer({
     let controller: ReturnType<typeof createViewerControls> | undefined;
     let observer: ResizeObserver | undefined;
     let removeDrag: (() => void) | undefined;
+    let failureReason: ModelViewerError = "webgl";
 
     function dispose() {
       if (stopped) return;
@@ -92,7 +87,7 @@ export default function ModelRenderer({
       abort.abort();
       observer?.disconnect();
       removeDrag?.();
-      canvas.removeEventListener("webglcontextlost", fail);
+      canvas.removeEventListener("webglcontextlost", onContextLost);
       controller?.dispose();
       const state = store?.getState();
       if (state) {
@@ -110,10 +105,15 @@ export default function ModelRenderer({
       canvas.remove();
     }
 
-    function fail() {
+    function fail(error: ModelViewerError) {
       if (stopped) return;
       dispose();
-      onError();
+      onError(error);
+    }
+
+    function onContextLost(event: Event) {
+      event.preventDefault();
+      fail("contextLost");
     }
 
     function resize() {
@@ -142,8 +142,9 @@ export default function ModelRenderer({
         renderer.outputColorSpace = SRGBColorSpace;
         renderer.toneMapping = ACESFilmicToneMapping;
         renderer.toneMappingExposure = 1;
-        canvas.addEventListener("webglcontextlost", fail);
+        canvas.addEventListener("webglcontextlost", onContextLost);
 
+        failureReason = "renderer";
         root = createRoot(canvas);
         await root.configure({
           gl: renderer,
@@ -159,9 +160,13 @@ export default function ModelRenderer({
           },
         });
         if (stopped) return;
-        const gltf = await loader.load(modelUrl, abort.signal);
+        failureReason = "download";
+        const gltf = await loader.load(modelUrl, abort.signal, (progress) => {
+          if (!stopped) onProgress(progress);
+        });
         if (stopped) return;
         model = prepareModel(gltf);
+        failureReason = "renderer";
         environment = lightScene(scene, renderer);
         store = root.render(<primitive object={model.group} dispose={null} />);
         controller = createViewerControls(
@@ -175,15 +180,19 @@ export default function ModelRenderer({
         removeDrag = attachModelDrag(canvas, controller.rotateBy);
         // Publish controls only after a successful first frame, avoiding a blank ready state.
         renderer.render(scene, camera);
+        if (renderer.getContext().isContextLost()) {
+          fail("contextLost");
+          return;
+        }
         onReady(controller.controls);
       } catch {
-        fail();
+        fail(failureReason);
       }
     }
 
     void start();
     return dispose;
-  }, [modelUrl, label, onReady, onError]);
+  }, [modelUrl, label, onReady, onProgress, onError]);
 
   return <div ref={hostRef} className="absolute inset-0" />;
 }

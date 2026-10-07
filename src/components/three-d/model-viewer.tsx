@@ -1,7 +1,7 @@
 "use client";
 
 import dynamic from "next/dynamic";
-import { useTranslations } from "next-intl";
+import { useFormatter, useTranslations } from "next-intl";
 import { useCallback, useEffect, useRef, useState, type ReactNode } from "react";
 import {
   Cuboid,
@@ -11,9 +11,11 @@ import {
   ZoomIn,
   ZoomOut,
   X,
+  RefreshCw,
 } from "lucide-react";
 import { useShowcase } from "./showcase-provider";
-import type { ViewerControls } from "./model-renderer";
+import type { ViewerControls } from "./model-controls";
+import type { ModelLoadProgress, ModelRendererProps, ModelViewerError } from "./model-status";
 
 interface ModelViewerProps {
   slug: string;
@@ -26,21 +28,23 @@ interface ActiveViewerProps extends ModelViewerProps {
   onClose: () => void;
 }
 
-interface ImportFailureProps {
-  onError: () => void;
+interface ViewerAttemptProps extends ActiveViewerProps {
+  onRetry: () => void;
 }
 
 interface PreviewFrameProps {
   children: ReactNode;
 }
 
-function ImportFailure({ onError }: ImportFailureProps) {
-  useEffect(onError, [onError]);
+function ImportFailure({ onError }: ModelRendererProps) {
+  useEffect(() => {
+    onError("module");
+  }, [onError]);
   return null;
 }
 
-// This component is only mounted following the visitor's load action. The
-// renderer, Fiber, Three and Meshopt decoder stay out of the initial request.
+// Mounted only after explicit activation. A failed chunk requires a page reload:
+// the bundler caches its rejected import even when the viewer is remounted.
 const ModelRenderer = dynamic(
   () => import("./model-renderer").catch(() => ({ default: ImportFailure })),
   { ssr: false },
@@ -61,26 +65,55 @@ function PreviewFrame({ children }: PreviewFrameProps) {
   );
 }
 
-function ActiveViewer({
+function ViewerAttempt({
   slug,
   modelUrl,
   title,
   children,
   onClose,
-}: ActiveViewerProps) {
+  onRetry,
+}: ViewerAttemptProps) {
   const t = useTranslations("ThreeD");
+  const format = useFormatter();
   const [controls, setControls] = useState<ViewerControls | null>(null);
-  const [failed, setFailed] = useState(false);
+  const [error, setError] = useState<ModelViewerError | null>(null);
+  const [progress, setProgress] = useState<ModelLoadProgress | null>(null);
   const closeRef = useRef<HTMLButtonElement>(null);
+  const retryRef = useRef<HTMLButtonElement>(null);
+  const controlsRef = useRef<HTMLDivElement>(null);
+  const recoverFocus = useRef(false);
   useEffect(() => {
     closeRef.current?.focus({ preventScroll: true });
   }, []);
-  const onError = useCallback(() => {
+  const onError = useCallback((reason: ModelViewerError) => {
+    recoverFocus.current = controlsRef.current?.contains(document.activeElement) ?? false;
     setControls(null);
-    setFailed(true);
+    setError(reason);
   }, []);
-  const ready = controls !== null && !failed;
-  const status = failed ? t("unavailable") : ready ? t("hint") : t("loading");
+  useEffect(() => {
+    if (error && recoverFocus.current) retryRef.current?.focus({ preventScroll: true });
+  }, [error]);
+  const ready = controls !== null && error === null;
+  const downloading = !ready && !error && progress?.stage === "downloading";
+  const percent = downloading && progress.total
+    ? Math.min(100, Math.floor(progress.loaded / progress.total * 100))
+    : undefined;
+  const errorKeys = {
+    download: "downloadError",
+    webgl: "webglUnavailable",
+    contextLost: "contextLost",
+    renderer: "unavailable",
+    module: "viewerLoadError",
+  } as const;
+  let status = t("loading");
+  if (error) status = t(errorKeys[error]);
+  else if (ready) status = t("hint");
+  else if (progress?.stage === "preparing") status = t("preparing");
+  else if (downloading) {
+    status = percent !== undefined
+      ? t("downloadProgress", { progress: format.number(percent / 100, { style: "percent" }) })
+      : t("downloadBytes", { size: format.number(progress.loaded / 1024, { maximumFractionDigits: 0 }) });
+  }
   const actions = [
     { key: "rotateLeft", icon: RotateCcw, run: () => controls?.rotate(-1) },
     { key: "rotateRight", icon: RotateCw, run: () => controls?.rotate(1) },
@@ -98,7 +131,7 @@ function ActiveViewer({
         >
           {children}
         </div>
-        {!failed && (
+        {!error && (
           <div
             aria-hidden={!ready || undefined}
             className={`absolute inset-0 ${ready ? "bg-[radial-gradient(ellipse_at_50%_40%,#192a47,#111b2e_55%,#0e1118)]" : "opacity-0"}`}
@@ -108,12 +141,14 @@ function ActiveViewer({
               label={t("viewerLabel", { model: title })}
               onReady={setControls}
               onError={onError}
+              onProgress={setProgress}
             />
           </div>
         )}
       </PreviewFrame>
       <div className="p-3">
         <div
+          ref={controlsRef}
           role="group"
           aria-label={t("viewerLabel", { model: title })}
           aria-describedby={`${slug}-viewer-status`}
@@ -144,16 +179,43 @@ function ActiveViewer({
             </button>
           ))}
         </div>
+        {error && (
+          <button
+            id={`${slug}-retry`}
+            ref={retryRef}
+            type="button"
+            onClick={error === "module" ? () => window.location.reload() : onRetry}
+            aria-label={error === "module" ? t("reload") : t("retryAria", { model: title })}
+            className="mt-3 flex min-h-11 w-full cursor-pointer items-center justify-center gap-2 rounded-sm border border-accent/35 bg-surface px-3 font-semibold text-fg transition-colors hover:border-accent/60 hover:bg-surface-2"
+          >
+            <RefreshCw aria-hidden className="size-[18px]" />
+            {error === "module" ? t("reload") : t("retry")}
+          </button>
+        )}
         <p
           id={`${slug}-viewer-status`}
           role="status"
+          aria-atomic="true"
           className="mt-2 text-center text-(length:--step--1) text-fg-muted"
         >
           {status}
         </p>
+        {percent !== undefined && (
+          <progress
+            value={percent}
+            max={100}
+            aria-label={t("downloadLabel")}
+            className="mt-2 block h-1.5 w-full overflow-hidden rounded-full border-0 bg-surface-2 accent-accent [&::-moz-progress-bar]:bg-accent [&::-webkit-progress-bar]:bg-surface-2 [&::-webkit-progress-value]:bg-accent"
+          />
+        )}
       </div>
     </>
   );
+}
+
+function ActiveViewer(props: ActiveViewerProps) {
+  const [attempt, setAttempt] = useState(0);
+  return <ViewerAttempt key={attempt} {...props} onRetry={() => setAttempt(attempt + 1)} />;
 }
 
 export default function ModelViewer(props: ModelViewerProps) {

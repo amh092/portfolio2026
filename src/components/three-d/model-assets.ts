@@ -13,8 +13,73 @@ import {
 } from "three";
 import { GLTFLoader, type GLTF } from "three/addons/loaders/GLTFLoader.js";
 import { MeshoptDecoder } from "three/addons/libs/meshopt_decoder.module.js";
+import type { ModelLoadProgress } from "./model-status";
 
 type ModelResource = BufferGeometry | Material | Skeleton | Texture;
+
+function getDownloadTotal(response: Response) {
+  const encoding = response.headers.get("content-encoding")?.trim().toLowerCase();
+  const length = response.headers.get("content-length");
+  // Fetch exposes decoded bytes; compressed Content-Length describes different bytes.
+  // A cross-origin response may also hide its encoding header from JavaScript.
+  if (response.type === "cors" || (encoding && encoding !== "identity") || !length) return;
+  if (!/^\d+$/.test(length)) return;
+  const total = Number(length);
+  return Number.isSafeInteger(total) && total > 0 ? total : undefined;
+}
+
+async function readModelBytes(
+  response: Response,
+  signal: AbortSignal,
+  onProgress: (progress: ModelLoadProgress) => void,
+) {
+  let total = getDownloadTotal(response);
+  let loaded = 0;
+  onProgress({ stage: "downloading", loaded, total });
+  if (!response.body) {
+    const bytes = await response.arrayBuffer();
+    signal.throwIfAborted();
+    onProgress({
+      stage: "downloading",
+      loaded: bytes.byteLength,
+      total: total === bytes.byteLength ? total : undefined,
+    });
+    return bytes;
+  }
+
+  const reader = response.body.getReader();
+  const chunks: Uint8Array[] = [];
+  let lastProgressAt = -Infinity;
+  try {
+    while (true) {
+      const { done, value } = await reader.read();
+      signal.throwIfAborted();
+      if (done) break;
+      chunks.push(value);
+      loaded += value.byteLength;
+      if (total !== undefined && loaded > total) total = undefined;
+      const now = performance.now();
+      if (now - lastProgressAt >= 120) {
+        onProgress({ stage: "downloading", loaded, total });
+        lastProgressAt = now;
+      }
+    }
+  } catch (error) {
+    await reader.cancel().catch(() => {});
+    throw error;
+  } finally {
+    reader.releaseLock();
+  }
+  onProgress({ stage: "downloading", loaded, total: total === loaded ? total : undefined });
+
+  const bytes = new Uint8Array(loaded);
+  let offset = 0;
+  for (const chunk of chunks) {
+    bytes.set(chunk, offset);
+    offset += chunk.byteLength;
+  }
+  return bytes.buffer;
+}
 
 /** Each load owns its assets; no useGLTF/useLoader cache or shared clones. */
 function createResourceOwner() {
@@ -91,14 +156,21 @@ export function createModelLoader() {
   });
 
   return {
-    async load(url: string, signal: AbortSignal) {
+    async load(
+      url: string,
+      signal: AbortSignal,
+      onProgress: (progress: ModelLoadProgress) => void,
+    ) {
+      onProgress({ stage: "downloading", loaded: 0 });
       const response = await fetch(url, { signal });
       if (!response.ok) throw new Error("The model could not be downloaded.");
-      const bytes = await response.arrayBuffer();
+      const bytes = await readModelBytes(response, signal, onProgress);
       signal.throwIfAborted();
+      onProgress({ stage: "preparing" });
       const basePath = new URL(".", new URL(url, location.href)).href;
       const model = await loader.parseAsync(bytes, basePath);
       model.scenes.forEach(owner.track);
+      signal.throwIfAborted();
       return model;
     },
     dispose: owner.dispose,
