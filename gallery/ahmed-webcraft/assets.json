@@ -1,0 +1,119 @@
+{
+  "capturedOn": "2026-10-17",
+  "screenshotSource": "Local production build",
+  "screenshotPreferences": {
+    "reducedMotion": "reduce"
+  },
+  "assets": [
+    {
+      "file": "images/ahmed-webcraft.webp",
+      "role": "cover",
+      "width": 1440,
+      "height": 900,
+      "bytes": 56440,
+      "alt": {
+        "en": "Ahmed Webcraft portfolio — English desktop homepage in dark mode",
+        "ar": "موقع أحمد ويب كرافت — الصفحة الرئيسية بالإنجليزية على سطح المكتب بالمظهر الداكن"
+      }
+    },
+    {
+      "file": "images/social-en.png",
+      "role": "social",
+      "width": 1200,
+      "height": 630,
+      "bytes": 117597,
+      "alt": {
+        "en": "Ahmed Webcraft English social sharing card",
+        "ar": "بطاقة مشاركة أحمد ويب كرافت بالإنجليزية"
+      }
+    },
+    {
+      "file": "images/social-ar.png",
+      "role": "social",
+      "width": 1200,
+      "height": 630,
+      "bytes": 108527,
+      "alt": {
+        "en": "Ahmed Webcraft Arabic social sharing card",
+        "ar": "بطاقة مشاركة أحمد ويب كرافت بالعربية"
+      }
+    },
+    {
+      "file": "screenshots/desktop-dark-en.webp",
+      "role": "screenshot",
+      "width": 1440,
+      "height": 1000,
+      "bytes": 56166,
+      "alt": {
+        "en": "English desktop homepage with dark theme and navigation",
+        "ar": "الصفحة الرئيسية بالإنجليزية على سطح المكتب بالمظهر الداكن وشريط التنقل"
+      }
+    },
+    {
+      "file": "screenshots/desktop-light-en.webp",
+      "role": "screenshot",
+      "width": 1440,
+      "height": 1000,
+      "bytes": 56996,
+      "alt": {
+        "en": "English desktop homepage in light mode",
+        "ar": "الصفحة الرئيسية بالإنجليزية على سطح المكتب بالمظهر الفاتح"
+      }
+    },
+    {
+      "file": "screenshots/desktop-dark-ar.webp",
+      "role": "screenshot",
+      "width": 1440,
+      "height": 1000,
+      "bytes": 35100,
+      "alt": {
+        "en": "Arabic desktop homepage with right-to-left layout",
+        "ar": "الصفحة الرئيسية بالعربية على سطح المكتب بتخطيط من اليمين إلى اليسار"
+      }
+    },
+    {
+      "file": "screenshots/mobile-dark-en.webp",
+      "role": "screenshot",
+      "width": 780,
+      "height": 1688,
+      "bytes": 70258,
+      "alt": {
+        "en": "English mobile homepage with project and contact buttons",
+        "ar": "الصفحة الرئيسية بالإنجليزية على الجوال مع زري عرض الأعمال والتواصل"
+      }
+    },
+    {
+      "file": "screenshots/mobile-dark-ar.webp",
+      "role": "screenshot",
+      "width": 780,
+      "height": 1688,
+      "bytes": 38416,
+      "alt": {
+        "en": "Arabic mobile homepage in dark mode",
+        "ar": "الصفحة الرئيسية بالعربية على الجوال بالمظهر الداكن"
+      }
+    },
+    {
+      "file": "screenshots/desktop-full-en.webp",
+      "role": "screenshot",
+      "width": 1440,
+      "height": 7951,
+      "bytes": 514394,
+      "alt": {
+        "en": "Complete English portfolio showing services, projects, 3D work, about, skills, and contact",
+        "ar": "صفحة الأعمال الكاملة بالإنجليزية وتضم الخدمات والمشاريع والأعمال ثلاثية الأبعاد والنبذة والمهارات والتواصل"
+      }
+    },
+    {
+      "file": "screenshots/three-d-showcase.webp",
+      "role": "screenshot",
+      "width": 1440,
+      "height": 1086,
+      "bytes": 79258,
+      "alt": {
+        "en": "Three robot preview cards with on-demand 3D model load controls",
+        "ar": "ثلاث بطاقات معاينة لروبوتات مع أزرار تحميل النماذج ثلاثية الأبعاد عند الطلب"
+      }
+    }
+  ]
+}

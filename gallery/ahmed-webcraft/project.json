@@ -1,0 +1,63 @@
+{
+  "slug": "ahmed-webcraft",
+  "title": {
+    "en": "Ahmed Webcraft",
+    "ar": "أحمد ويب كرافت"
+  },
+  "summary": {
+    "en": "A bilingual developer portfolio showcasing web projects, services, and interactive 3D work — with Arabic RTL layouts, dark and light themes, and responsive design.",
+    "ar": "موقع أعمال شخصي ثنائي اللغة لعرض مشاريع الويب والخدمات والأعمال ثلاثية الأبعاد التفاعلية، مع دعم العربية واتجاه الكتابة من اليمين إلى اليسار، ومظهرين داكن وفاتح، وتصميم متجاوب."
+  },
+  "problem": {
+    "en": "A developer's work spans live websites, application case studies, and interactive 3D experiences. Presenting these clearly to both Arabic- and English-speaking visitors requires more than a list of project links.",
+    "ar": "تتنوع أعمال المطور بين مواقع منشورة ودراسات حالة لتطبيقات وتجارب ثلاثية الأبعاد تفاعلية. ويحتاج عرضها بوضوح للزوار الناطقين بالعربية والإنجليزية إلى أكثر من مجرد قائمة روابط للمشاريع."
+  },
+  "solution": {
+    "en": "One bilingual portfolio combines project case studies, services, skills, and direct contact links. Localized layouts and saved theme preferences support different visitors, while on-demand 3D viewers let them explore models directly in the browser.",
+    "ar": "يجمع الموقع دراسات حالة للمشاريع والخدمات والمهارات وروابط التواصل المباشر في تجربة ثنائية اللغة. وتدعم التخطيطات المخصصة لكل لغة وحفظ تفضيل المظهر احتياجات الزوار، بينما تتيح عارضات ثلاثية الأبعاد تُحمَّل عند الطلب استكشاف النماذج مباشرة داخل المتصفح."
+  },
+  "image": "/images/projects/ahmed-webcraft.webp",
+  "imageAlt": {
+    "en": "Ahmed Webcraft portfolio — English desktop homepage in dark mode",
+    "ar": "موقع أحمد ويب كرافت — الصفحة الرئيسية بالإنجليزية على سطح المكتب بالمظهر الداكن"
+  },
+  "technologies": [
+    "Next.js",
+    "React",
+    "TypeScript",
+    "Tailwind CSS",
+    "next-intl",
+    "Three.js",
+    "React Three Fiber",
+    "Motion"
+  ],
+  "features": [
+    {
+      "en": "Arabic and English interfaces with RTL/LTR layouts and language switching that preserves the current section.",
+      "ar": "واجهتان بالعربية والإنجليزية تدعمان اتجاهَي الكتابة، مع تبديل اللغة والحفاظ على القسم الحالي."
+    },
+    {
+      "en": "Dark and light themes with a saved display preference.",
+      "ar": "مظهران داكن وفاتح مع حفظ تفضيل المستخدم."
+    },
+    {
+      "en": "Project case studies with problem, solution, features, technology tags, and live demos.",
+      "ar": "دراسات حالة للمشاريع توضح المشكلة والحل والميزات والتقنيات وروابط العروض المباشرة."
+    },
+    {
+      "en": "Three on-demand 3D robot viewers with rotation, zoom, reset, loading progress, and retry controls.",
+      "ar": "ثلاثة عارضات لروبوتات ثلاثية الأبعاد تُحمَّل عند الطلب، مع التدوير والتكبير وإعادة الضبط وعرض تقدم التحميل وإعادة المحاولة."
+    },
+    {
+      "en": "Responsive sections and scroll animations that respect reduced-motion preferences.",
+      "ar": "أقسام متجاوبة وحركات ظهور أثناء التمرير تراعي تفضيل تقليل الحركة."
+    },
+    {
+      "en": "Localized page metadata, social sharing images, language alternatives, and a sitemap.",
+      "ar": "بيانات وصفية وصور مشاركة مخصصة لكل لغة، وروابط للنسخ اللغوية، وخريطة للموقع."
+    }
+  ],
+  "liveUrl": "https://portfolio2026-five-delta.vercel.app",
+  "featured": true,
+  "status": "completed"
+}

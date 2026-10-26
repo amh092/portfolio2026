@@ -1,0 +1,55 @@
+{
+  "createdOn": "2026-10-17",
+  "style": "Navy and blue presentation borders, rounded frames, outer padding, soft shadows",
+  "assets": [
+    {
+      "file": "01-cover.jpg",
+      "width": 1586,
+      "height": 992,
+      "bytes": 244172,
+      "source": "../mostaql-ahmed-webcraft/01-cover.jpg"
+    },
+    {
+      "file": "02-arabic-desktop.jpg",
+      "width": 1586,
+      "height": 992,
+      "bytes": 224412,
+      "source": "../mostaql-ahmed-webcraft/02-arabic-desktop.jpg"
+    },
+    {
+      "file": "03-english-desktop.jpg",
+      "width": 1586,
+      "height": 992,
+      "bytes": 261399,
+      "source": "../mostaql-ahmed-webcraft/03-english-desktop.jpg"
+    },
+    {
+      "file": "04-light-theme.jpg",
+      "width": 1586,
+      "height": 992,
+      "bytes": 256968,
+      "source": "../mostaql-ahmed-webcraft/04-light-theme.jpg"
+    },
+    {
+      "file": "05-arabic-mobile.jpg",
+      "width": 1024,
+      "height": 1536,
+      "bytes": 223806,
+      "source": "../mostaql-ahmed-webcraft/05-arabic-mobile.jpg"
+    },
+    {
+      "file": "06-english-mobile.jpg",
+      "width": 1024,
+      "height": 1536,
+      "bytes": 292666,
+      "source": "../mostaql-ahmed-webcraft/06-english-mobile.jpg"
+    },
+    {
+      "file": "07-three-d-showcase.jpg",
+      "width": 1586,
+      "height": 992,
+      "bytes": 300502,
+      "source": "../mostaql-ahmed-webcraft/07-three-d-showcase.jpg"
+    }
+  ]
+}

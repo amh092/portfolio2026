@@ -1,0 +1,21 @@
+MOSTAQL — AHMED WEBCRAFT
+
+Create page: https://mostaql.com/portfolio/create
+
+1. Sign in to your Mostaql account and open the create page.
+2. Copy the title and description from form-fields.txt into their matching fields.
+3. Select 01-cover.jpg for the thumbnail.
+4. Attach JPG files 02 through 07 as the project images, in filename order.
+5. Add the project URL, completion date, and relevant available skill tags from form-fields.txt.
+6. Preview the entry, then use «انشر الآن» to publish.
+
+Upload the individual JPG images. The ZIP is only a convenient way to transfer this package; extract it first.
+
+The title, description, URL, date, and skills are ready to paste in Arabic. The completion date is the production launch date documented in context/launch-readiness.md: 2026-10-07.
+
+All seven images are JPEG files. The largest image is under 200 KB. Original gallery assets remain available in gallery/ahmed-webcraft/.
+
+Mostaql's published guide permits JPG/JPEG/PNG images, up to 25 MB per image, and up to 20 image/file attachments. Requirements checked on 2026-10-17:
+https://support.mostaql.com/add-a-portfolio
+
+No entry has been created or published by preparing this folder.

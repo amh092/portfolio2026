@@ -1,0 +1,25 @@
+AHMED WEBCRAFT — PRESENTATION IMAGES FOR MOSTAQL
+
+Seven enhanced presentation images with blue borders, rounded frames, navy gradient backgrounds, outer spacing, and soft shadows.
+
+Upload order
+01-cover.jpg — main thumbnail
+02-arabic-desktop.jpg — Arabic desktop view
+03-english-desktop.jpg — English desktop view
+04-light-theme.jpg — light theme
+05-arabic-mobile.jpg — Arabic mobile view
+06-english-mobile.jpg — English mobile view
+07-three-d-showcase.jpg — 3D showcase
+
+Use 01-cover.jpg in the thumbnail field and attach 02 through 07 as project images. Copy the Arabic listing details from form-fields.txt.
+
+All images are JPG. Desktop images are 1586 × 992 pixels; mobile images are 1024 × 1536 pixels. Each image is below 1 MB.
+
+These presentation versions were created with built-in image editing from the original screenshots. The complete prompts are in presentation-prompts.json. Image dimensions and file sizes are recorded in assets.json.
+
+The original unframed JPGs are preserved in gallery/mostaql-ahmed-webcraft. These enhanced images are saved separately so you can choose either version.
+
+Create page: https://mostaql.com/portfolio/create
+Extract the ZIP before selecting the JPG files for upload.
+
+No entry has been created or published by preparing this folder.
